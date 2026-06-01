@@ -1,4 +1,4 @@
-langs = [{"ENG": {
+langs = [{"English": {
     'app_title': "Body Scan Log",
     'menu_title': "MENU",
     'add_menu_opt': "Add new body scan",
@@ -49,14 +49,14 @@ class Translator:
     def __init__(self, lang):
         self.lang = lang
         self.dictionary = None
-        self.available_languages = ["ENG"]
-        self.get_dictionary()
+        self.available_languages = ["English"]
+        self.get_dictionary(self.lang)
 
 
-    def get_dictionary(self):
+    def get_dictionary(self, lang):
         for i in langs:
-            if i["ENG"]:
-                self.dictionary = i["ENG"]
+            if i["English"]:
+                self.dictionary = i["English"]
 
 
 

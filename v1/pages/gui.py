@@ -11,7 +11,7 @@ from translator import Translator
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
-        self.translator = Translator("ENG")
+        self.translator = Translator("English")
         self.title(self.translator.dictionary["app_title"])
         self.menu_frame = MenuFrame(self)
         self.show_menu()

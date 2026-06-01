@@ -6,6 +6,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from translator import Translator
+from strategy_page import StrategiesFrame
 
 
 class App(ctk.CTk):
@@ -17,6 +18,7 @@ class App(ctk.CTk):
         self.show_menu()
         self.add_entry_frame = AddEntryFrame(self)
         self.settings_frame = SettingsFrame(self)
+        self.strategies_frame = StrategiesFrame(self)
 
 
 
@@ -44,6 +46,15 @@ class App(ctk.CTk):
 
     def hide_settings(self):
         self.settings_frame.pack_forget()
+
+
+    def show_strategies_frame(self):
+        self.hide_settings()
+        self.strategies_frame.pack(padx=15, pady=15)
+
+
+    def hide_strategies_frame(self):
+        self.strategies_frame.pack_forget()
 
 
 app = App()

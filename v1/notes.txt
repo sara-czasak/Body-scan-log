@@ -1,3 +1,28 @@
 notes:
 1. The overall score will be dynamically calculated
 2. always collect data for all body parts but if body part left blank then score for that body part is 0 by default
+
+
+date (prefilled with current date, date field)
+notes (at the very bottom, text field)
+for body parts since it needs a number between 0-10, maybe selection boxes with values from 0-10, preset to 0:
+jaw
+face
+neck
+upper back
+mid back
+lower back
+left sholder
+right sholder
+left arm
+right arm
+chest
+stomach
+left leg
+right leg
+left foot
+right foot
+
+
+ENTRY FLOW:
+fill form → submit → back to main menu

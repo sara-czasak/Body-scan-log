@@ -12,6 +12,7 @@ class AddEntryFrame(ctk.CTkFrame):
         self.date_entry = None
         self.notes_label = None
         self.notes_entry = None
+        self.submit_button = None
         self.body_part_list = [
             "jaw",
             "face",
@@ -58,10 +59,13 @@ class AddEntryFrame(ctk.CTkFrame):
             body_part_entry = ctk.CTkOptionMenu(self.scroll_frame, values=values)
             body_part_entry.pack(padx=5, pady=5)
 
-            self.body_part_scans[f"{i}_entry"] = body_part_entry
+            self.body_part_scans[i] = body_part_entry
 
         self.notes_label = ctk.CTkLabel(self.scroll_frame, text="NOTES: ")
         self.notes_label.pack(padx=5, pady=5)
         self.notes_entry = ctk.CTkTextbox(self.scroll_frame, height=160, activate_scrollbars=True)
         self.notes_entry.pack(padx=5, pady=5)
+
+        self.submit_button = ctk.CTkButton(self.scroll_frame, text="SUBMIT ENTRY")
+        self.submit_button.pack(padx=5, pady=5)
 

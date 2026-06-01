@@ -1,14 +1,3 @@
-SQL SCHEMA NOTES:
-
-SCANS TABLE:
-id
-date
-overall score
-notes
-
-
-BODY_PART_READINGS:
-id
-scan id (relational key)
-body part
-score
+notes:
+1. The overall score will be dynamically calculated
+2. always collect data for all body parts but if body part left blank then score for that body part is 0 by default

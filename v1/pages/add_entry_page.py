@@ -30,15 +30,16 @@ class AddEntryFrame(ctk.CTkFrame):
             "left foot",
             "right foot",
         ]
+        self.body_part_scans = {}
         self.layout()
 
 
     def layout(self):
+        self.form_title_label = ctk.CTkLabel(self, text="NEW ENTRY")
+        self.form_title_label.pack(padx=5, pady=5)
+
         self.scroll_frame = ctk.CTkScrollableFrame(self)
         self.scroll_frame.pack(padx=5, pady=5)
-
-        self.form_title_label = ctk.CTkLabel(self.scroll_frame, text="NEW ENTRY")
-        self.form_title_label.pack(padx=5, pady=5)
 
         # FIELDS:
         self.date_label = ctk.CTkLabel(self.scroll_frame, text="DATE: ")
@@ -56,6 +57,8 @@ class AddEntryFrame(ctk.CTkFrame):
             body_part_label.pack(padx=5, pady=5)
             body_part_entry = ctk.CTkOptionMenu(self.scroll_frame, values=values)
             body_part_entry.pack(padx=5, pady=5)
+
+            self.body_part_scans[f"{i}_entry"] = body_part_entry
 
         self.notes_label = ctk.CTkLabel(self.scroll_frame, text="NOTES: ")
         self.notes_label.pack(padx=5, pady=5)

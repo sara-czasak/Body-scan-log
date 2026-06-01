@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from menu_page import MenuFrame
 from add_entry_page import AddEntryFrame
+from setting_page import SettingsFrame
 
 
 class App(ctk.CTk):
@@ -10,6 +11,7 @@ class App(ctk.CTk):
         self.menu_frame = MenuFrame(self)
         self.show_menu()
         self.add_entry_frame = AddEntryFrame(self)
+        self.settings_frame = SettingsFrame(self)
 
 
     def show_menu(self):
@@ -29,7 +31,13 @@ class App(ctk.CTk):
         self.add_entry_frame.pack_forget()
 
 
+    def show_settings(self):
+        self.hide_menu()
+        self.settings_frame.pack(padx=15, pady=15)
 
+
+    def hide_settings(self):
+        self.settings_frame.pack_forget()
 
 
 app = App()

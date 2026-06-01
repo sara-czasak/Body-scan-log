@@ -28,6 +28,10 @@ ENG = {
     "left foot": "left foot",
     "right foot": "right foot",
     "back_button": "BACK",
+    "exit_button": "EXIT",
+    "settings": "SETTINGS",
+    "lang_option": "Select Language",
+    "coping_strategy_options": "Set coping strategies",
 }
 
 def set_language(language):

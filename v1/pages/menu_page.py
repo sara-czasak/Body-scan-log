@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from add_entry_page import AddEntryFrame
+from setting_page import SettingsFrame
 
 
 class MenuFrame(ctk.CTkFrame):
@@ -22,6 +23,9 @@ class MenuFrame(ctk.CTkFrame):
         analyze_button = ctk.CTkButton(self, text="Analyze body scans")
         analyze_button.pack(padx=5, pady=5)
 
-        settings_button = ctk.CTkButton(self, text="Settings")
+        settings_button = ctk.CTkButton(self, text="Settings", command=self.parent.show_settings)
         settings_button.pack(padx=5, pady=5)
+
+        exit_button = ctk.CTkButton(self, text="EXIT", command=self.parent.destroy)
+        exit_button.pack(padx=5, pady=5)
 

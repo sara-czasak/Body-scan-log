@@ -31,7 +31,11 @@ ENG = {
     "exit_button": "EXIT",
     "settings": "SETTINGS",
     "lang_option": "Select Language",
-    "coping_strategy_options": "Set coping strategies",
+    "Stress decreasing strategies": "Stress decreasing strategies",
+    "COPING STRATEGIES": "COPING STRATEGIES",
+    "Strategies for mild stress:": "Strategies for mild stress:",
+    "Strategies for mid stress:": "Strategies for mid stress:",
+    "Strategies for high stress:": "Strategies for high stress:"
 }
 
 def set_language(language):

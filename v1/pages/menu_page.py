@@ -1,9 +1,11 @@
 import customtkinter as ctk
+from add_entry_page import AddEntryFrame
 
 
 class MenuFrame(ctk.CTkFrame):
     def __init__(self, parent):
         super().__init__(parent)
+        self.parent = parent
         self.layout()
 
 
@@ -11,7 +13,7 @@ class MenuFrame(ctk.CTkFrame):
         menu_label = ctk.CTkLabel(self, text="MENU")
         menu_label.pack(padx=5, pady=5)
 
-        add_button = ctk.CTkButton(self, text="Add new body scan")
+        add_button = ctk.CTkButton(self, text="Add new body scan", command=self.parent.show_add_entry)
         add_button.pack(padx=5, pady=5)
 
         view_button = ctk.CTkButton(self, text="View all scans")

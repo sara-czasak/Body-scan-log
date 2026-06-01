@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from menu_page import MenuFrame
+from add_entry_page import AddEntryFrame
 
 
 class App(ctk.CTk):
@@ -8,7 +9,7 @@ class App(ctk.CTk):
         self.title("Body Scan Log")
         self.menu_frame = MenuFrame(self)
         self.show_menu()
-        self.add_entry_frame = None
+        self.add_entry_frame = AddEntryFrame(self)
 
 
     def show_menu(self):
@@ -20,6 +21,7 @@ class App(ctk.CTk):
 
 
     def show_add_entry(self):
+        self.hide_menu()
         self.add_entry_frame.pack(padx=15, pady=15)
 
 

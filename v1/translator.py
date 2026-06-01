@@ -43,6 +43,7 @@ ENG = {
     "Edit Strategy": "Edit Strategy",
     "Delete Strategy": "Delete Strategy",
     "option choice": "SELECT",
+    "strategy_options_menu_default": "OPTIONS",
 }
 
 def set_language(language):

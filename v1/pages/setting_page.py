@@ -78,6 +78,8 @@ class SettingsFrame(ctk.CTkFrame):
         self.back_to_strategies_button.pack(padx=5, pady=5)
 
         self.strategies_option_menu.pack(padx=5, pady=5)
+        self.strategies_option_menu.set("OPTIONS")
+        self.select_strategy_option_button.configure(command = lambda: self.strategy_changes_options(1))
         self.select_strategy_option_button.pack(padx=5, pady=5)
 
         mild_label = ctk.CTkLabel(self, text="Strategies for mild stress:")
@@ -97,6 +99,7 @@ class SettingsFrame(ctk.CTkFrame):
         self.back_to_strategies_button.pack(padx=5, pady=5)
 
         self.strategies_option_menu.pack(padx=5, pady=5)
+        self.select_strategy_option_button.configure(command=lambda: self.strategy_changes_options(2))
         self.select_strategy_option_button.pack(padx=5, pady=5)
 
         mid_label = ctk.CTkLabel(self, text="Strategies for mid stress:")
@@ -116,6 +119,7 @@ class SettingsFrame(ctk.CTkFrame):
         self.back_to_strategies_button.pack(padx=5, pady=5)
 
         self.strategies_option_menu.pack(padx=5, pady=5)
+        self.select_strategy_option_button.configure(command=lambda: self.strategy_changes_options(3))
         self.select_strategy_option_button.pack(padx=5, pady=5)
 
         high_label = ctk.CTkLabel(self, text="Strategies for high stress:")
@@ -128,14 +132,28 @@ class SettingsFrame(ctk.CTkFrame):
         self.high_coping_strategies_list.insert(3, "Strategie name placeholder")
 
 
-    def strategy_changes_options(self):
-        pass
+    def strategy_changes_options(self, stress_level):
+        selected_stress_level = stress_level
+        selected = self.strategies_option_menu.get()
+        if selected == "OPTIONS":
+            return
+        elif selected == "Add Strategy":
+            print("add ", selected_stress_level)
+        elif selected == "Edit Strategy":
+            print("edit ", selected_stress_level)
+        elif selected == "Delete Strategy":
+            print("delete ", selected_stress_level)
+        else:
+            return
 
 
     def clear_layout(self):
         for i in self.winfo_children():
             i.pack_forget()
         self.back_to_settings_button.pack(padx=5, pady=5)
+
+        if self.strategies_option_menu is not None:
+            self.strategies_option_menu.set("OPTIONS")
 
 
     def back_to_strategies(self):

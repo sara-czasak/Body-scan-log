@@ -48,10 +48,7 @@ class SettingsFrame(ctk.CTkFrame):
     def go_back_to_settings(self):
         for i in self.winfo_children():
             i.pack_forget()
-        self.settings_label.pack(padx=5, pady=5)
-        self.back_to_menu_button.pack(padx=5, pady=5)
-        self.language_button.pack(padx=5, pady=5)
-        self.set_coping_strategies.pack(padx=5, pady=5)
+        self.layout()
 
 
     def go_back_to_menu(self):

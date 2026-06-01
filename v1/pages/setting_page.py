@@ -20,6 +20,8 @@ class SettingsFrame(ctk.CTkFrame):
         self.mid_coping_strategies_list = None
         self.high_coping_strategies_list = None
         self.back_to_strategies_button = None
+        self.strategies_option_menu = None
+        self.select_strategy_option_button = None
         self.layout()
 
 
@@ -50,6 +52,11 @@ class SettingsFrame(ctk.CTkFrame):
     def set_coping_strategies(self):
         self.clear_layout()
 
+        values = ["Add Strategy", "Edit Strategy", "Delete Strategy"]
+        self.strategies_option_menu = ctk.CTkOptionMenu(self, values=values)
+
+        self.select_strategy_option_button = ctk.CTkButton(self, text="SELECT")
+
         title = ctk.CTkLabel(self, text="COPING STRATEGIES")
         title.pack(padx=5, pady=5)
 
@@ -70,6 +77,8 @@ class SettingsFrame(ctk.CTkFrame):
         self.back_to_strategies_button = ctk.CTkButton(self, text="BACK", command=self.back_to_strategies)
         self.back_to_strategies_button.pack(padx=5, pady=5)
 
+        self.strategies_option_menu.pack(padx=5, pady=5)
+        self.select_strategy_option_button.pack(padx=5, pady=5)
 
         mild_label = ctk.CTkLabel(self, text="Strategies for mild stress:")
         mild_label.pack(padx=5, pady=5)
@@ -87,6 +96,9 @@ class SettingsFrame(ctk.CTkFrame):
         self.back_to_strategies_button = ctk.CTkButton(self, text="BACK", command=self.back_to_strategies)
         self.back_to_strategies_button.pack(padx=5, pady=5)
 
+        self.strategies_option_menu.pack(padx=5, pady=5)
+        self.select_strategy_option_button.pack(padx=5, pady=5)
+
         mid_label = ctk.CTkLabel(self, text="Strategies for mid stress:")
         mid_label.pack(padx=5, pady=5)
         self.mid_coping_strategies_list = CTkListbox(self)
@@ -103,6 +115,9 @@ class SettingsFrame(ctk.CTkFrame):
         self.back_to_strategies_button = ctk.CTkButton(self, text="BACK", command=self.back_to_strategies)
         self.back_to_strategies_button.pack(padx=5, pady=5)
 
+        self.strategies_option_menu.pack(padx=5, pady=5)
+        self.select_strategy_option_button.pack(padx=5, pady=5)
+
         high_label = ctk.CTkLabel(self, text="Strategies for high stress:")
         high_label.pack(padx=5, pady=5)
         self.high_coping_strategies_list = CTkListbox(self)
@@ -111,6 +126,10 @@ class SettingsFrame(ctk.CTkFrame):
         self.high_coping_strategies_list.insert(1, "Strategie name placeholder")
         self.high_coping_strategies_list.insert(2, "Strategie name placeholder")
         self.high_coping_strategies_list.insert(3, "Strategie name placeholder")
+
+
+    def strategy_changes_options(self):
+        pass
 
 
     def clear_layout(self):
@@ -123,6 +142,7 @@ class SettingsFrame(ctk.CTkFrame):
         for i in self.winfo_children():
             i.pack_forget()
         self.set_coping_strategies()
+
 
     def go_back_to_settings(self):
         for i in self.winfo_children():

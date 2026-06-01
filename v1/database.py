@@ -1,5 +1,5 @@
 import sqlite3
-from db_schema import CREATE_SCANS_TABLE, CREATE_BODY_PART_READING_TABLE
+from db_schema import CREATE_SCANS_TABLE, CREATE_BODY_PART_READING_TABLE, CREATE_STRESS_DECREASE_TABLE
 
 
 class BodyScanDB:
@@ -18,6 +18,7 @@ class BodyScanDB:
         cursor = conn.cursor()
         cursor.execute(CREATE_SCANS_TABLE)
         cursor.execute(CREATE_BODY_PART_READING_TABLE)
+        cursor.execute(CREATE_STRESS_DECREASE_TABLE)
         conn.commit()
         conn.close()
 
@@ -36,5 +37,13 @@ class BodyScanDB:
         conn = self.get_connection()
         cursor = conn.cursor()
         cursor.execute("INSERT INTO body_part_reading (scan_id, body_part, score) VALUES (?, ?, ?)", (scan_id, body_part, score))
+        conn.commit()
+        conn.close()
+
+
+    def insert_stress_decrease_strategy(self, stress_level, strategy_name, strategy_description):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO stress_manager (stress_level, strategy_name, strategy_description) VALUES (?, ?, ?)", (stress_level, strategy_name, strategy_description))
         conn.commit()
         conn.close()

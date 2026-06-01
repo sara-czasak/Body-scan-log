@@ -19,3 +19,13 @@ score INTEGER NOT NULL,
 FOREIGN KEY (scan_id) REFERENCES scans(id)
 )
 """
+
+
+CREATE_STRESS_DECREASE_TABLE = """
+CREATE TABLE IF NOT EXISTS stress_manager (
+id INTEGER PRIMARY KEY,
+stress_level INTEGER NOT NULL,
+strategy_name TEXT NOT NULL,
+strategy_description TEXT NOT NULL,
+)
+"""

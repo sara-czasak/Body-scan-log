@@ -39,6 +39,10 @@ ENG = {
     "Mild stress strategies": "Mild stress strategies",
     "Mid stress strategies": "Mid stress strategies",
     "High stress strategies": "High stress strategies",
+    "Add Strategy":"Add Strategy",
+    "Edit Strategy": "Edit Strategy",
+    "Delete Strategy": "Delete Strategy",
+    "option choice": "SELECT",
 }
 
 def set_language(language):

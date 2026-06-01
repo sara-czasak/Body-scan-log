@@ -14,6 +14,9 @@ class SettingsFrame(ctk.CTkFrame):
         self.back_to_menu_button = None
         self.back_to_settings_button = None
         self.strategy_scroll_screen = None
+        self.mild_stress_button = None
+        self.mid_stress_button = None
+        self.high_stress_button = None
         self.mild_coping_strategies_list = None
         self.mid_coping_strategies_list = None
         self.high_coping_strategies_list = None
@@ -50,36 +53,46 @@ class SettingsFrame(ctk.CTkFrame):
         title = ctk.CTkLabel(self, text="COPING STRATEGIES")
         title.pack(padx=5, pady=5)
 
-        self.strategy_scroll_screen = ctk.CTkScrollableFrame(self)
-        self.strategy_scroll_screen.pack(padx=5, pady=5)
 
-        mild_label = ctk.CTkLabel(self.strategy_scroll_screen, text="Strategies for mild stress:")
-        mild_label.pack(padx=5, pady=5)
-        self.mild_coping_strategies_list = CTkListbox(self.strategy_scroll_screen)
-        self.mild_coping_strategies_list.pack(padx=5, pady=5)
-        self.mild_coping_strategies_list.insert(0, "Strategie name placeholder")
-        self.mild_coping_strategies_list.insert(1, "Strategie name placeholder")
-        self.mild_coping_strategies_list.insert(2, "Strategie name placeholder")
-        self.mild_coping_strategies_list.insert(3, "Strategie name placeholder")
+        self.mild_stress_button = ctk.CTkButton(self, text="Mild stress strategies")
+        self.mild_stress_button.pack(padx=5, pady=5)
 
-        mid_label = ctk.CTkLabel(self.strategy_scroll_screen, text="Strategies for mid stress:")
-        mid_label.pack(padx=5, pady=5)
-        self.mid_coping_strategies_list = CTkListbox(self.strategy_scroll_screen)
-        self.mid_coping_strategies_list.pack(padx=5, pady=5)
-        self.mid_coping_strategies_list.insert(0, "Strategie name placeholder")
-        self.mid_coping_strategies_list.insert(1, "Strategie name placeholder")
-        self.mid_coping_strategies_list.insert(2, "Strategie name placeholder")
-        self.mid_coping_strategies_list.insert(3, "Strategie name placeholder")
+        self.mid_stress_button = ctk.CTkButton(self, text="Mid stress strategies")
+        self.mid_stress_button.pack(padx=5, pady=5)
 
+        self.high_stress_button = ctk.CTkButton(self, text="High stress strategies")
+        self.high_stress_button.pack(padx=5, pady=5)
 
-        high_label = ctk.CTkLabel(self.strategy_scroll_screen, text="Strategies for high stress:")
-        high_label.pack(padx=5, pady=5)
-        self.high_coping_strategies_list = CTkListbox(self.strategy_scroll_screen)
-        self.high_coping_strategies_list.pack(padx=5, pady=5)
-        self.high_coping_strategies_list.insert(0, "Strategie name placeholder")
-        self.high_coping_strategies_list.insert(1, "Strategie name placeholder")
-        self.high_coping_strategies_list.insert(2, "Strategie name placeholder")
-        self.high_coping_strategies_list.insert(3, "Strategie name placeholder")
+        # self.strategy_scroll_screen = ctk.CTkScrollableFrame(self)
+        # self.strategy_scroll_screen.pack(padx=5, pady=5)
+
+        # mild_label = ctk.CTkLabel(self.strategy_scroll_screen, text="Strategies for mild stress:")
+        # mild_label.pack(padx=5, pady=5)
+        # self.mild_coping_strategies_list = CTkListbox(self.strategy_scroll_screen)
+        # self.mild_coping_strategies_list.pack(padx=5, pady=5)
+        # self.mild_coping_strategies_list.insert(0, "Strategie name placeholder")
+        # self.mild_coping_strategies_list.insert(1, "Strategie name placeholder")
+        # self.mild_coping_strategies_list.insert(2, "Strategie name placeholder")
+        # self.mild_coping_strategies_list.insert(3, "Strategie name placeholder")
+        #
+        # mid_label = ctk.CTkLabel(self.strategy_scroll_screen, text="Strategies for mid stress:")
+        # mid_label.pack(padx=5, pady=5)
+        # self.mid_coping_strategies_list = CTkListbox(self.strategy_scroll_screen)
+        # self.mid_coping_strategies_list.pack(padx=5, pady=5)
+        # self.mid_coping_strategies_list.insert(0, "Strategie name placeholder")
+        # self.mid_coping_strategies_list.insert(1, "Strategie name placeholder")
+        # self.mid_coping_strategies_list.insert(2, "Strategie name placeholder")
+        # self.mid_coping_strategies_list.insert(3, "Strategie name placeholder")
+        #
+        #
+        # high_label = ctk.CTkLabel(self.strategy_scroll_screen, text="Strategies for high stress:")
+        # high_label.pack(padx=5, pady=5)
+        # self.high_coping_strategies_list = CTkListbox(self.strategy_scroll_screen)
+        # self.high_coping_strategies_list.pack(padx=5, pady=5)
+        # self.high_coping_strategies_list.insert(0, "Strategie name placeholder")
+        # self.high_coping_strategies_list.insert(1, "Strategie name placeholder")
+        # self.high_coping_strategies_list.insert(2, "Strategie name placeholder")
+        # self.high_coping_strategies_list.insert(3, "Strategie name placeholder")
 
 
 

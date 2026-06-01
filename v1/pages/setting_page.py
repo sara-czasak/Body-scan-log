@@ -26,19 +26,19 @@ class SettingsFrame(ctk.CTkFrame):
 
 
     def layout(self):
-        self.settings_label = ctk.CTkLabel(self, text="SETTINGS")
+        self.settings_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["settings"])
         self.settings_label.pack(padx=5, pady=5)
 
-        self.back_to_menu_button = ctk.CTkButton(self, text="BACK", command=self.go_back_to_menu)
+        self.back_to_menu_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"], command=self.go_back_to_menu)
         self.back_to_menu_button.pack(padx=5, pady=5)
 
-        self.language_button = ctk.CTkButton(self, text="Select Language", command=self.set_lang)
+        self.language_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["lang_option"], command=self.set_lang)
         self.language_button.pack(padx=5, pady=5)
 
-        self.set_coping_strategies_button = ctk.CTkButton(self, text="Stress decreasing strategies", command=self.set_coping_strategies)
+        self.set_coping_strategies_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["Stress decreasing strategies"], command=self.set_coping_strategies)
         self.set_coping_strategies_button.pack(padx=5, pady=5)
 
-        self.back_to_settings_button = ctk.CTkButton(self, text="BACK", command=self.go_back_to_settings)
+        self.back_to_settings_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"], command=self.go_back_to_settings)
 
 
     def set_lang(self):
@@ -52,37 +52,39 @@ class SettingsFrame(ctk.CTkFrame):
     def set_coping_strategies(self):
         self.clear_layout()
 
-        values = ["Add Strategy", "Edit Strategy", "Delete Strategy"]
+        values = [self.parent.translator.dictionary["Add Strategy"],
+                  self.parent.translator.dictionary["Edit Strategy"],
+                  self.parent.translator.dictionary["Delete Strategy"],]
         self.strategies_option_menu = ctk.CTkOptionMenu(self, values=values)
 
-        self.select_strategy_option_button = ctk.CTkButton(self, text="SELECT")
+        self.select_strategy_option_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["option_choice"])
 
-        title = ctk.CTkLabel(self, text="COPING STRATEGIES")
+        title = ctk.CTkLabel(self, text=self.parent.translator.dictionary["COPING STRATEGIES"])
         title.pack(padx=5, pady=5)
 
 
-        self.mild_stress_button = ctk.CTkButton(self, text="Mild stress strategies", command=self.mild_coping_strategies_view)
+        self.mild_stress_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["Mild stress strategies"], command=self.mild_coping_strategies_view)
         self.mild_stress_button.pack(padx=5, pady=5)
 
-        self.mid_stress_button = ctk.CTkButton(self, text="Mid stress strategies", command=self.mid_coping_strategies_view)
+        self.mid_stress_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["Mid stress strategies"], command=self.mid_coping_strategies_view)
         self.mid_stress_button.pack(padx=5, pady=5)
 
-        self.high_stress_button = ctk.CTkButton(self, text="High stress strategies", command=self.high_coping_strategies_view)
+        self.high_stress_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["High stress strategies"], command=self.high_coping_strategies_view)
         self.high_stress_button.pack(padx=5, pady=5)
 
 
     def mild_coping_strategies_view(self):
         self.clear_layout()
         self.back_to_settings_button.pack_forget()
-        self.back_to_strategies_button = ctk.CTkButton(self, text="BACK", command=self.back_to_strategies)
+        self.back_to_strategies_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"], command=self.back_to_strategies)
         self.back_to_strategies_button.pack(padx=5, pady=5)
 
         self.strategies_option_menu.pack(padx=5, pady=5)
-        self.strategies_option_menu.set("OPTIONS")
+        self.strategies_option_menu.set(self.parent.translator.dictionary["strategy_options_menu_default"])
         self.select_strategy_option_button.configure(command = lambda: self.strategy_changes_options(1))
         self.select_strategy_option_button.pack(padx=5, pady=5)
 
-        mild_label = ctk.CTkLabel(self, text="Strategies for mild stress:")
+        mild_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Strategies for mild stress:"])
         mild_label.pack(padx=5, pady=5)
         self.mild_coping_strategies_list = CTkListbox(self)
         self.mild_coping_strategies_list.pack(padx=5, pady=5)
@@ -102,7 +104,7 @@ class SettingsFrame(ctk.CTkFrame):
         self.select_strategy_option_button.configure(command=lambda: self.strategy_changes_options(2))
         self.select_strategy_option_button.pack(padx=5, pady=5)
 
-        mid_label = ctk.CTkLabel(self, text="Strategies for mid stress:")
+        mid_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Strategies for mid stress:"])
         mid_label.pack(padx=5, pady=5)
         self.mid_coping_strategies_list = CTkListbox(self)
         self.mid_coping_strategies_list.pack(padx=5, pady=5)
@@ -122,7 +124,7 @@ class SettingsFrame(ctk.CTkFrame):
         self.select_strategy_option_button.configure(command=lambda: self.strategy_changes_options(3))
         self.select_strategy_option_button.pack(padx=5, pady=5)
 
-        high_label = ctk.CTkLabel(self, text="Strategies for high stress:")
+        high_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Strategies for high stress:"])
         high_label.pack(padx=5, pady=5)
         self.high_coping_strategies_list = CTkListbox(self)
         self.high_coping_strategies_list.pack(padx=5, pady=5)

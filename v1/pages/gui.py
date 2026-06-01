@@ -2,16 +2,22 @@ import customtkinter as ctk
 from menu_page import MenuFrame
 from add_entry_page import AddEntryFrame
 from setting_page import SettingsFrame
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from translator import Translator
 
 
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
-        self.title("Body Scan Log")
+        self.translator = Translator("ENG")
+        self.title(self.translator.dictionary["app_title"])
         self.menu_frame = MenuFrame(self)
         self.show_menu()
         self.add_entry_frame = AddEntryFrame(self)
         self.settings_frame = SettingsFrame(self)
+
 
 
     def show_menu(self):

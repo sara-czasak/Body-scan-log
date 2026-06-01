@@ -20,22 +20,22 @@ class AddEntryFrame(ctk.CTkFrame):
         self.submit_button = None
         self.back_button = None
         self.body_part_list = [
-            "jaw",
-            "face",
-            "neck",
-            "upper back",
-            "mid back",
-            "lower back",
-            "left shoulder",
-            "right shoulder",
-            "left arm",
-            "right arm",
-            "chest",
-            "stomach",
-            "left leg",
-            "right leg",
-            "left foot",
-            "right foot",
+            self.parent.translator.dictionary["jaw"],
+            self.parent.translator.dictionary["face"],
+            self.parent.translator.dictionary["neck"],
+            self.parent.translator.dictionary["upper back"],
+            self.parent.translator.dictionary["mid back"],
+            self.parent.translator.dictionary["lower back"],
+            self.parent.translator.dictionary["left shoulder"],
+            self.parent.translator.dictionary["right shoulder"],
+            self.parent.translator.dictionary["left arm"],
+            self.parent.translator.dictionary["right arm"],
+            self.parent.translator.dictionary["chest"],
+            self.parent.translator.dictionary["stomach"],
+            self.parent.translator.dictionary["left leg"],
+            self.parent.translator.dictionary["right leg"],
+            self.parent.translator.dictionary["left foot"],
+            self.parent.translator.dictionary["right foot"],
         ]
         self.body_part_scans = {}
         self.body_part_scores = {}
@@ -45,17 +45,17 @@ class AddEntryFrame(ctk.CTkFrame):
 
 
     def layout(self):
-        self.back_button = ctk.CTkButton(self, text="BACK", command=self.go_back)
+        self.back_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"], command=self.go_back)
         self.back_button.pack(padx=5, pady=5)
 
-        self.form_title_label = ctk.CTkLabel(self, text="NEW ENTRY")
+        self.form_title_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["new_entry_title"])
         self.form_title_label.pack(padx=5, pady=5)
 
         self.scroll_frame = ctk.CTkScrollableFrame(self)
         self.scroll_frame.pack(padx=5, pady=5)
 
         # FIELDS:
-        self.date_label = ctk.CTkLabel(self.scroll_frame, text="DATE (YYYY-MM-DD): ")
+        self.date_label = ctk.CTkLabel(self.scroll_frame, text=self.parent.translator.dictionary["date_label"])
         self.date_label.pack(padx=5, pady=5)
         self.date_entry = ctk.CTkEntry(self.scroll_frame)
 
@@ -74,12 +74,12 @@ class AddEntryFrame(ctk.CTkFrame):
 
             self.body_part_scans[i] = body_part_entry
 
-        self.notes_label = ctk.CTkLabel(self.scroll_frame, text="NOTES: ")
+        self.notes_label = ctk.CTkLabel(self.scroll_frame, text=self.parent.translator.dictionary["notes_label"])
         self.notes_label.pack(padx=5, pady=5)
         self.notes_entry = ctk.CTkTextbox(self.scroll_frame, height=160, activate_scrollbars=True)
         self.notes_entry.pack(padx=5, pady=5)
 
-        self.submit_button = ctk.CTkButton(self.scroll_frame, text="SUBMIT ENTRY", command=self.submit_form)
+        self.submit_button = ctk.CTkButton(self.scroll_frame, text=self.parent.translator.dictionary["submit_button"], command=self.submit_form)
         self.submit_button.pack(padx=5, pady=5)
 
 

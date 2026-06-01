@@ -1,6 +1,4 @@
-
-
-ENG = {
+langs = [{"ENG": {
     'app_title': "Body Scan Log",
     'menu_title': "MENU",
     'add_menu_opt': "Add new body scan",
@@ -39,19 +37,26 @@ ENG = {
     "Mild stress strategies": "Mild stress strategies",
     "Mid stress strategies": "Mid stress strategies",
     "High stress strategies": "High stress strategies",
-    "Add Strategy":"Add Strategy",
+    "Add Strategy": "Add Strategy",
     "Edit Strategy": "Edit Strategy",
     "Delete Strategy": "Delete Strategy",
-    "option choice": "SELECT",
+    "option_choice": "SELECT",
     "strategy_options_menu_default": "OPTIONS",
-}
+}}]
 
-def set_language(language):
-    if language == "ENG":
-        return ENG
-    else:
-        return ENG
 
+class Translator:
+    def __init__(self, lang):
+        self.lang = lang
+        self.dictionary = None
+        self.available_languages = ["ENG"]
+        self.get_dictionary()
+
+
+    def get_dictionary(self):
+        for i in langs:
+            if i["ENG"]:
+                self.dictionary = i["ENG"]
 
 
 

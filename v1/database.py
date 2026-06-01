@@ -26,8 +26,10 @@ class BodyScanDB:
         conn = self.get_connection()
         cursor = conn.cursor()
         cursor.execute("INSERT INTO scans (date, overall_score, notes) VALUES (?, ?, ?)", (date, overall_score, notes))
+        scan_id = cursor.lastrowid
         conn.commit()
         conn.close()
+        return scan_id
 
 
     def insert_body_part_reading(self, scan_id, body_part, score):

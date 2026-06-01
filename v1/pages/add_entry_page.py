@@ -1,5 +1,9 @@
 import customtkinter as ctk
 import datetime
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from database import BodyScanDB
 
 
 class AddEntryFrame(ctk.CTkFrame):
@@ -47,7 +51,7 @@ class AddEntryFrame(ctk.CTkFrame):
         self.scroll_frame.pack(padx=5, pady=5)
 
         # FIELDS:
-        self.date_label = ctk.CTkLabel(self.scroll_frame, text="DATE: ")
+        self.date_label = ctk.CTkLabel(self.scroll_frame, text="DATE (YYYY-MM-DD): ")
         self.date_label.pack(padx=5, pady=5)
         self.date_entry = ctk.CTkEntry(self.scroll_frame)
 
@@ -92,13 +96,27 @@ class AddEntryFrame(ctk.CTkFrame):
             if self.body_part_scans_db[k] != 0:
                 total_with_score += 1
 
-        total_score = 0
         try:
             self.scan_db_data["total_score"] = int(total_values / total_with_score)
         except ZeroDivisionError:
             self.scan_db_data["total_score"] = 0
 
+        self.save_to_db()
+
         self.reset_form()
+
+
+    def save_to_db(self):
+        db = BodyScanDB()
+        scan_id = db.insert_scan(
+            self.scan_db_data["date"],
+            self.scan_db_data["total_score"],
+            self.scan_db_data["notes"],
+            )
+
+        for k, v in self.body_part_scans_db.items():
+            db.insert_body_part_reading(scan_id, k, v)
+
 
     def reset_form(self):
         self.date_entry.delete(0, "end")

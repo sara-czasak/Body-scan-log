@@ -1,0 +1,21 @@
+
+
+CREATE_SCANS_TABLE = """
+CREATE TABLE scans (
+id INTEGER PRIMARY KEY,
+date TEXT NOT NULL,
+overall_score INTEGER NOT NULL,
+notes TEXT
+)
+"""
+
+
+CREATE_BODY_PART_READING_TABLE = """
+CREATE TABLE body_part_reading (
+id INTEGER PRIMARY KEY,
+scan_id INTEGER NOT NULL,
+body_part TEXT NOT NULL,
+score INTEGER NOT NULL,
+FOREIGN KEY (scan_id) REFERENCES scans(id)
+)
+"""

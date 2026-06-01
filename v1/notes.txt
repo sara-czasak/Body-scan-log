@@ -1,0 +1,14 @@
+SQL SCHEMA NOTES:
+
+SCANS TABLE:
+id
+date
+overall score
+notes
+
+
+BODY_PART_READINGS:
+id
+scan id (relational key)
+body part
+score

@@ -35,7 +35,10 @@ ENG = {
     "COPING STRATEGIES": "COPING STRATEGIES",
     "Strategies for mild stress:": "Strategies for mild stress:",
     "Strategies for mid stress:": "Strategies for mid stress:",
-    "Strategies for high stress:": "Strategies for high stress:"
+    "Strategies for high stress:": "Strategies for high stress:",
+    "Mild stress strategies": "Mild stress strategies",
+    "Mid stress strategies": "Mid stress strategies",
+    "High stress strategies": "High stress strategies",
 }
 
 def set_language(language):

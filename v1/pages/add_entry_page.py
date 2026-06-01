@@ -18,6 +18,7 @@ class AddEntryFrame(ctk.CTkFrame):
         self.notes_label = None
         self.notes_entry = None
         self.submit_button = None
+        self.back_button = None
         self.body_part_list = [
             "jaw",
             "face",
@@ -44,6 +45,9 @@ class AddEntryFrame(ctk.CTkFrame):
 
 
     def layout(self):
+        self.back_button = ctk.CTkButton(self, text="BACK", command=self.go_back)
+        self.back_button.pack(padx=5, pady=5)
+
         self.form_title_label = ctk.CTkLabel(self, text="NEW ENTRY")
         self.form_title_label.pack(padx=5, pady=5)
 
@@ -124,3 +128,9 @@ class AddEntryFrame(ctk.CTkFrame):
         self.notes_entry.delete("1.0", "end")
         for k, v in self.body_part_scans.items():
             v.set("0")
+
+
+    def go_back(self):
+        self.reset_form()
+        self.parent.hide_add_entry()
+        self.parent.show_menu()

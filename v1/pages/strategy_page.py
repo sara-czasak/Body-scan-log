@@ -28,6 +28,10 @@ class StrategiesFrame(ctk.CTkFrame):
     def view_strategies_menu(self):
         if self.back_to_strategies_menu_button is not None:
             self.back_to_strategies_menu_button.pack_forget()
+        if self.strategies_option_menu is not None:
+            self.strategies_option_menu.pack_forget()
+        if self.select_strategy_option_button is not None:
+            self.select_strategy_option_button.pack_forget()
 
         values = [self.parent.translator.dictionary["Add Strategy"],
                   self.parent.translator.dictionary["Edit Strategy"],
@@ -61,28 +65,45 @@ class StrategiesFrame(ctk.CTkFrame):
         if stress_level == 1:
             self.reset_frame()
             self.back_to_strategies_menu_button.pack(padx=5, pady=5)
+            self.strategies_option_menu.pack(padx=5, pady=5)
+            self.select_strategy_option_button.pack(padx=5, pady=5)
+            self.show_strategy_screen(1)
             print("MILD")
         elif stress_level == 2:
             self.reset_frame()
             self.back_to_strategies_menu_button.pack(padx=5, pady=5)
+            self.strategies_option_menu.pack(padx=5, pady=5)
+            self.select_strategy_option_button.pack(padx=5, pady=5)
+            self.show_strategy_screen(2)
             print("MID")
         elif stress_level == 3:
             self.reset_frame()
             self.back_to_strategies_menu_button.pack(padx=5, pady=5)
+            self.strategies_option_menu.pack(padx=5, pady=5)
+            self.select_strategy_option_button.pack(padx=5, pady=5)
+            self.show_strategy_screen(3)
             print("HIGH")
         else:
             pass
 
-    def show_strategy_screen(self):
-        pass
+    def show_strategy_screen(self, stress_level):
+        if stress_level == 1:
+            pass
+        elif stress_level == 2:
+            pass
+        elif stress_level == 3:
+            pass
+        else:
+            pass
+
 
     def add_strategies(self, stress_level):
-        self.clear_screen()
+        pass
 
 
     def edit_strategies(self, stress_level):
-        self.clear_screen()
+        pass
 
 
     def delete_strategies(self, stress_level):
-        self.clear_screen()
+        pass

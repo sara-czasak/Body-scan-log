@@ -1,5 +1,4 @@
 import customtkinter as ctk
-from CTkListbox import *
 
 
 class SettingsFrame(ctk.CTkFrame):
@@ -49,67 +48,6 @@ class SettingsFrame(ctk.CTkFrame):
             self.lang_buttons[i] = option
 
 
-    def mild_coping_strategies_view(self):
-        self.clear_layout()
-        self.back_to_settings_button.pack_forget()
-        self.back_to_strategies_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"], command=self.back_to_strategies)
-        self.back_to_strategies_button.pack(padx=5, pady=5)
-
-        self.strategies_option_menu.pack(padx=5, pady=5)
-        self.strategies_option_menu.set(self.parent.translator.dictionary["strategy_options_menu_default"])
-        self.select_strategy_option_button.configure(command = lambda: self.strategy_changes_options(1))
-        self.select_strategy_option_button.pack(padx=5, pady=5)
-
-        mild_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Strategies for mild stress:"])
-        mild_label.pack(padx=5, pady=5)
-        self.mild_coping_strategies_list = CTkListbox(self)
-        self.mild_coping_strategies_list.pack(padx=5, pady=5)
-        self.mild_coping_strategies_list.insert(0, "Strategie name placeholder")
-        self.mild_coping_strategies_list.insert(1, "Strategie name placeholder")
-        self.mild_coping_strategies_list.insert(2, "Strategie name placeholder")
-        self.mild_coping_strategies_list.insert(3, "Strategie name placeholder")
-
-
-    def mid_coping_strategies_view(self):
-        self.clear_layout()
-        self.back_to_settings_button.pack_forget()
-        self.back_to_strategies_button = ctk.CTkButton(self, text="BACK", command=self.back_to_strategies)
-        self.back_to_strategies_button.pack(padx=5, pady=5)
-
-        self.strategies_option_menu.pack(padx=5, pady=5)
-        self.select_strategy_option_button.configure(command=lambda: self.strategy_changes_options(2))
-        self.select_strategy_option_button.pack(padx=5, pady=5)
-
-        mid_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Strategies for mid stress:"])
-        mid_label.pack(padx=5, pady=5)
-        self.mid_coping_strategies_list = CTkListbox(self)
-        self.mid_coping_strategies_list.pack(padx=5, pady=5)
-        self.mid_coping_strategies_list.insert(0, "Strategie name placeholder")
-        self.mid_coping_strategies_list.insert(1, "Strategie name placeholder")
-        self.mid_coping_strategies_list.insert(2, "Strategie name placeholder")
-        self.mid_coping_strategies_list.insert(3, "Strategie name placeholder")
-
-
-    def high_coping_strategies_view(self):
-        self.clear_layout()
-        self.back_to_settings_button.pack_forget()
-        self.back_to_strategies_button = ctk.CTkButton(self, text="BACK", command=self.back_to_strategies)
-        self.back_to_strategies_button.pack(padx=5, pady=5)
-
-        self.strategies_option_menu.pack(padx=5, pady=5)
-        self.select_strategy_option_button.configure(command=lambda: self.strategy_changes_options(3))
-        self.select_strategy_option_button.pack(padx=5, pady=5)
-
-        high_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Strategies for high stress:"])
-        high_label.pack(padx=5, pady=5)
-        self.high_coping_strategies_list = CTkListbox(self)
-        self.high_coping_strategies_list.pack(padx=5, pady=5)
-        self.high_coping_strategies_list.insert(0, "Strategie name placeholder")
-        self.high_coping_strategies_list.insert(1, "Strategie name placeholder")
-        self.high_coping_strategies_list.insert(2, "Strategie name placeholder")
-        self.high_coping_strategies_list.insert(3, "Strategie name placeholder")
-
-
     def strategy_changes_options(self, stress_level):
         selected_stress_level = stress_level
         selected = self.strategies_option_menu.get()
@@ -129,15 +67,6 @@ class SettingsFrame(ctk.CTkFrame):
         for i in self.winfo_children():
             i.pack_forget()
         self.back_to_settings_button.pack(padx=5, pady=5)
-
-        if self.strategies_option_menu is not None:
-            self.strategies_option_menu.set("OPTIONS")
-
-
-    def back_to_strategies(self):
-        for i in self.winfo_children():
-            i.pack_forget()
-        self.set_coping_strategies()
 
 
     def go_back_to_settings(self):

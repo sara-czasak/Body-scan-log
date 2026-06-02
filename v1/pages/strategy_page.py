@@ -88,6 +88,7 @@ class StrategiesFrame(ctk.CTkFrame):
             self.reset_frame("to level selected")
             self.back_to_strategies_menu_button.pack(padx=5, pady=5)
             self.strategies_option_menu.pack(padx=5, pady=5)
+            self.select_strategy_option_button.configure(command=lambda: self.get_option(stress_level))
             self.select_strategy_option_button.pack(padx=5, pady=5)
             self.show_strategy_screen(1)
             print("MILD")
@@ -95,6 +96,7 @@ class StrategiesFrame(ctk.CTkFrame):
             self.reset_frame("to level selected")
             self.back_to_strategies_menu_button.pack(padx=5, pady=5)
             self.strategies_option_menu.pack(padx=5, pady=5)
+            self.select_strategy_option_button.configure(command=lambda: self.get_option(stress_level))
             self.select_strategy_option_button.pack(padx=5, pady=5)
             self.show_strategy_screen(2)
             print("MID")
@@ -102,11 +104,23 @@ class StrategiesFrame(ctk.CTkFrame):
             self.reset_frame("to level selected")
             self.back_to_strategies_menu_button.pack(padx=5, pady=5)
             self.strategies_option_menu.pack(padx=5, pady=5)
+            self.select_strategy_option_button.configure(command=lambda: self.get_option(stress_level))
             self.select_strategy_option_button.pack(padx=5, pady=5)
             self.show_strategy_screen(3)
             print("HIGH")
         else:
             pass
+
+
+    def get_option(self, stress_level):
+        option = self.strategies_option_menu.get()
+        if option == "Edit Strategy":
+            pass
+        elif option == "Add Strategy":
+            self.add_strategies(stress_level)
+        elif option == "Delete Strategy":
+            pass
+
 
     def show_strategy_screen(self, stress_level):
         if stress_level == 1:
@@ -141,7 +155,7 @@ class StrategiesFrame(ctk.CTkFrame):
 
 
     def add_strategies(self, stress_level):
-        pass
+        self.parent.show_add_strategy_frame(stress_level)
 
 
     def edit_strategies(self, stress_level):

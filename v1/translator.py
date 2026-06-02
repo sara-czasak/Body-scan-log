@@ -42,6 +42,10 @@ langs = [{"English": {
     "Delete Strategy": "Delete Strategy",
     "option_choice": "SELECT",
     "strategy_options_menu_default": "OPTIONS",
+    "Add new strategy": "Add new strategy",
+    "Strategy Name": "Strategy Name",
+    "Strategy Description": "Strategy Description",
+    "submit_strategy": "SUBMIT STRATEGY",
 }}]
 
 

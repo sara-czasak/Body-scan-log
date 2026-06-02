@@ -12,15 +12,6 @@ class SettingsFrame(ctk.CTkFrame):
         self.set_coping_strategies_button = None
         self.back_to_menu_button = None
         self.back_to_settings_button = None
-        # self.mild_stress_button = None
-        # self.mid_stress_button = None
-        # self.high_stress_button = None
-        # self.mild_coping_strategies_list = None
-        # self.mid_coping_strategies_list = None
-        # self.high_coping_strategies_list = None
-        # self.back_to_strategies_button = None
-        # self.strategies_option_menu = None
-        # self.select_strategy_option_button = None
         self.layout()
 
 
@@ -48,19 +39,19 @@ class SettingsFrame(ctk.CTkFrame):
             self.lang_buttons[i] = option
 
 
-    def strategy_changes_options(self, stress_level):
-        selected_stress_level = stress_level
-        selected = self.strategies_option_menu.get()
-        if selected == "OPTIONS":
-            return
-        elif selected == "Add Strategy":
-            print("add ", selected_stress_level)
-        elif selected == "Edit Strategy":
-            print("edit ", selected_stress_level)
-        elif selected == "Delete Strategy":
-            print("delete ", selected_stress_level)
-        else:
-            return
+    # def strategy_changes_options(self, stress_level):
+    #     selected_stress_level = stress_level
+    #     selected = self.strategies_option_menu.get()
+    #     if selected == "OPTIONS":
+    #         return
+    #     elif selected == "Add Strategy":
+    #         print("add ", selected_stress_level)
+    #     elif selected == "Edit Strategy":
+    #         print("edit ", selected_stress_level)
+    #     elif selected == "Delete Strategy":
+    #         print("delete ", selected_stress_level)
+    #     else:
+    #         return
 
 
     def clear_layout(self):

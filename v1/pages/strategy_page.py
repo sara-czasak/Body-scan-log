@@ -1,5 +1,9 @@
 import customtkinter as ctk
 from CTkListbox import *
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from database import BodyScanDB
 
 
 class StrategiesFrame(ctk.CTkFrame):
@@ -21,6 +25,9 @@ class StrategiesFrame(ctk.CTkFrame):
         self.mid_label = None
         self.high_label = None
         self.view_strategies_menu()
+        self.mild_strategies_dict = {}
+        self.mid_strategies_dict = {}
+        self.high_strategies_dict = {}
 
 
     def reset_frame(self, page):
@@ -128,30 +135,36 @@ class StrategiesFrame(ctk.CTkFrame):
             self.mild_label.pack(padx=5, pady=5)
             self.mild_coping_strategies_list = CTkListbox(self)
             self.mild_coping_strategies_list.pack(padx=5, pady=5)
-            self.mild_coping_strategies_list.insert(0, "Strategie name placeholder")
-            self.mild_coping_strategies_list.insert(1, "Strategie name placeholder")
-            self.mild_coping_strategies_list.insert(2, "Strategie name placeholder")
-            self.mild_coping_strategies_list.insert(3, "Strategie name placeholder")
+            data = self.get_strategies_name_list(stress_level)
+            for i in data:
+                self.mild_strategies_dict[i[0]] = i[2]
+                self.mild_coping_strategies_list.insert(i[0], i[2])
         elif stress_level == 2:
             self.mid_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Strategies for mid stress:"])
             self.mid_label.pack(padx=5, pady=5)
             self.mid_coping_strategies_list = CTkListbox(self)
             self.mid_coping_strategies_list.pack(padx=5, pady=5)
-            self.mid_coping_strategies_list.insert(0, "Strategie name placeholder")
-            self.mid_coping_strategies_list.insert(1, "Strategie name placeholder")
-            self.mid_coping_strategies_list.insert(2, "Strategie name placeholder")
-            self.mid_coping_strategies_list.insert(3, "Strategie name placeholder")
+            data = self.get_strategies_name_list(stress_level)
+            for i in data:
+                self.mid_strategies_dict[i[0]] = i[2]
+                self.mid_coping_strategies_list.insert(i[0], i[2])
         elif stress_level == 3:
             self.high_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Strategies for high stress:"])
             self.high_label.pack(padx=5, pady=5)
             self.high_coping_strategies_list = CTkListbox(self)
             self.high_coping_strategies_list.pack(padx=5, pady=5)
-            self.high_coping_strategies_list.insert(0, "Strategie name placeholder")
-            self.high_coping_strategies_list.insert(1, "Strategie name placeholder")
-            self.high_coping_strategies_list.insert(2, "Strategie name placeholder")
-            self.high_coping_strategies_list.insert(3, "Strategie name placeholder")
+            data = self.get_strategies_name_list(stress_level)
+            for i in data:
+                self.high_strategies_dict[i[0]] = i[2]
+                self.high_coping_strategies_list.insert(i[0], i[2])
         else:
             pass
+
+
+    def get_strategies_name_list(self, stress_level):
+        db = BodyScanDB()
+        data = db.get_strategies_by_stress_level(stress_level)
+        return data
 
 
     def add_strategies(self, stress_level):

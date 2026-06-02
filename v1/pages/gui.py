@@ -23,7 +23,6 @@ class App(ctk.CTk):
         self.add_strategy_frame = AddStrategyFrame(self)
 
 
-
     def show_menu(self):
         self.menu_frame.pack(padx=15, pady=15)
 

@@ -47,3 +47,13 @@ class BodyScanDB:
         cursor.execute("INSERT INTO stress_manager (stress_level, strategy_name, strategy_description) VALUES (?, ?, ?)", (stress_level, strategy_name, strategy_description))
         conn.commit()
         conn.close()
+
+
+    def get_strategies_by_stress_level(self, level):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM stress_manager WHERE stress_level = ?", (level,))
+        data = cursor.fetchall()
+        conn.commit()
+        conn.close()
+        return data

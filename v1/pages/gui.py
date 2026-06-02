@@ -8,6 +8,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from translator import Translator
 from strategy_page import StrategiesFrame
 from add_strategy_page import AddStrategyFrame
+from edit_strategy_page import EditStrategyFrame
 
 
 class App(ctk.CTk):
@@ -21,6 +22,7 @@ class App(ctk.CTk):
         self.settings_frame = SettingsFrame(self)
         self.strategies_frame = StrategiesFrame(self)
         self.add_strategy_frame = AddStrategyFrame(self)
+        self.edit_strategy_frame = EditStrategyFrame(self)
 
 
     def show_menu(self):
@@ -53,6 +55,7 @@ class App(ctk.CTk):
     def show_strategies_frame(self):
         self.hide_settings()
         self.hide_add_strategy_frame()
+        self.hide_edit_strategies_frame()
         self.strategies_frame.pack(padx=15, pady=15)
         self.strategies_frame.show_strategy_screen(self.strategies_frame.current_stress_level)
 
@@ -71,12 +74,16 @@ class App(ctk.CTk):
         self.add_strategy_frame.pack_forget()
 
 
-    def show_edit_strategies_frame(self):
-        pass
+    def show_edit_strategies_frame(self, stress_level, record_id):
+        self.hide_strategies_frame()
+        self.edit_strategy_frame.pack(padx=15, pady=15)
+        self.edit_strategy_frame.stress_level = stress_level
+        self.edit_strategy_frame.record_id = record_id
+        self.edit_strategy_frame.get_entry_data()
 
 
     def hide_edit_strategies_frame(self):
-        pass
+        self.edit_strategy_frame.pack_forget()
 
 
 app = App()

@@ -60,6 +60,8 @@ class AddStrategyFrame(ctk.CTkFrame):
                 name,
                 description,
             )
+            self.strategy_description_entry.delete("1.0", "end")
+            self.strategy_name_entry.delete(0, "end")
             self.parent.show_strategies_frame()
         else:
             pass

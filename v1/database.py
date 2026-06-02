@@ -65,3 +65,21 @@ class BodyScanDB:
         cursor.execute("DELETE FROM stress_manager WHERE id = ?", (strategy_id,))
         conn.commit()
         conn.close()
+
+
+    def fetch_strategy_by_id(self, strategy_id):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM stress_manager WHERE id = ?", (strategy_id,))
+        data = cursor.fetchall()
+        conn.commit()
+        conn.close()
+        return data
+
+
+    def update_record_by_id(self, strategy_id, strategy_name, strategy_description):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        cursor.execute("UPDATE stress_manager SET strategy_name = ?, strategy_description = ? WHERE id = ?", (strategy_name, strategy_description, strategy_id))
+        conn.commit()
+        conn.close()

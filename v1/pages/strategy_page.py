@@ -114,11 +114,11 @@ class StrategiesFrame(ctk.CTkFrame):
 
     def get_option(self, stress_level):
         option = self.strategies_option_menu.get()
-        if option == "Edit Strategy":
-            pass
-        elif option == "Add Strategy":
+        if option == self.parent.translator.dictionary["Edit Strategy"]:
+            self.edit_strategies(stress_level)
+        elif option == self.parent.translator.dictionary["Add Strategy"]:
             self.add_strategies(stress_level)
-        elif option == "Delete Strategy":
+        elif option == self.parent.translator.dictionary["Delete Strategy"]:
             self.delete_strategies(stress_level)
 
 
@@ -163,7 +163,15 @@ class StrategiesFrame(ctk.CTkFrame):
 
 
     def edit_strategies(self, stress_level):
-        pass
+        if stress_level == 1:
+            record_id = self.mild_strategies_dict[self.strategy_list.get()]
+            self.parent.show_edit_strategies_frame(stress_level, record_id)
+        elif stress_level == 2:
+            record_id = self.mid_strategies_dict[self.strategy_list.get()]
+            self.parent.show_edit_strategies_frame(stress_level, record_id)
+        elif stress_level == 3:
+            record_id = self.high_strategies_dict[self.strategy_list.get()]
+            self.parent.show_edit_strategies_frame(stress_level, record_id)
 
 
     def delete_strategies(self, stress_level):

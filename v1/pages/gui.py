@@ -41,6 +41,7 @@ class App(ctk.CTk):
 
     def show_settings(self):
         self.hide_menu()
+        self.hide_strategies_frame()
         self.settings_frame.pack(padx=15, pady=15)
 
 

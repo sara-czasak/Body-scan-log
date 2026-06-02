@@ -23,12 +23,18 @@ class AddStrategyFrame(ctk.CTkFrame):
         self.create_layout()
 
 
+    def go_back(self):
+        self.strategy_description_entry.delete("1.0", "end")
+        self.strategy_name_entry.delete(0, "end")
+        self.parent.show_strategies_frame()
+
+
     def create_layout(self):
         self.title = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Add new strategy"])
         self.title.pack(padx=5, pady=5)
 
         self.back_to_strategy_page_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"],
-                                                 command=self.parent.show_strategies_frame)
+                                                 command=self.go_back)
         self.back_to_strategy_page_button.pack(padx=5, pady=5)
 
         self.strategy_name_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Strategy Name"])

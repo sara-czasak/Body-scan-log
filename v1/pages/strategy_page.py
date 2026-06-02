@@ -163,34 +163,56 @@ class StrategiesFrame(ctk.CTkFrame):
 
 
     def edit_strategies(self, stress_level):
-        if stress_level == 1:
-            record_id = self.mild_strategies_dict[self.strategy_list.get()]
-            self.parent.show_edit_strategies_frame(stress_level, record_id)
-        elif stress_level == 2:
-            record_id = self.mid_strategies_dict[self.strategy_list.get()]
-            self.parent.show_edit_strategies_frame(stress_level, record_id)
-        elif stress_level == 3:
-            record_id = self.high_strategies_dict[self.strategy_list.get()]
-            self.parent.show_edit_strategies_frame(stress_level, record_id)
+        try:
+            if stress_level == 1:
+                record_id = self.mild_strategies_dict[self.strategy_list.get()]
+                self.parent.show_edit_strategies_frame(stress_level, record_id)
+
+            elif stress_level == 2:
+
+                record_id = self.mid_strategies_dict[self.strategy_list.get()]
+                self.parent.show_edit_strategies_frame(stress_level, record_id)
+
+            elif stress_level == 3:
+
+                record_id = self.high_strategies_dict[self.strategy_list.get()]
+                self.parent.show_edit_strategies_frame(stress_level, record_id)
+
+            else:
+                pass
+        except (KeyError, IndexError):
+            pass
+        try:
+            self.strategy_list.deactivate(self.strategy_list.curselection())
+        except (IndexError, TypeError):
+            pass
+
 
 
     def delete_strategies(self, stress_level):
         db = BodyScanDB()
+        try:
+            if stress_level == 1:
+                db.delete_strategy_by_id(self.mild_strategies_dict[self.strategy_list.get()])
+                if self.strategy_list is not None:
+                    self.strategy_list.delete('all')
+                self.show_strategy_screen(self.current_stress_level)
+            elif stress_level == 2:
+                db.delete_strategy_by_id(self.mid_strategies_dict[self.strategy_list.get()])
+                if self.strategy_list is not None:
+                    self.strategy_list.delete('all')
+                self.show_strategy_screen(self.current_stress_level)
+            elif stress_level == 3:
+                db.delete_strategy_by_id(self.high_strategies_dict[self.strategy_list.get()])
+                if self.strategy_list is not None:
+                    self.strategy_list.delete('all')
+                self.show_strategy_screen(self.current_stress_level)
+            else:
+                pass
 
-        if stress_level == 1:
-            db.delete_strategy_by_id(self.mild_strategies_dict[self.strategy_list.get()])
-            if self.strategy_list is not None:
-                self.strategy_list.delete('all')
-            self.show_strategy_screen(self.current_stress_level)
-        elif stress_level == 2:
-            db.delete_strategy_by_id(self.mid_strategies_dict[self.strategy_list.get()])
-            if self.strategy_list is not None:
-                self.strategy_list.delete('all')
-            self.show_strategy_screen(self.current_stress_level)
-        elif stress_level == 3:
-            db.delete_strategy_by_id(self.high_strategies_dict[self.strategy_list.get()])
-            if self.strategy_list is not None:
-                self.strategy_list.delete('all')
-            self.show_strategy_screen(self.current_stress_level)
-        else:
+        except (KeyError, TypeError):
+            pass
+        try:
+            self.strategy_list.deactivate(self.strategy_list.curselection())
+        except (IndexError, TypeError):
             pass

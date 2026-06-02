@@ -54,6 +54,7 @@ class App(ctk.CTk):
         self.hide_settings()
         self.hide_add_strategy_frame()
         self.strategies_frame.pack(padx=15, pady=15)
+        self.strategies_frame.show_strategy_screen(self.strategies_frame.current_stress_level)
 
 
     def hide_strategies_frame(self):

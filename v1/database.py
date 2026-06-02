@@ -57,3 +57,11 @@ class BodyScanDB:
         conn.commit()
         conn.close()
         return data
+
+
+    def delete_strategy_by_id(self, strategy_id):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM stress_manager WHERE id = ?", (strategy_id,))
+        conn.commit()
+        conn.close()

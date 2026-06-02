@@ -18,12 +18,9 @@ class StrategiesFrame(ctk.CTkFrame):
         self.select_strategy_option_button = None
         self.back_to_strategies_menu_button = None
         self.strategy_select_title = None
-        self.mild_coping_strategies_list = None
-        self.mid_coping_strategies_list = None
-        self.high_coping_strategies_list = None
-        self.mild_label = None
-        self.mid_label = None
-        self.high_label = None
+        self.strategy_list = None
+        self.strategy_label = None
+        self.current_stress_level = None
         self.view_strategies_menu()
         self.mild_strategies_dict = {}
         self.mid_strategies_dict = {}
@@ -44,19 +41,10 @@ class StrategiesFrame(ctk.CTkFrame):
                 self.strategies_option_menu.pack_forget()
             if self.select_strategy_option_button is not None:
                 self.select_strategy_option_button.pack_forget()
-            if self.mild_coping_strategies_list is not None:
-                self.mild_coping_strategies_list.pack_forget()
-            if self.mid_coping_strategies_list is not None:
-                self.mid_coping_strategies_list.pack_forget()
-            if self.high_coping_strategies_list is not None:
-                self.high_coping_strategies_list.pack_forget()
-            if self.mild_label is not None:
-                self.mild_label.pack_forget()
-            if self.mid_label is not None:
-                self.mid_label.pack_forget()
-            if self.high_label is not None:
-                self.high_label.pack_forget()
-
+            if self.strategy_list is not None:
+                self.strategy_list.pack_forget()
+            if self.strategy_label is not None:
+                self.strategy_label.pack_forget()
 
 
     def view_strategies_menu(self):
@@ -66,6 +54,10 @@ class StrategiesFrame(ctk.CTkFrame):
                   self.parent.translator.dictionary["Edit Strategy"],
                   self.parent.translator.dictionary["Delete Strategy"],]
         self.strategies_option_menu = ctk.CTkOptionMenu(self, values=values)
+
+        self.strategy_label = ctk.CTkLabel(self)
+
+        self.strategy_list = CTkListbox(self)
 
         self.select_strategy_option_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["option_choice"])
 
@@ -90,7 +82,6 @@ class StrategiesFrame(ctk.CTkFrame):
 
 
     def view_strategy_level_selected(self, stress_level):
-        print(stress_level)
         if stress_level == 1:
             self.reset_frame("to level selected")
             self.back_to_strategies_menu_button.pack(padx=5, pady=5)
@@ -98,6 +89,7 @@ class StrategiesFrame(ctk.CTkFrame):
             self.select_strategy_option_button.configure(command=lambda: self.get_option(stress_level))
             self.select_strategy_option_button.pack(padx=5, pady=5)
             self.show_strategy_screen(1)
+            self.current_stress_level = 1
             print("MILD")
         elif stress_level == 2:
             self.reset_frame("to level selected")
@@ -106,6 +98,7 @@ class StrategiesFrame(ctk.CTkFrame):
             self.select_strategy_option_button.configure(command=lambda: self.get_option(stress_level))
             self.select_strategy_option_button.pack(padx=5, pady=5)
             self.show_strategy_screen(2)
+            self.current_stress_level = 2
             print("MID")
         elif stress_level == 3:
             self.reset_frame("to level selected")
@@ -114,6 +107,7 @@ class StrategiesFrame(ctk.CTkFrame):
             self.select_strategy_option_button.configure(command=lambda: self.get_option(stress_level))
             self.select_strategy_option_button.pack(padx=5, pady=5)
             self.show_strategy_screen(3)
+            self.current_stress_level = 3
             print("HIGH")
         else:
             pass
@@ -125,43 +119,46 @@ class StrategiesFrame(ctk.CTkFrame):
             pass
         elif option == "Add Strategy":
             self.add_strategies(stress_level)
+            # self.show_strategy_screen(stress_level)
         elif option == "Delete Strategy":
-            pass
+            self.delete_strategies(stress_level)
 
 
     def show_strategy_screen(self, stress_level):
+        # if self.strategy_list is not None:
+        #     self.strategy_list.delete("all")
         if stress_level == 1:
-            self.mild_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Strategies for mild stress:"])
-            self.mild_label.pack(padx=5, pady=5)
-            self.mild_coping_strategies_list = CTkListbox(self)
-            self.mild_coping_strategies_list.pack(padx=5, pady=5)
+            self.strategy_label.configure(text = self.parent.translator.dictionary["Strategies for mild stress:"])
+            self.strategy_label.pack(padx=5, pady=5)
+
+            self.strategy_list.pack(padx=5, pady=5)
             data = self.get_strategies_name_list(stress_level)
             for i in data:
-                self.mild_strategies_dict[i[0]] = i[2]
-                self.mild_coping_strategies_list.insert(i[0], i[2])
+                self.mild_strategies_dict[i[2]] = i[0]
+                self.strategy_list.insert(i[0], i[2])
         elif stress_level == 2:
-            self.mid_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Strategies for mid stress:"])
-            self.mid_label.pack(padx=5, pady=5)
-            self.mid_coping_strategies_list = CTkListbox(self)
-            self.mid_coping_strategies_list.pack(padx=5, pady=5)
+            self.strategy_label.configure(text = self.parent.translator.dictionary["Strategies for mid stress:"])
+            self.strategy_label.pack(padx=5, pady=5)
+            self.strategy_list.pack(padx=5, pady=5)
             data = self.get_strategies_name_list(stress_level)
             for i in data:
-                self.mid_strategies_dict[i[0]] = i[2]
-                self.mid_coping_strategies_list.insert(i[0], i[2])
+                self.mid_strategies_dict[i[2]] = i[0]
+                self.strategy_list.insert(i[0], i[2])
         elif stress_level == 3:
-            self.high_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Strategies for high stress:"])
-            self.high_label.pack(padx=5, pady=5)
-            self.high_coping_strategies_list = CTkListbox(self)
-            self.high_coping_strategies_list.pack(padx=5, pady=5)
+            self.strategy_label.configure(text = self.parent.translator.dictionary["Strategies for high stress:"])
+            self.strategy_label.pack(padx=5, pady=5)
+            self.strategy_list.pack(padx=5, pady=5)
             data = self.get_strategies_name_list(stress_level)
             for i in data:
-                self.high_strategies_dict[i[0]] = i[2]
-                self.high_coping_strategies_list.insert(i[0], i[2])
+                self.high_strategies_dict[i[2]] = i[0]
+                self.strategy_list.insert(i[0], i[2])
         else:
             pass
 
 
     def get_strategies_name_list(self, stress_level):
+        # if self.strategy_list is not None:
+        #     self.strategy_list.delete("all")
         db = BodyScanDB()
         data = db.get_strategies_by_stress_level(stress_level)
         return data
@@ -176,4 +173,13 @@ class StrategiesFrame(ctk.CTkFrame):
 
 
     def delete_strategies(self, stress_level):
-        pass
+        db = BodyScanDB()
+
+        if stress_level == 1:
+            pass
+        elif stress_level == 2:
+            db.delete_strategy_by_id(self.mid_strategies_dict[self.strategy_list.get()])
+        elif stress_level == 3:
+            pass
+        else:
+            pass

@@ -53,6 +53,8 @@ langs = [{"English": {
     "see_more_button": "SEE DETAILS",
     "last_week_average": "LAST WEEK AVERAGE",
     "get_strategy_button": "GET A STRESS MANAGEMENT TECHNIQUE",
+    "show_graph_button": "SHOW GRAPH",
+    "graph_label": "GRAPH",
 }}]
 
 

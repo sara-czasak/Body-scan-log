@@ -15,9 +15,12 @@ class AnalysisFrame(ctk.CTkFrame):
         self.back_to_menu_button = None
         self.last_week_average = None
         self.get_strategy_button = None
+        self.show_graph_button = None
 
         self.strategy_name_label = None
         self.strategy_description_label = None
+
+        self.graph_label = None
 
         self.average = None
 
@@ -44,11 +47,16 @@ class AnalysisFrame(ctk.CTkFrame):
         self.get_strategy_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["get_strategy_button"], command=self.get_random_strategy)
         self.get_strategy_button.pack(padx=5, pady=5, fill="both")
 
+        self.show_graph_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["show_graph_button"], command=self.graph_layout)
+        self.show_graph_button.pack(padx=5, pady=5, fill="both")
+
         self.strategy_name_label = ctk.CTkLabel(self)
         self.strategy_description_label = ctk.CTkLabel(self)
 
 
     def get_random_strategy(self):
+        if self.graph_label is not None:
+            self.graph_label.pack_forget()
         if self.average is not None:
             if self.average > 7:
                 stress_level = 3
@@ -85,3 +93,5 @@ class AnalysisFrame(ctk.CTkFrame):
     def graph_layout(self):
         self.strategy_name_label.pack_forget()
         self.strategy_description_label.pack_forget()
+        self.graph_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["graph_label"])
+        self.graph_label.pack(padx=5, pady=5, fill="both")

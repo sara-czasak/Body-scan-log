@@ -122,6 +122,8 @@ class AddEntryFrame(ctk.CTkFrame):
         for k, v in self.body_part_scans_db.items():
             db.insert_body_part_reading(scan_id, k, v)
 
+        self.go_back()
+
 
     def reset_form(self):
         self.date_entry.delete(0, "end")

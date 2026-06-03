@@ -129,6 +129,7 @@ class App(ctk.CTk):
     def show_analysis_frame(self):
         self.hide_menu()
         self.analysis_frame.pack(padx=15, pady=15, fill="both", expand=True)
+        self.analysis_frame.get_scan_data()
 
 
     def hide_analysis_frame(self):

@@ -25,7 +25,8 @@ CREATE_STRESS_DECREASE_TABLE = """
 CREATE TABLE IF NOT EXISTS stress_manager (
 id INTEGER PRIMARY KEY,
 stress_level INTEGER NOT NULL,
-strategy_name TEXT NOT NULL UNIQUE,
-strategy_description TEXT NOT NULL
+strategy_name TEXT NOT NULL,
+strategy_description TEXT NOT NULL,
+UNIQUE(stress_level, strategy_name)
 )
 """

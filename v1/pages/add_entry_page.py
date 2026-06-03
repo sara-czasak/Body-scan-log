@@ -49,7 +49,7 @@ class AddEntryFrame(ctk.CTkFrame):
         self.back_button.pack(padx=5, pady=5, fill="both")
 
         self.form_title_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["new_entry_title"])
-        self.form_title_label.pack(padx=5, pady=5, fill="both", expand=True)
+        self.form_title_label.pack(padx=5, pady=5, fill="both")
 
         self.scroll_frame = ctk.CTkScrollableFrame(self)
         self.scroll_frame.pack(padx=5, pady=5, fill="both", expand=True)
@@ -76,7 +76,7 @@ class AddEntryFrame(ctk.CTkFrame):
 
         self.notes_label = ctk.CTkLabel(self.scroll_frame, text=self.parent.translator.dictionary["notes_label"])
         self.notes_label.pack(padx=5, pady=5, fill="both", expand=True)
-        self.notes_entry = ctk.CTkTextbox(self.scroll_frame, height=90, activate_scrollbars=True)
+        self.notes_entry = ctk.CTkTextbox(self.scroll_frame, height=90, activate_scrollbars=True, wrap="word")
         self.notes_entry.pack(padx=5, pady=5, fill="both", expand=True)
 
         self.submit_button = ctk.CTkButton(self.scroll_frame, text=self.parent.translator.dictionary["submit_button"], command=self.submit_form)

@@ -46,7 +46,7 @@ class AddStrategyFrame(ctk.CTkFrame):
         self.strategy_description_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Strategy Description"])
         self.strategy_description_label.pack(padx=5, pady=5, fill="both", expand=True)
 
-        self.strategy_description_entry = ctk.CTkTextbox(self, height=160, activate_scrollbars=True)
+        self.strategy_description_entry = ctk.CTkTextbox(self, height=160, activate_scrollbars=True, wrap="word")
         self.strategy_description_entry.pack(padx=5, pady=5, fill="both", expand=True)
 
         self.add_strategy_button = ctk.CTkButton(

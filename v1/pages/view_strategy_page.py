@@ -41,11 +41,11 @@ class ViewStrategyFrame(ctk.CTkFrame):
     def create_layout(self):
         if self.data is not None:
             self.back_to_strategy_page_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"], command=self.go_back)
-            self.back_to_strategy_page_button.pack()
+            self.back_to_strategy_page_button.pack(padx=5, pady=5, fill="both", expand=True)
             self.name = ctk.CTkLabel(self, text=self.data[0][2])
-            self.name.pack()
+            self.name.pack(padx=5, pady=5, fill="both", expand=True)
             self.description = ctk.CTkLabel(self, text=self.data[0][3])
-            self.description.pack()
+            self.description.pack(padx=5, pady=5, fill="both", expand=True)
 
 
     def get_entry_data(self):

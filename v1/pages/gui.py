@@ -10,6 +10,7 @@ from strategy_page import StrategiesFrame
 from add_strategy_page import AddStrategyFrame
 from edit_strategy_page import EditStrategyFrame
 from view_strategy_page import ViewStrategyFrame
+from about_page import AboutFrame
 
 
 class App(ctk.CTk):
@@ -22,6 +23,7 @@ class App(ctk.CTk):
         self.show_menu()
         self.add_entry_frame = AddEntryFrame(self)
         self.settings_frame = SettingsFrame(self)
+        self.about_frame = AboutFrame(self)
         self.strategies_frame = StrategiesFrame(self)
         self.add_strategy_frame = AddStrategyFrame(self)
         self.edit_strategy_frame = EditStrategyFrame(self)
@@ -76,6 +78,15 @@ class App(ctk.CTk):
 
     def hide_add_strategy_frame(self):
         self.add_strategy_frame.pack_forget()
+
+
+    def show_about(self):
+        self.hide_menu()
+        self.about_frame.pack(padx=15, pady=15, fill="both", expand=True)
+
+
+    def hide_about(self):
+        self.about_frame.pack_forget()
 
 
     def show_edit_strategies_frame(self, stress_level, record_id):

@@ -49,30 +49,30 @@ class EditStrategyFrame(ctk.CTkFrame):
     def create_layout(self):
         if self.data is not None:
             self.title = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Edit Strategy"])
-            self.title.pack(padx=5, pady=5)
+            self.title.pack(padx=5, pady=5, fill="both", expand=True)
 
             self.back_to_strategy_page_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"],
                                                      command=self.go_back)
-            self.back_to_strategy_page_button.pack(padx=5, pady=5)
+            self.back_to_strategy_page_button.pack(padx=5, pady=5, fill="both", expand=True)
 
             self.strategy_name_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Strategy Name"])
-            self.strategy_name_label.pack(padx=5, pady=5)
+            self.strategy_name_label.pack(padx=5, pady=5, fill="both", expand=True)
 
             self.strategy_name_entry = ctk.CTkEntry(self)
             self.strategy_name_entry.insert(0, self.data[0][2])
-            self.strategy_name_entry.pack(padx=5, pady=5)
+            self.strategy_name_entry.pack(padx=5, pady=5, fill="both", expand=True)
 
             self.strategy_description_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Strategy Description"])
-            self.strategy_description_label.pack(padx=5, pady=5)
+            self.strategy_description_label.pack(padx=5, pady=5, fill="both", expand=True)
 
             self.strategy_description_entry = ctk.CTkTextbox(self, height=160, activate_scrollbars=True)
-            self.strategy_description_entry.pack(padx=5, pady=5)
+            self.strategy_description_entry.pack(padx=5, pady=5, fill="both", expand=True)
             self.strategy_description_entry.insert("1.0", self.data[0][3])
 
             self.save_edit_strategy_button = ctk.CTkButton(
                 self,
                 text=self.parent.translator.dictionary["submit_strategy"], command=self.save_edit_and_return)
-            self.save_edit_strategy_button.pack(padx=5, pady=5)
+            self.save_edit_strategy_button.pack(padx=5, pady=5, fill="both", expand=True)
 
 
     def get_entry_data(self):

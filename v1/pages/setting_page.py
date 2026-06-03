@@ -39,21 +39,6 @@ class SettingsFrame(ctk.CTkFrame):
             self.lang_buttons[i] = option
 
 
-    # def strategy_changes_options(self, stress_level):
-    #     selected_stress_level = stress_level
-    #     selected = self.strategies_option_menu.get()
-    #     if selected == "OPTIONS":
-    #         return
-    #     elif selected == "Add Strategy":
-    #         print("add ", selected_stress_level)
-    #     elif selected == "Edit Strategy":
-    #         print("edit ", selected_stress_level)
-    #     elif selected == "Delete Strategy":
-    #         print("delete ", selected_stress_level)
-    #     else:
-    #         return
-
-
     def clear_layout(self):
         for i in self.winfo_children():
             i.pack_forget()

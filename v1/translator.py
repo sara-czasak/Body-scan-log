@@ -46,6 +46,8 @@ langs = [{"English": {
     "Strategy Name": "Strategy Name",
     "Strategy Description": "Strategy Description",
     "submit_strategy": "SUBMIT STRATEGY",
+    "View Strategy": "View Strategy",
+    "SELECT AN OPTION": "SELECT AN OPTION",
 }}]
 
 

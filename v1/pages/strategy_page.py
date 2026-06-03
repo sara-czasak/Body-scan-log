@@ -52,8 +52,10 @@ class StrategiesFrame(ctk.CTkFrame):
 
         values = [self.parent.translator.dictionary["Add Strategy"],
                   self.parent.translator.dictionary["Edit Strategy"],
-                  self.parent.translator.dictionary["Delete Strategy"],]
+                  self.parent.translator.dictionary["Delete Strategy"],
+                  self.parent.translator.dictionary["View Strategy"],]
         self.strategies_option_menu = ctk.CTkOptionMenu(self, values=values)
+        self.strategies_option_menu.set(self.parent.translator.dictionary["SELECT AN OPTION"])
 
         self.strategy_label = ctk.CTkLabel(self)
 

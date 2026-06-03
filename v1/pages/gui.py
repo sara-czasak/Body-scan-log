@@ -21,10 +21,12 @@ class App(ctk.CTk):
         super().__init__()
         self.geometry("400x450")
 
-        img = ImageTk.PhotoImage(file="./img/logo2.png")
-
-        self.wm_iconbitmap()
-        self.iconphoto(True, img)
+        try:
+            img = ImageTk.PhotoImage(file="./img/logo2.png")
+            self.wm_iconbitmap()
+            self.iconphoto(True, img)
+        except FileNotFoundError:
+            pass
 
         self.translator = Translator("English")
         self.title(self.translator.dictionary["app_title"])

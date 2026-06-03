@@ -122,6 +122,8 @@ class StrategiesFrame(ctk.CTkFrame):
             self.add_strategies(stress_level)
         elif option == self.parent.translator.dictionary["Delete Strategy"]:
             self.delete_strategies(stress_level)
+        elif option == self.parent.translator.dictionary["View Strategy"]:
+            self.view_strategy(stress_level)
 
 
     def show_strategy_screen(self, stress_level):
@@ -213,6 +215,32 @@ class StrategiesFrame(ctk.CTkFrame):
                 pass
 
         except (KeyError, TypeError):
+            pass
+        try:
+            self.strategy_list.deactivate(self.strategy_list.curselection())
+        except (IndexError, TypeError):
+            pass
+
+
+    def view_strategy(self, stress_level):
+        try:
+            if stress_level == 1:
+                record_id = self.mild_strategies_dict[self.strategy_list.get()]
+                self.parent.show_view_strategy_frame(stress_level, record_id)
+
+            elif stress_level == 2:
+
+                record_id = self.mid_strategies_dict[self.strategy_list.get()]
+                self.parent.show_view_strategy_frame(stress_level, record_id)
+
+            elif stress_level == 3:
+
+                record_id = self.high_strategies_dict[self.strategy_list.get()]
+                self.parent.show_view_strategy_frame(stress_level, record_id)
+
+            else:
+                pass
+        except (KeyError, IndexError):
             pass
         try:
             self.strategy_list.deactivate(self.strategy_list.curselection())

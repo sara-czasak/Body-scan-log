@@ -1,0 +1,63 @@
+import customtkinter as ctk
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from database import BodyScanDB
+
+
+class ViewStrategyFrame(ctk.CTkFrame):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.parent = parent
+
+        self.record_id = None
+        self.stress_level = None
+        self.back_to_strategy_page_button = None
+
+        self.name = None
+        self.description = None
+
+        self.data = None
+
+
+    def go_back(self):
+        self.name.configure(text="")
+        self.name.pack_forget()
+        self.description.configure(text="")
+        self.description.pack_forget()
+        self.back_to_strategy_page_button.pack_forget()
+        self.parent.show_strategies_frame()
+
+
+    def clear_layout(self):
+        if self.back_to_strategy_page_button is not None:
+            self.back_to_strategy_page_button.pack_forget()
+        if self.name is not None:
+            self.name.pack_forget()
+        if self.description is not None:
+            self.description.pack_forget()
+
+
+    def create_layout(self):
+        if self.data is not None:
+            self.back_to_strategy_page_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"], command=self.go_back)
+            self.back_to_strategy_page_button.pack()
+            self.name = ctk.CTkLabel(self, text=self.data[0][2])
+            self.name.pack()
+            self.description = ctk.CTkLabel(self, text=self.data[0][3])
+            self.description.pack()
+
+
+    def get_entry_data(self):
+        db = BodyScanDB()
+        self.data = db.fetch_strategy_by_id(self.record_id)
+        self.clear_layout()
+        self.create_layout()
+
+
+
+
+
+
+
+

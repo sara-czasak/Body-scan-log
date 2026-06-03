@@ -9,6 +9,7 @@ from translator import Translator
 from strategy_page import StrategiesFrame
 from add_strategy_page import AddStrategyFrame
 from edit_strategy_page import EditStrategyFrame
+from view_strategy_page import ViewStrategyFrame
 
 
 class App(ctk.CTk):
@@ -23,6 +24,7 @@ class App(ctk.CTk):
         self.strategies_frame = StrategiesFrame(self)
         self.add_strategy_frame = AddStrategyFrame(self)
         self.edit_strategy_frame = EditStrategyFrame(self)
+        self.view_strategy_frame = ViewStrategyFrame(self)
 
 
     def show_menu(self):
@@ -56,6 +58,7 @@ class App(ctk.CTk):
         self.hide_settings()
         self.hide_add_strategy_frame()
         self.hide_edit_strategies_frame()
+        self.hide_view_strategy_frame()
         self.strategies_frame.pack(padx=15, pady=15)
         self.strategies_frame.show_strategy_screen(self.strategies_frame.current_stress_level)
 
@@ -84,6 +87,18 @@ class App(ctk.CTk):
 
     def hide_edit_strategies_frame(self):
         self.edit_strategy_frame.pack_forget()
+
+
+    def show_view_strategy_frame(self, stress_level, record_id):
+        self.hide_strategies_frame()
+        self.view_strategy_frame.stress_level = stress_level
+        self.view_strategy_frame.record_id = record_id
+        self.view_strategy_frame.pack(padx=15, pady=15)
+        self.view_strategy_frame.get_entry_data()
+
+
+    def hide_view_strategy_frame(self):
+        self.view_strategy_frame.pack_forget()
 
 
 app = App()

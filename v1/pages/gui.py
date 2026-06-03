@@ -13,12 +13,19 @@ from view_strategy_page import ViewStrategyFrame
 from about_page import AboutFrame
 from view_all_scans_page import ViewAllScansFrame
 from analysis_page import AnalysisFrame
+from PIL import ImageTk
 
 
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
         self.geometry("400x450")
+
+        img = ImageTk.PhotoImage(file="./img/logo2.png")
+
+        self.wm_iconbitmap()
+        self.iconphoto(True, img)
+
         self.translator = Translator("English")
         self.title(self.translator.dictionary["app_title"])
         self.menu_frame = MenuFrame(self)

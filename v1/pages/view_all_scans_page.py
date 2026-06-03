@@ -113,7 +113,7 @@ class ViewAllScansFrame(ctk.CTkFrame):
             self.notes_label.pack(padx=5, pady=5)
 
             for i in self.body_data:
-                self.all_entries_list.insert(i[0], f"{i[2]} | {i[3]}/10")
+                self.all_entries_list.insert("end", f"{i[2]} | {i[3]}/10")
         if self.record_notes != "":
             self.notes_display = ctk.CTkLabel(self.master_scroll_frame, wraplength=250)
             self.notes_display.configure(text=self.record_notes[self.date])

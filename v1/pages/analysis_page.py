@@ -5,6 +5,7 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from database import BodyScanDB
 import random
+import datetime
 
 
 class AnalysisFrame(ctk.CTkFrame):
@@ -24,6 +25,7 @@ class AnalysisFrame(ctk.CTkFrame):
 
         self.average = None
 
+
     def back(self):
         self.parent.hide_analysis_frame()
         self.parent.show_menu()
@@ -34,9 +36,21 @@ class AnalysisFrame(ctk.CTkFrame):
             self.strategy_name_label.pack_forget()
         if self.strategy_description_label is not None:
             self.strategy_description_label.pack_forget()
+        if self.graph_label is not None:
+            self.graph_label.pack_forget()
+        if self.back_to_menu_button is not None:
+            self.back_to_menu_button.pack_forget()
+        if self.last_week_average is not None:
+            self.last_week_average.pack_forget()
+        if self.get_strategy_button is not None:
+            self.get_strategy_button.pack_forget()
+        if self.show_graph_button is not None:
+            self.show_graph_button.pack_forget()
 
 
     def layout(self):
+        self.clean_up()
+
         self.back_to_menu_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"],
                                                  command=self.back)
         self.back_to_menu_button.pack(padx=5, pady=5, fill="both")
@@ -78,8 +92,10 @@ class AnalysisFrame(ctk.CTkFrame):
 
 
     def get_scan_data(self):
+        today = datetime.date.today().strftime("%Y-%m-%d")
+        ten_days_ago = datetime.date.today() - datetime.timedelta(days=10)
         db = BodyScanDB()
-        data = db.get_all_scans()
+        data = db.get_scan_records_last_10_days_with_dates_ordered(ten_days_ago, today)
         total = 0
         for i in data:
             total += i[2]

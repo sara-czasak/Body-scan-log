@@ -119,6 +119,7 @@ class App(ctk.CTk):
 
     def show_view_all_scans_frame(self):
         self.hide_menu()
+        self.view_all_scans_frame.get_all_days_from_db()
         self.view_all_scans_frame.pack(padx=15, pady=15, fill="both", expand=True)
 
 

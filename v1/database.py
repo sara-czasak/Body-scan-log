@@ -157,6 +157,20 @@ class BodyScanDB:
 
 
 
+    def get_scan_records_last_10_days_with_dates_ordered(self, date_from, date_to):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("SELECT * FROM scans WHERE date BETWEEN ? AND ? ORDER BY date ASC", (date_from, date_to))
+            data = cursor.fetchall()
+            return data
+        except OperationalError:
+            print("Something went wrong")
+        finally:
+            conn.close()
+        return None
+
+
     def get_scan_records_with_dates_ordered(self):
         conn = self.get_connection()
         cursor = conn.cursor()

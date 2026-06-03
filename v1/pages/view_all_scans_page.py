@@ -28,7 +28,6 @@ class ViewAllScansFrame(ctk.CTkFrame):
 
         self.scan_records = {}
         self.record_notes = {}
-        self.get_all_days_from_db()
 
 
     def back(self):
@@ -68,8 +67,10 @@ class ViewAllScansFrame(ctk.CTkFrame):
             self.all_scans_list = CTkListbox(self.master_scroll_frame, height=200)
             self.all_scans_list.pack(padx=5, pady=5, fill="both", expand=True)
 
+            i = 0
             for k, v in self.scan_records.items():
-                self.all_scans_list.insert(self.scan_records[k][0], f"{k} | {self.scan_records[k][2]}/10")
+                self.all_scans_list.insert(i, f"{k} | {self.scan_records[k][2]}/10")
+                i += 1
 
 
     def clean_up(self):
@@ -104,7 +105,7 @@ class ViewAllScansFrame(ctk.CTkFrame):
         if self.body_data is not None:
             self.master_scroll_frame.pack(padx=5, pady=5, fill="both", expand=True)
 
-            self.for_day_title = ctk.CTkLabel(self.master_scroll_frame, text=f"{self.date} | {self.rating}/10")
+            self.for_day_title = ctk.CTkLabel(self.master_scroll_frame, text=f"{self.date} | {self.rating}")
             self.for_day_title.pack(padx=5, pady=5)
 
             self.all_entries_list = CTkListbox(self.master_scroll_frame)
@@ -126,10 +127,11 @@ class ViewAllScansFrame(ctk.CTkFrame):
 
     def get_all_days_from_db(self):
         db = BodyScanDB()
-        data = db.get_all_scans()
+        data = db.get_scan_records_with_dates_ordered()
         for record in data:
             self.scan_records[record[1]] = record
             self.record_notes[record[1]] = record[3]
+        print(self.scan_records)
         self.switch_view("main")
 
 

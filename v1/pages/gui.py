@@ -15,6 +15,7 @@ from view_strategy_page import ViewStrategyFrame
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
+        self.geometry("400x300")
         self.translator = Translator("English")
         self.title(self.translator.dictionary["app_title"])
         self.menu_frame = MenuFrame(self)
@@ -28,7 +29,7 @@ class App(ctk.CTk):
 
 
     def show_menu(self):
-        self.menu_frame.pack(padx=15, pady=15)
+        self.menu_frame.pack(padx=15, pady=15, fill="both", expand=True)
 
 
     def hide_menu(self):
@@ -37,7 +38,7 @@ class App(ctk.CTk):
 
     def show_add_entry(self):
         self.hide_menu()
-        self.add_entry_frame.pack(padx=15, pady=15)
+        self.add_entry_frame.pack(padx=15, pady=15, fill="both", expand=True)
 
 
     def hide_add_entry(self):
@@ -47,7 +48,7 @@ class App(ctk.CTk):
     def show_settings(self):
         self.hide_menu()
         self.hide_strategies_frame()
-        self.settings_frame.pack(padx=15, pady=15)
+        self.settings_frame.pack(padx=15, pady=15, fill="both", expand=True)
 
 
     def hide_settings(self):
@@ -59,7 +60,7 @@ class App(ctk.CTk):
         self.hide_add_strategy_frame()
         self.hide_edit_strategies_frame()
         self.hide_view_strategy_frame()
-        self.strategies_frame.pack(padx=15, pady=15)
+        self.strategies_frame.pack(padx=15, pady=15, fill="both", expand=True)
         self.strategies_frame.show_strategy_screen(self.strategies_frame.current_stress_level)
 
 
@@ -69,7 +70,7 @@ class App(ctk.CTk):
 
     def show_add_strategy_frame(self, stress_level):
         self.hide_strategies_frame()
-        self.add_strategy_frame.pack(padx=15, pady=15)
+        self.add_strategy_frame.pack(padx=15, pady=15, fill="both", expand=True)
         self.add_strategy_frame.stress_level = stress_level
 
 
@@ -79,7 +80,7 @@ class App(ctk.CTk):
 
     def show_edit_strategies_frame(self, stress_level, record_id):
         self.hide_strategies_frame()
-        self.edit_strategy_frame.pack(padx=15, pady=15)
+        self.edit_strategy_frame.pack(padx=15, pady=15, fill="both", expand=True)
         self.edit_strategy_frame.stress_level = stress_level
         self.edit_strategy_frame.record_id = record_id
         self.edit_strategy_frame.get_entry_data()
@@ -93,7 +94,7 @@ class App(ctk.CTk):
         self.hide_strategies_frame()
         self.view_strategy_frame.stress_level = stress_level
         self.view_strategy_frame.record_id = record_id
-        self.view_strategy_frame.pack(padx=15, pady=15)
+        self.view_strategy_frame.pack(padx=15, pady=15, fill="both", expand=True)
         self.view_strategy_frame.get_entry_data()
 
 

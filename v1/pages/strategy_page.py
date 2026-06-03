@@ -131,7 +131,7 @@ class StrategiesFrame(ctk.CTkFrame):
             self.strategy_label.configure(text = self.parent.translator.dictionary["Strategies for mild stress:"])
             self.strategy_label.pack(padx=5, pady=5)
 
-            self.strategy_list.pack(padx=5, pady=5)
+            self.strategy_list.pack(padx=5, pady=5, fill="both", expand=True)
             data = self.get_strategies_name_list(stress_level)
             for i in data:
                 self.mild_strategies_dict[i[2]] = i[0]
@@ -139,7 +139,7 @@ class StrategiesFrame(ctk.CTkFrame):
         elif stress_level == 2:
             self.strategy_label.configure(text = self.parent.translator.dictionary["Strategies for mid stress:"])
             self.strategy_label.pack(padx=5, pady=5)
-            self.strategy_list.pack(padx=5, pady=5)
+            self.strategy_list.pack(padx=5, pady=5, fill="both", expand=True)
             data = self.get_strategies_name_list(stress_level)
             for i in data:
                 self.mid_strategies_dict[i[2]] = i[0]
@@ -147,7 +147,7 @@ class StrategiesFrame(ctk.CTkFrame):
         elif stress_level == 3:
             self.strategy_label.configure(text = self.parent.translator.dictionary["Strategies for high stress:"])
             self.strategy_label.pack(padx=5, pady=5)
-            self.strategy_list.pack(padx=5, pady=5)
+            self.strategy_list.pack(padx=5, pady=5, fill="both", expand=True)
             data = self.get_strategies_name_list(stress_level)
             for i in data:
                 self.high_strategies_dict[i[2]] = i[0]

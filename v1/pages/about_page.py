@@ -30,5 +30,5 @@ class AboutFrame(ctk.CTkFrame):
         self.placeholder_header = ctk.CTkLabel(self.scroll_frame, text="SECTION ONE")
         self.placeholder_header.pack(padx=5, pady=5, fill="both", expand=True)
 
-        self.placeholder_text_body = ctk.CTkLabel(self.scroll_frame, text="Placeholder section body text")
+        self.placeholder_text_body = ctk.CTkLabel(self.scroll_frame, text="Placeholder section body text", wraplength=250)
         self.placeholder_text_body.pack(padx=5, pady=5, fill="both", expand=True)

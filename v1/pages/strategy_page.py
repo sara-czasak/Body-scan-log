@@ -88,7 +88,7 @@ class StrategiesFrame(ctk.CTkFrame):
             self.strategy_list.delete("all")
         if stress_level == 1:
             self.reset_frame("to level selected")
-            self.back_to_strategies_menu_button.pack(padx=5, pady=5, fill="both", expand=True)
+            self.back_to_strategies_menu_button.pack(padx=5, pady=5, fill="both")
             self.strategies_option_menu.pack(padx=5, pady=5, fill="both")
             self.select_strategy_option_button.configure(command=lambda: self.get_option(stress_level))
             self.select_strategy_option_button.pack(padx=5, pady=5, fill="both")
@@ -97,7 +97,7 @@ class StrategiesFrame(ctk.CTkFrame):
         elif stress_level == 2:
             self.reset_frame("to level selected")
             self.back_to_strategies_menu_button.pack(padx=5, pady=5, fill="both")
-            self.strategies_option_menu.pack(padx=5, pady=5, fill="both", expand=True)
+            self.strategies_option_menu.pack(padx=5, pady=5, fill="both")
             self.select_strategy_option_button.configure(command=lambda: self.get_option(stress_level))
             self.select_strategy_option_button.pack(padx=5, pady=5, fill="both")
             self.show_strategy_screen(2)
@@ -105,7 +105,7 @@ class StrategiesFrame(ctk.CTkFrame):
         elif stress_level == 3:
             self.reset_frame("to level selected")
             self.back_to_strategies_menu_button.pack(padx=5, pady=5, fill="both")
-            self.strategies_option_menu.pack(padx=5, pady=5, fill="both", expand=True)
+            self.strategies_option_menu.pack(padx=5, pady=5, fill="both")
             self.select_strategy_option_button.configure(command=lambda: self.get_option(stress_level))
             self.select_strategy_option_button.pack(padx=5, pady=5, fill="both")
             self.show_strategy_screen(3)

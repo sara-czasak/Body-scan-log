@@ -44,7 +44,7 @@ class ViewStrategyFrame(ctk.CTkFrame):
             self.back_to_strategy_page_button.pack(padx=5, pady=5, fill="both")
             self.name = ctk.CTkLabel(self, text=self.data[0][2])
             self.name.pack(padx=5, pady=5, fill="both")
-            self.description = ctk.CTkLabel(self, text=self.data[0][3])
+            self.description = ctk.CTkLabel(self, text=self.data[0][3], wraplength=250)
             self.description.pack(padx=5, pady=5, fill="both", expand=True)
 
 

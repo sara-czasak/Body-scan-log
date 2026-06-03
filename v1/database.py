@@ -83,3 +83,25 @@ class BodyScanDB:
         cursor.execute("UPDATE stress_manager SET strategy_name = ?, strategy_description = ? WHERE id = ?", (strategy_name, strategy_description, strategy_id))
         conn.commit()
         conn.close()
+
+
+    def get_all_scans(self):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM scans")
+        data = cursor.fetchall()
+        conn.commit()
+        conn.close()
+        return data
+
+
+    def get_body_part_readings_by_scans_id(self, scan_id):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM body_part_reading WHERE scan_id = ?", (scan_id,))
+        data = cursor.fetchall()
+        conn.commit()
+        conn.close()
+        return data
+
+

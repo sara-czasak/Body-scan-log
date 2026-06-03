@@ -17,7 +17,7 @@ from view_all_scans_page import ViewAllScansFrame
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
-        self.geometry("400x400")
+        self.geometry("400x450")
         self.translator = Translator("English")
         self.title(self.translator.dictionary["app_title"])
         self.menu_frame = MenuFrame(self)

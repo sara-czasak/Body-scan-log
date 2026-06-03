@@ -1,0 +1,28 @@
+[33mbe6e704[m[33m ([m[1;31morigin/main[m[33m)[m only save body part entry if score is more than 0
+[33m53da590[m add error handling
+[33mc4750c0[m work on edit strategy feature
+[33m9e8c0f7[m implement delete strategy feature
+[33md33cfb6[m complete add strategy feature
+[33m0561bb3[m dynamically populate strategy list
+[33me41e028[m make add strategy screen
+[33mdd78c5d[m refactor complete
+[33m551664b[m connect add, edit, delete selection
+[33ma6cecc8[m wire up back to strategie selection button
+[33md20436f[m add back to settings button
+[33m30941ac[m move strategie screen showing piece
+[33m231dd91[m start working on readme
+[33mb563d2d[m add clear screen to strategy_page
+[33ma7618ba[m start strategies refactor
+[33m4dfd2d8[m wire up language selection in settings
+[33md72579d[m wire up translator
+[33m9383761[m adding function to detect selected option
+[33m843e2a7[m work on strategy menu
+[33m40e6510[m finish setting up strategies screens
+[33m0dabc19[m rework strategies
+[33m25ee252[m start working on stress managment
+[33mb4ec897[m small cleanup refactor
+[33mc99d34b[m wire up lang menu screen
+[33m5e07f71[m start working on lang select settings option
+[33m320e6f2[m start working on settings screen
+[33m532db8e[m start working on translator and wire up back button
+[33m6f7620c[m connect db to add entry page

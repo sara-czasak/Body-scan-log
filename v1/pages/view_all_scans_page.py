@@ -67,10 +67,8 @@ class ViewAllScansFrame(ctk.CTkFrame):
             self.all_scans_list = CTkListbox(self.master_scroll_frame, height=200)
             self.all_scans_list.pack(padx=5, pady=5, fill="both", expand=True)
 
-            i = 0
             for k, v in self.scan_records.items():
-                self.all_scans_list.insert(i, f"{k} | {self.scan_records[k][2]}/10")
-                i += 1
+                self.all_scans_list.insert("end", f"{k} | {self.scan_records[k][2]}/10")
 
 
     def clean_up(self):
@@ -131,7 +129,6 @@ class ViewAllScansFrame(ctk.CTkFrame):
         for record in data:
             self.scan_records[record[1]] = record
             self.record_notes[record[1]] = record[3]
-        print(self.scan_records)
         self.switch_view("main")
 
 

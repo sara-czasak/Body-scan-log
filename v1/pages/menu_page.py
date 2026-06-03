@@ -18,7 +18,7 @@ class MenuFrame(ctk.CTkFrame):
         view_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["view_all_menu_optn"], command=self.parent.show_view_all_scans_frame)
         view_button.pack(padx=5, pady=5, fill="both")
 
-        analyze_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["analyze_menu_opt"])
+        analyze_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["analyze_menu_opt"], command=self.parent.show_analysis_frame)
         analyze_button.pack(padx=5, pady=5, fill="both")
 
         settings_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["settings"], command=self.parent.show_settings)

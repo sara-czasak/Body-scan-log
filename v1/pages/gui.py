@@ -12,6 +12,7 @@ from edit_strategy_page import EditStrategyFrame
 from view_strategy_page import ViewStrategyFrame
 from about_page import AboutFrame
 from view_all_scans_page import ViewAllScansFrame
+from analysis_page import AnalysisFrame
 
 
 class App(ctk.CTk):
@@ -30,6 +31,7 @@ class App(ctk.CTk):
         self.edit_strategy_frame = EditStrategyFrame(self)
         self.view_strategy_frame = ViewStrategyFrame(self)
         self.view_all_scans_frame = ViewAllScansFrame(self)
+        self.analysis_frame = AnalysisFrame(self)
 
 
     def show_menu(self):
@@ -122,6 +124,15 @@ class App(ctk.CTk):
 
     def hide_view_all_scans_frame(self):
         self.view_all_scans_frame.pack_forget()
+
+
+    def show_analysis_frame(self):
+        self.hide_menu()
+        self.analysis_frame.pack(padx=15, pady=15, fill="both", expand=True)
+
+
+    def hide_analysis_frame(self):
+        self.analysis_frame.pack_forget()
 
 
 app = App()

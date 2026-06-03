@@ -105,3 +105,11 @@ class BodyScanDB:
         return data
 
 
+    def get_scan_records_with_dates_ordered(self):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM scans ORDER BY date ASC")
+        data = cursor.fetchall()
+        conn.commit()
+        cursor.close()
+        return data

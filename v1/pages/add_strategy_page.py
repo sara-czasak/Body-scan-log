@@ -35,7 +35,7 @@ class AddStrategyFrame(ctk.CTkFrame):
 
         self.back_to_strategy_page_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"],
                                                  command=self.go_back)
-        self.back_to_strategy_page_button.pack(padx=5, pady=5, fill="both", expand=True)
+        self.back_to_strategy_page_button.pack(padx=5, pady=5, fill="both")
 
         self.strategy_name_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Strategy Name"])
         self.strategy_name_label.pack(padx=5, pady=5, fill="both", expand=True)
@@ -52,7 +52,7 @@ class AddStrategyFrame(ctk.CTkFrame):
         self.add_strategy_button = ctk.CTkButton(
             self,
             text=self.parent.translator.dictionary["submit_strategy"], command=self.gather_data_to_submit)
-        self.add_strategy_button.pack(padx=5, pady=5, fill="both", expand=True)
+        self.add_strategy_button.pack(padx=5, pady=5, fill="both")
 
 
     def gather_data_to_submit(self):

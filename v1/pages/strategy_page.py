@@ -68,19 +68,19 @@ class StrategiesFrame(ctk.CTkFrame):
 
         self.back_to_menu_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"],
                                                  command=self.parent.show_settings)
-        self.back_to_menu_button.pack(padx=5, pady=5, fill="both", expand=True)
+        self.back_to_menu_button.pack(padx=5, pady=5, fill="both")
 
         self.back_to_strategies_menu_button = ctk.CTkButton(self,
                                                             text=self.parent.translator.dictionary["back_button"], command=self.view_strategies_menu)
 
         self.mild_stress_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["Mild stress strategies"], command = lambda: self.view_strategy_level_selected(1))
-        self.mild_stress_button.pack(padx=5, pady=5, fill="both", expand=True)
+        self.mild_stress_button.pack(padx=5, pady=5, fill="both")
 
         self.mid_stress_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["Mid stress strategies"], command = lambda: self.view_strategy_level_selected(2))
-        self.mid_stress_button.pack(padx=5, pady=5, fill="both", expand=True)
+        self.mid_stress_button.pack(padx=5, pady=5, fill="both")
 
         self.high_stress_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["High stress strategies"], command = lambda: self.view_strategy_level_selected(3))
-        self.high_stress_button.pack(padx=5, pady=5, fill="both", expand=True)
+        self.high_stress_button.pack(padx=5, pady=5, fill="both")
 
 
     def view_strategy_level_selected(self, stress_level):
@@ -89,25 +89,25 @@ class StrategiesFrame(ctk.CTkFrame):
         if stress_level == 1:
             self.reset_frame("to level selected")
             self.back_to_strategies_menu_button.pack(padx=5, pady=5, fill="both", expand=True)
-            self.strategies_option_menu.pack(padx=5, pady=5, fill="both", expand=True)
+            self.strategies_option_menu.pack(padx=5, pady=5, fill="both")
             self.select_strategy_option_button.configure(command=lambda: self.get_option(stress_level))
-            self.select_strategy_option_button.pack(padx=5, pady=5, fill="both", expand=True)
+            self.select_strategy_option_button.pack(padx=5, pady=5, fill="both")
             self.show_strategy_screen(1)
             self.current_stress_level = 1
         elif stress_level == 2:
             self.reset_frame("to level selected")
-            self.back_to_strategies_menu_button.pack(padx=5, pady=5, fill="both", expand=True)
+            self.back_to_strategies_menu_button.pack(padx=5, pady=5, fill="both")
             self.strategies_option_menu.pack(padx=5, pady=5, fill="both", expand=True)
             self.select_strategy_option_button.configure(command=lambda: self.get_option(stress_level))
-            self.select_strategy_option_button.pack(padx=5, pady=5, fill="both", expand=True)
+            self.select_strategy_option_button.pack(padx=5, pady=5, fill="both")
             self.show_strategy_screen(2)
             self.current_stress_level = 2
         elif stress_level == 3:
             self.reset_frame("to level selected")
-            self.back_to_strategies_menu_button.pack(padx=5, pady=5, fill="both", expand=True)
+            self.back_to_strategies_menu_button.pack(padx=5, pady=5, fill="both")
             self.strategies_option_menu.pack(padx=5, pady=5, fill="both", expand=True)
             self.select_strategy_option_button.configure(command=lambda: self.get_option(stress_level))
-            self.select_strategy_option_button.pack(padx=5, pady=5, fill="both", expand=True)
+            self.select_strategy_option_button.pack(padx=5, pady=5, fill="both")
             self.show_strategy_screen(3)
             self.current_stress_level = 3
         else:

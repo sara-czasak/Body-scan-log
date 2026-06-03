@@ -22,7 +22,7 @@ class AboutFrame(ctk.CTkFrame):
     def layout(self):
         self.back_to_menu_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"],
                                                  command=self.back)
-        self.back_to_menu_button.pack(padx=5, pady=5, fill="both", expand=True)
+        self.back_to_menu_button.pack(padx=5, pady=5, fill="both")
 
         self.scroll_frame = ctk.CTkScrollableFrame(self)
         self.scroll_frame.pack(padx=5, pady=5, fill="both", expand=True)

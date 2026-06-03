@@ -49,6 +49,8 @@ langs = [{"English": {
     "View Strategy": "View Strategy",
     "SELECT AN OPTION": "SELECT AN OPTION",
     "about": "ABOUT",
+    "ALL ENTRIES": "ALL ENTRIES",
+    "see_more_button": "SEE DETAILS",
 }}]
 
 

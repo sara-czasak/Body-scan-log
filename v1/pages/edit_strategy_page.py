@@ -53,7 +53,7 @@ class EditStrategyFrame(ctk.CTkFrame):
 
             self.back_to_strategy_page_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"],
                                                      command=self.go_back)
-            self.back_to_strategy_page_button.pack(padx=5, pady=5, fill="both", expand=True)
+            self.back_to_strategy_page_button.pack(padx=5, pady=5, fill="both")
 
             self.strategy_name_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Strategy Name"])
             self.strategy_name_label.pack(padx=5, pady=5, fill="both", expand=True)
@@ -72,7 +72,7 @@ class EditStrategyFrame(ctk.CTkFrame):
             self.save_edit_strategy_button = ctk.CTkButton(
                 self,
                 text=self.parent.translator.dictionary["submit_strategy"], command=self.save_edit_and_return)
-            self.save_edit_strategy_button.pack(padx=5, pady=5, fill="both", expand=True)
+            self.save_edit_strategy_button.pack(padx=5, pady=5, fill="both")
 
 
     def get_entry_data(self):

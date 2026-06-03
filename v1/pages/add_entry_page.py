@@ -46,7 +46,7 @@ class AddEntryFrame(ctk.CTkFrame):
 
     def layout(self):
         self.back_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"], command=self.go_back)
-        self.back_button.pack(padx=5, pady=5, fill="both", expand=True)
+        self.back_button.pack(padx=5, pady=5, fill="both")
 
         self.form_title_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["new_entry_title"])
         self.form_title_label.pack(padx=5, pady=5, fill="both", expand=True)
@@ -80,7 +80,7 @@ class AddEntryFrame(ctk.CTkFrame):
         self.notes_entry.pack(padx=5, pady=5, fill="both", expand=True)
 
         self.submit_button = ctk.CTkButton(self.scroll_frame, text=self.parent.translator.dictionary["submit_button"], command=self.submit_form)
-        self.submit_button.pack(padx=5, pady=5, fill="both", expand=True)
+        self.submit_button.pack(padx=5, pady=5, fill="both")
 
 
     def submit_form(self):
@@ -102,7 +102,7 @@ class AddEntryFrame(ctk.CTkFrame):
                     total_with_score += 1
 
         try:
-            self.scan_db_data["total_score"] = int(total_values / total_with_score)
+            self.scan_db_data["total_score"] = round(total_values / total_with_score)
         except ZeroDivisionError:
             self.scan_db_data["total_score"] = 0
 

@@ -11,12 +11,13 @@ from add_strategy_page import AddStrategyFrame
 from edit_strategy_page import EditStrategyFrame
 from view_strategy_page import ViewStrategyFrame
 from about_page import AboutFrame
+from view_all_scans_page import ViewAllScansFrame
 
 
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
-        self.geometry("400x300")
+        self.geometry("400x400")
         self.translator = Translator("English")
         self.title(self.translator.dictionary["app_title"])
         self.menu_frame = MenuFrame(self)
@@ -28,6 +29,7 @@ class App(ctk.CTk):
         self.add_strategy_frame = AddStrategyFrame(self)
         self.edit_strategy_frame = EditStrategyFrame(self)
         self.view_strategy_frame = ViewStrategyFrame(self)
+        self.view_all_scans_frame = ViewAllScansFrame(self)
 
 
     def show_menu(self):
@@ -111,6 +113,15 @@ class App(ctk.CTk):
 
     def hide_view_strategy_frame(self):
         self.view_strategy_frame.pack_forget()
+
+
+    def show_view_all_scans_frame(self):
+        self.hide_menu()
+        self.view_all_scans_frame.pack(padx=15, pady=15, fill="both", expand=True)
+
+
+    def hide_view_all_scans_frame(self):
+        self.view_all_scans_frame.pack_forget()
 
 
 app = App()

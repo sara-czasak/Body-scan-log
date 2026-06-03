@@ -20,13 +20,13 @@ class SettingsFrame(ctk.CTkFrame):
         self.settings_label.pack(padx=5, pady=5, fill="both", expand=True)
 
         self.back_to_menu_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"], command=self.go_back_to_menu)
-        self.back_to_menu_button.pack(padx=5, pady=5, fill="both", expand=True)
+        self.back_to_menu_button.pack(padx=5, pady=5, fill="both")
 
         self.language_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["lang_option"], command=self.set_lang)
-        self.language_button.pack(padx=5, pady=5, fill="both", expand=True)
+        self.language_button.pack(padx=5, pady=5, fill="both")
 
         self.set_coping_strategies_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["Stress decreasing strategies"], command=self.parent.show_strategies_frame)
-        self.set_coping_strategies_button.pack(padx=5, pady=5, fill="both", expand=True)
+        self.set_coping_strategies_button.pack(padx=5, pady=5, fill="both")
 
         self.back_to_settings_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"], command=self.go_back_to_settings)
 
@@ -35,14 +35,14 @@ class SettingsFrame(ctk.CTkFrame):
         self.clear_layout()
         for i in self.language_options:
             option = ctk.CTkButton(self, text=i, command=lambda lang=i: self.parent.translator.get_dictionary(lang))
-            option.pack(padx=5, pady=5, fill="both", expand=True)
+            option.pack(padx=5, pady=5, fill="both")
             self.lang_buttons[i] = option
 
 
     def clear_layout(self):
         for i in self.winfo_children():
             i.pack_forget()
-        self.back_to_settings_button.pack(padx=5, pady=5, fill="both", expand=True)
+        self.back_to_settings_button.pack(padx=5, pady=5, fill="both")
 
 
     def go_back_to_settings(self):

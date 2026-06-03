@@ -11,8 +11,6 @@ from add_strategy_page import AddStrategyFrame
 from edit_strategy_page import EditStrategyFrame
 
 
-# TEST PUSH
-
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()

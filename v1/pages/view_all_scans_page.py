@@ -20,6 +20,7 @@ class ViewAllScansFrame(ctk.CTkFrame):
         self.see_more_button = None
         self.back_to_all_button = None
         self.notes_display = None
+        self.notes_label = None
 
         self.date = None
         self.rating = None
@@ -90,6 +91,8 @@ class ViewAllScansFrame(ctk.CTkFrame):
             self.back_to_all_button.pack_forget()
         if self.notes_display is not None:
             self.notes_display.pack_forget()
+        if self.notes_label is not None:
+            self.notes_label.pack_forget()
 
 
     def body_layout(self):
@@ -106,6 +109,9 @@ class ViewAllScansFrame(ctk.CTkFrame):
 
             self.all_entries_list = CTkListbox(self.master_scroll_frame)
             self.all_entries_list.pack(padx=5, pady=5, fill="both", expand=True)
+
+            self.notes_label = ctk.CTkLabel(self.master_scroll_frame, text=self.parent.translator.dictionary["notes_label"])
+            self.notes_label.pack(padx=5, pady=5)
 
             for i in self.body_data:
                 self.all_entries_list.insert(i[0], f"{i[2]} | {i[3]}/10")

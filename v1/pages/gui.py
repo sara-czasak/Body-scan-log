@@ -19,7 +19,7 @@ from PIL import ImageTk
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
-        self.geometry("400x450")
+        self.geometry("400x470")
 
         try:
             img = ImageTk.PhotoImage(file="./img/logo2.png")

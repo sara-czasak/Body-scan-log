@@ -6,6 +6,10 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from database import BodyScanDB
 import random
 import datetime
+from tkinter import *
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import matplotlib.pyplot as plt
 
 
 class AnalysisFrame(ctk.CTkFrame):
@@ -20,10 +24,10 @@ class AnalysisFrame(ctk.CTkFrame):
 
         self.strategy_name_label = None
         self.strategy_description_label = None
-
-        self.graph_label = None
+        self.data = None
 
         self.average = None
+        self.graph = None
 
 
     def back(self):
@@ -36,8 +40,6 @@ class AnalysisFrame(ctk.CTkFrame):
             self.strategy_name_label.pack_forget()
         if self.strategy_description_label is not None:
             self.strategy_description_label.pack_forget()
-        if self.graph_label is not None:
-            self.graph_label.pack_forget()
         if self.back_to_menu_button is not None:
             self.back_to_menu_button.pack_forget()
         if self.last_week_average is not None:
@@ -46,6 +48,8 @@ class AnalysisFrame(ctk.CTkFrame):
             self.get_strategy_button.pack_forget()
         if self.show_graph_button is not None:
             self.show_graph_button.pack_forget()
+        if self.graph is not None:
+            self.graph.get_tk_widget().pack_forget()
 
 
     def layout(self):
@@ -69,8 +73,8 @@ class AnalysisFrame(ctk.CTkFrame):
 
 
     def get_random_strategy(self):
-        if self.graph_label is not None:
-            self.graph_label.pack_forget()
+        if self.graph is not None:
+            self.graph.get_tk_widget().pack_forget()
         if self.average is not None:
             if self.average > 7:
                 stress_level = 3
@@ -95,12 +99,12 @@ class AnalysisFrame(ctk.CTkFrame):
         today = datetime.date.today().strftime("%Y-%m-%d")
         ten_days_ago = datetime.date.today() - datetime.timedelta(days=10)
         db = BodyScanDB()
-        data = db.get_scan_records_last_10_days_with_dates_ordered(ten_days_ago, today)
+        self.data = db.get_scan_records_last_10_days_with_dates_ordered(ten_days_ago, today)
         total = 0
-        for i in data:
+        for i in self.data:
             total += i[2]
         try:
-            self.average = round(total / len(data))
+            self.average = round(total / len(self.data))
             self.layout()
         except ZeroDivisionError:
             pass
@@ -109,5 +113,23 @@ class AnalysisFrame(ctk.CTkFrame):
     def graph_layout(self):
         self.strategy_name_label.pack_forget()
         self.strategy_description_label.pack_forget()
-        self.graph_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["graph_label"])
-        self.graph_label.pack(padx=5, pady=5, fill="both")
+
+        if self.data is not None:
+            dates = [i[1] for i in self.data]
+            scores = [i[2] for i in self.data]
+
+            fig = plt.Figure(figsize=(4, 4.5),
+                             dpi=100)
+
+            ax = fig.add_subplot(111)
+            ax.plot(dates, scores, marker='o', linestyle='-')
+            ax.set_title('Last 10 days score')
+            ax.set_xlabel('Dates')
+            ax.set_ylabel('Scores')
+            ax.tick_params(axis='x', rotation=45)
+
+            self.graph = FigureCanvasTkAgg(fig, self)
+            fig.tight_layout()
+            self.graph.draw()
+            self.graph.get_tk_widget().pack(fill="both")
+

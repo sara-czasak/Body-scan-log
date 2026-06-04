@@ -55,21 +55,87 @@ langs = [{"English": {
     "get_strategy_button": "GET A STRESS MANAGEMENT TECHNIQUE",
     "show_graph_button": "SHOW GRAPH",
     "graph_label": "GRAPH",
-}}]
+}},
+    {"Polski": {
+        'app_title': "PL",
+        'menu_title': "PL",
+        'add_menu_opt': "PL",
+        'view_all_menu_optn': "PL",
+        'analyze_menu_opt': "PL",
+        'settings_menu_opt': "PL",
+        'new_entry_title': "PL",
+        'date_label': "PL",
+        'notes_label': "PL",
+        'submit_button': "PL",
+        'jaw': "PL",
+        "face": "PL",
+        "neck": "PL",
+        "upper back": "PL",
+        "mid back": "PL",
+        "lower back": "PL",
+        "left shoulder": "PL",
+        "right shoulder": "PL",
+        "left arm": "PL",
+        "right arm": "PL",
+        "chest": "PL",
+        "stomach": "PL",
+        "left leg": "PL",
+        "right leg": "PL",
+        "left foot": "PL",
+        "right foot": "PL",
+        "back_button": "PL",
+        "exit_button": "PL",
+        "settings": "PL",
+        "lang_option": "PL",
+        "Stress decreasing strategies": "PL",
+        "COPING STRATEGIES": "PL",
+        "Strategies for mild stress:": "PL",
+        "Strategies for mid stress:": "PL",
+        "Strategies for high stress:": "PL",
+        "Mild stress strategies": "PL",
+        "Mid stress strategies": "PL",
+        "High stress strategies": "PL",
+        "Add Strategy": "PL",
+        "Edit Strategy": "PL",
+        "Delete Strategy": "PL",
+        "option_choice": "PL",
+        "strategy_options_menu_default": "PL",
+        "Add new strategy": "PL",
+        "Strategy Name": "PL",
+        "Strategy Description": "PL",
+        "submit_strategy": "PL",
+        "View Strategy": "PL",
+        "SELECT AN OPTION": "PL",
+        "about": "PL",
+        "ALL ENTRIES": "PL",
+        "see_more_button": "PL",
+        "last_week_average": "PL",
+        "get_strategy_button": "PL",
+        "show_graph_button": "PL",
+        "graph_label": "PL",
+    }},
+]
 
 
 class Translator:
-    def __init__(self, lang):
-        self.lang = lang
+    def __init__(self):
         self.dictionary = None
-        self.available_languages = ["English"]
+        self.lang = None
+        self.available_languages = [
+            "English",
+            "Polski"
+        ]
+
+
+    def set_lang(self, lang):
+        self.lang = lang
         self.get_dictionary(self.lang)
 
 
     def get_dictionary(self, lang):
         for i in langs:
-            if i["English"]:
-                self.dictionary = i["English"]
+            if lang in i:
+                self.dictionary = i[lang]
 
 
 

@@ -5,7 +5,7 @@ class SettingsFrame(ctk.CTkFrame):
     def __init__(self, parent):
         super().__init__(parent)
         self.parent = parent
-        self.language_options = ["English",]
+        self.language_options = ["English", "Polski"]
         self.lang_buttons = {}
         self.settings_label = None
         self.language_button = None
@@ -34,9 +34,15 @@ class SettingsFrame(ctk.CTkFrame):
     def set_lang(self):
         self.clear_layout()
         for i in self.language_options:
-            option = ctk.CTkButton(self, text=i, command=lambda lang=i: self.parent.translator.get_dictionary(lang))
+            option = ctk.CTkButton(self, text=i, command=lambda lang=i: self.get_lang_and_back_to_settings(lang))
             option.pack(padx=5, pady=5, fill="both")
             self.lang_buttons[i] = option
+
+
+    def get_lang_and_back_to_settings(self, lang):
+        self.parent.translator.set_lang(lang)
+        self.go_back_to_settings()
+        self.parent.set_language(lang)
 
 
     def clear_layout(self):

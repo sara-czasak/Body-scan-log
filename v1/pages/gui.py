@@ -28,7 +28,10 @@ class App(ctk.CTk):
         except FileNotFoundError:
             pass
 
-        self.translator = Translator("English")
+        self.translator = Translator()
+        # self.translator.set_lang("English")
+        self.language_selected = None
+        self.set_language(self.language_selected)
         self.title(self.translator.dictionary["app_title"])
         self.menu_frame = MenuFrame(self)
         self.show_menu()
@@ -40,6 +43,49 @@ class App(ctk.CTk):
         self.edit_strategy_frame = EditStrategyFrame(self)
         self.view_strategy_frame = ViewStrategyFrame(self)
         self.view_all_scans_frame = ViewAllScansFrame(self)
+        self.analysis_frame = AnalysisFrame(self)
+
+
+    def set_language(self, lang):
+        if lang is None:
+            self.translator.set_lang("English")
+            self.language_selected = "English"
+        else:
+            self.translator.set_lang(lang)
+            self.language_selected = lang
+            self.refresh_text()
+            self.show_settings()
+
+
+    def refresh_text(self):
+        self.menu_frame.destroy()
+        self.menu_frame = MenuFrame(self)
+
+        self.add_entry_frame.destroy()
+        self.add_entry_frame = AddEntryFrame(self)
+
+        self.settings_frame.destroy()
+        self.settings_frame = SettingsFrame(self)
+
+        self.about_frame.destroy()
+        self.about_frame = AboutFrame(self)
+
+        self.strategies_frame.destroy()
+        self.strategies_frame = StrategiesFrame(self)
+
+        self.add_strategy_frame.destroy()
+        self.add_strategy_frame = AddStrategyFrame(self)
+
+        self.edit_strategy_frame.destroy()
+        self.edit_strategy_frame = EditStrategyFrame(self)
+
+        self.view_strategy_frame.destroy()
+        self.view_strategy_frame = ViewStrategyFrame(self)
+
+        self.view_all_scans_frame.destroy()
+        self.view_all_scans_frame = ViewAllScansFrame(self)
+
+        self.analysis_frame.destroy()
         self.analysis_frame = AnalysisFrame(self)
 
 

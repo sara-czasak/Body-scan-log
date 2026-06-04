@@ -1,38 +1,38 @@
 {
   "CTk": {
-    "fg_color": ["gray92", "gray14"]
+    "fg_color": "gray92"
   },
   "CTkToplevel": {
-    "fg_color": ["gray92", "gray14"]
+    "fg_color": "gray92"
   },
   "CTkFrame": {
-    "corner_radius": 6,
+    "corner_radius": 4,
     "border_width": 0,
-    "fg_color": ["gray86", "gray17"],
-    "top_fg_color": ["gray81", "gray20"],
-    "border_color": ["gray65", "gray28"]
+    "fg_color": "gray92",
+    "top_fg_color": "white",
+    "border_color": "gray14"
   },
   "CTkButton": {
     "corner_radius": 6,
     "border_width": 0,
-    "fg_color": ["red", "red"],
-    "hover_color": ["#36719F", "#144870"],
-    "border_color": ["#3E454A", "#949A9F"],
-    "text_color": ["#DCE4EE", "#DCE4EE"],
-    "text_color_disabled": ["gray74", "gray60"]
+    "fg_color": "white",
+    "hover_color": "gray50",
+    "border_color": "gray14",
+    "text_color": "black",
+    "text_color_disabled": "gray74"
   },
   "CTkLabel": {
     "corner_radius": 0,
     "fg_color": "transparent",
-    "text_color": ["gray10", "#DCE4EE"]
+    "text_color": "black"
   },
   "CTkEntry": {
     "corner_radius": 6,
     "border_width": 2,
-    "fg_color": ["#F9F9FA", "#343638"],
-    "border_color": ["#979DA2", "#565B5E"],
-    "text_color":["gray10", "#DCE4EE"],
-    "placeholder_text_color": ["gray52", "gray62"]
+    "fg_color": "white",
+    "border_color": "gray14",
+    "text_color": "black",
+    "placeholder_text_color": "gray52"
   },
   "CTkCheckBox": {
     "corner_radius": 6,
@@ -84,11 +84,11 @@
   },
   "CTkOptionMenu": {
     "corner_radius": 6,
-    "fg_color": ["#3B8ED0", "#1F6AA5"],
-    "button_color": ["#36719F", "#144870"],
-    "button_hover_color": ["#27577D", "#203A4F"],
-    "text_color": ["#DCE4EE", "#DCE4EE"],
-    "text_color_disabled": ["gray74", "gray60"]
+    "fg_color": "gray74",
+    "button_color": "gray74",
+    "button_hover_color": "gray50",
+    "text_color": "black",
+    "text_color_disabled": "gray74"
   },
   "CTkComboBox": {
     "corner_radius": 6,
@@ -121,14 +121,14 @@
   "CTkTextbox": {
     "corner_radius": 6,
     "border_width": 0,
-    "fg_color": ["#F9F9FA", "#1D1E1E"],
-    "border_color": ["#979DA2", "#565B5E"],
-    "text_color":["gray10", "#DCE4EE"],
-    "scrollbar_button_color": ["gray55", "gray41"],
-    "scrollbar_button_hover_color": ["gray40", "gray53"]
+    "fg_color": "gray74",
+    "border_color": "gray14",
+    "text_color": "black",
+    "scrollbar_button_color": "white",
+    "scrollbar_button_hover_color": "gray50"
   },
   "CTkScrollableFrame": {
-    "label_fg_color": ["gray78", "gray23"]
+    "label_fg_color": "gray14"
   },
   "DropdownMenu": {
     "fg_color": ["gray90", "gray20"],

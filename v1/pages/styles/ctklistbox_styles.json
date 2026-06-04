@@ -1,0 +1,10 @@
+{
+  "Light": {
+    "fg_color": "white",
+    "text_color": "black",
+    "hover_color": "gray50",
+    "highlight_color": "gray74",
+    "border_color": "gray14",
+    "border_width": 1
+  }
+}

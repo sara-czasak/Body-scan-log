@@ -6,7 +6,12 @@ class SettingsFrame(ctk.CTkFrame):
         super().__init__(parent)
         self.parent = parent
         self.language_options = ["English", "Polski"]
-        self.theme_options = ["Default", "Dark", "Light", "Dyslexia"]
+        self.theme_options = [
+            self.parent.translator.dictionary["Default"],
+            self.parent.translator.dictionary["Dark"],
+            self.parent.translator.dictionary["Light"],
+            self.parent.translator.dictionary["Dyslexia"],
+        ]
         self.lang_buttons = {}
         self.settings_label = None
         self.language_button = None

@@ -61,6 +61,10 @@ class StrategiesFrame(ctk.CTkFrame):
 
         self.strategy_list = CTkListbox(self)
 
+        # HARDCODED STYLE FOR NOW
+        style = self.parent.get_listbox_style("Light")
+        self.strategy_list.configure(**style)
+
         self.select_strategy_option_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["option_choice"])
 
         self.strategy_select_title = ctk.CTkLabel(self, text=self.parent.translator.dictionary["COPING STRATEGIES"])

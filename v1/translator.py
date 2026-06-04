@@ -56,6 +56,10 @@ langs = [{"English": {
     "show_graph_button": "SHOW GRAPH",
     "graph_label": "GRAPH",
     "select_theme": "SELECT THEME",
+    "Default": "Default",
+    "Dark": "Dark",
+    "Light": "Light",
+    "Dyslexia": "Dyslexia",
 }},
     {"Polski": {
         'app_title': "PL",
@@ -114,7 +118,11 @@ langs = [{"English": {
         "get_strategy_button": "PL",
         "show_graph_button": "PL",
         "graph_label": "PL",
-        "select_theme": "PL"
+        "select_theme": "PL",
+        "Default": "PL",
+        "Dark": "PL",
+        "Light": "PL",
+        "Dyslexia": "PL",
     }},
 ]
 

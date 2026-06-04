@@ -65,6 +65,11 @@ class ViewAllScansFrame(ctk.CTkFrame):
             self.all_title.pack(padx=5, pady=5)
 
             self.all_scans_list = CTkListbox(self.master_scroll_frame, height=200)
+
+            # HARDCODED FOR TESTING
+            style = self.parent.get_listbox_style("Light")
+            self.all_scans_list.configure(**style)
+
             self.all_scans_list.pack(padx=5, pady=5, fill="both", expand=True)
 
             for k, v in self.scan_records.items():
@@ -107,6 +112,11 @@ class ViewAllScansFrame(ctk.CTkFrame):
             self.for_day_title.pack(padx=5, pady=5)
 
             self.all_entries_list = CTkListbox(self.master_scroll_frame)
+
+            #HARDCODED FOR TESTING
+            style = self.parent.get_listbox_style("Light")
+            self.all_entries_list.configure(**style)
+
             self.all_entries_list.pack(padx=5, pady=5, fill="both", expand=True)
 
             self.notes_label = ctk.CTkLabel(self.master_scroll_frame, text=self.parent.translator.dictionary["notes_label"])

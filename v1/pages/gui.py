@@ -1,4 +1,5 @@
 import customtkinter as ctk
+import json
 from menu_page import MenuFrame
 from add_entry_page import AddEntryFrame
 from setting_page import SettingsFrame
@@ -19,6 +20,9 @@ from PIL import ImageTk
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
+        # FOR TESTING
+        ctk.set_default_color_theme("./styles/light_mode.json")
+
         self.geometry("400x470")
 
         try:
@@ -65,6 +69,7 @@ class App(ctk.CTk):
         if theme == "Light":
             ctk.set_default_color_theme("./styles/light_mode.json")
         self.refresh_screen()
+        self.get_listbox_style(self.theme)
         self.show_settings()
 
 
@@ -201,6 +206,16 @@ class App(ctk.CTk):
 
     def hide_analysis_frame(self):
         self.analysis_frame.pack_forget()
+
+
+    # Light style as default for testing
+    def get_listbox_style(self, theme="Light"):
+        try:
+            with open("./styles/ctklistbox_styles.json", 'r') as f:
+                styles = json.load(f)
+            return styles.get(theme, styles["Light"])
+        except FileNotFoundError:
+            return {}
 
 
 app = App()

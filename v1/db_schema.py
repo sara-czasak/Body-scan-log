@@ -30,3 +30,12 @@ strategy_description TEXT NOT NULL,
 UNIQUE(stress_level, strategy_name)
 )
 """
+
+
+CREATE_USER_PREFERENCES_TABLE = """
+CREATE TABLE IF NOT EXISTS user_preferences (
+id INTEGER PRIMARY KEY,
+language TEXT NOT NULL,
+theme TEXT NOT NULL
+)
+"""

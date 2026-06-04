@@ -7,6 +7,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from translator import Translator
+from database import BodyScanDB
 from strategy_page import StrategiesFrame
 from add_strategy_page import AddStrategyFrame
 from edit_strategy_page import EditStrategyFrame
@@ -22,10 +23,10 @@ class App(ctk.CTk):
         super().__init__()
 
         # TESTING
-        self.theme = "Dark"
+        self.theme = None
+        self.language_selected = None
 
-        # FOR TESTING
-        ctk.set_default_color_theme("./styles/dark_mode.json")
+        self.get_preferences()
 
         self.geometry("400x470")
 
@@ -37,11 +38,11 @@ class App(ctk.CTk):
             pass
 
         self.translator = Translator()
-        self.language_selected = None
-        self.set_language(self.language_selected)
+        self.set_language(self.language_selected, initial_load=True)
 
         self.title(self.translator.dictionary["app_title"])
         self.menu_frame = MenuFrame(self)
+
 
         self.show_menu()
         self.add_entry_frame = AddEntryFrame(self)
@@ -55,19 +56,32 @@ class App(ctk.CTk):
         self.analysis_frame = AnalysisFrame(self)
 
 
-    def set_language(self, lang):
+    def set_language(self, lang, initial_load=False):
         if lang is None:
             self.translator.set_lang("English")
             self.language_selected = "English"
         else:
             self.translator.set_lang(lang)
             self.language_selected = lang
-            self.refresh_screen()
-            self.show_settings()
+
+            db = BodyScanDB()
+            db.change_lang_pref(lang)
+
+            if not initial_load:
+                self.refresh_screen()
+                self.show_settings()
+
+    def get_preferences(self):
+        db = BodyScanDB()
+        data = db.get_user_preferences()
+        self.language_selected = data[0][1]
+        self.theme = data[0][2]
 
 
     def apply_theme_to_frames(self, theme):
         self.theme = theme
+        db = BodyScanDB()
+        db.change_theme_pref(theme)
         if theme == "Light":
             ctk.set_default_color_theme("./styles/light_mode.json")
         elif theme == "Default" or theme is None:

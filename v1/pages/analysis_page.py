@@ -88,7 +88,7 @@ class AnalysisFrame(ctk.CTkFrame):
             if len(data) > 0:
                 strategy = random.choice(data)
                 self.strategy_name_label.configure(text=strategy[2])
-                self.strategy_description_label.configure(text=strategy[3])
+                self.strategy_description_label.configure(text=strategy[3], wraplength=250)
                 self.strategy_name_label.pack(padx=5, pady=5, fill="both")
                 self.strategy_description_label.pack(padx=5, pady=5, fill="both")
             else:

@@ -1,6 +1,6 @@
 import sqlite3
 from sqlite3 import IntegrityError, OperationalError
-from db_schema import CREATE_SCANS_TABLE, CREATE_BODY_PART_READING_TABLE, CREATE_STRESS_DECREASE_TABLE
+from db_schema import CREATE_SCANS_TABLE, CREATE_BODY_PART_READING_TABLE, CREATE_STRESS_DECREASE_TABLE, CREATE_USER_PREFERENCES_TABLE
 
 
 class BodyScanDB:
@@ -21,10 +21,59 @@ class BodyScanDB:
             cursor.execute(CREATE_SCANS_TABLE)
             cursor.execute(CREATE_BODY_PART_READING_TABLE)
             cursor.execute(CREATE_STRESS_DECREASE_TABLE)
+            cursor.execute(CREATE_USER_PREFERENCES_TABLE)
+            cursor.execute("""
+                INSERT OR IGNORE INTO user_preferences (id, language, theme)
+                VALUES (0, 'English', 'Default')
+            """)
         except OperationalError:
             print("Something went wrong")
         conn.commit()
         conn.close()
+
+
+    def change_lang_pref(self, language):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("UPDATE user_preferences SET language = ? WHERE id = 0",
+                           (language,))
+        except IntegrityError:
+            print("Duplicate stress strategy name")
+        except OperationalError:
+            print("something went wrong")
+        finally:
+            conn.commit()
+            conn.close()
+
+
+    def change_theme_pref(self, theme):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("UPDATE user_preferences SET theme = ? WHERE id = 0",
+                           (theme,))
+        except IntegrityError:
+            print("Duplicate stress strategy name")
+        except OperationalError:
+            print("something went wrong")
+        finally:
+            conn.commit()
+            conn.close()
+
+
+    def get_user_preferences(self):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("SELECT * FROM user_preferences")
+            data = cursor.fetchall()
+            return data
+        except OperationalError:
+            print("Something went wrong")
+        finally:
+            conn.close()
+        return None
 
 
     def insert_scan(self, date, overall_score, notes=None):

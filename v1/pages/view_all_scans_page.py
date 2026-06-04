@@ -73,7 +73,7 @@ class ViewAllScansFrame(ctk.CTkFrame):
 
             self.all_scans_list.pack(padx=5, pady=5, fill="both", expand=True)
 
-            for k, v in self.scan_records.items():
+            for k, v in reversed(self.scan_records.items()):
                 self.all_scans_list.insert("end", f"{k} | {self.scan_records[k][2]}/10")
 
 
@@ -148,7 +148,6 @@ class ViewAllScansFrame(ctk.CTkFrame):
             db = BodyScanDB()
             self.date = self.all_scans_list.get().split("|")[0].strip()
             self.rating = f"{self.scan_records[self.date][2]}/10"
-            print(self.all_scans_list.get())
             key = self.scan_records[self.date][0]
             self.body_data = db.get_body_part_readings_by_scans_id(key)
             self.switch_view('body_data')

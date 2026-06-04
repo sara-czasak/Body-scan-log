@@ -6,10 +6,12 @@ class SettingsFrame(ctk.CTkFrame):
         super().__init__(parent)
         self.parent = parent
         self.language_options = ["English", "Polski"]
+        self.theme_options = ["Default", "Dark", "Light", "Dyslexia"]
         self.lang_buttons = {}
         self.settings_label = None
         self.language_button = None
         self.set_coping_strategies_button = None
+        self.select_theme_pref_button = None
         self.back_to_menu_button = None
         self.back_to_settings_button = None
         self.layout()
@@ -24,6 +26,9 @@ class SettingsFrame(ctk.CTkFrame):
 
         self.language_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["lang_option"], command=self.set_lang)
         self.language_button.pack(padx=5, pady=5, fill="both")
+
+        self.select_theme_pref_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["select_theme"], command=self.choose_theme)
+        self.select_theme_pref_button.pack(padx=5, pady=5, fill="both")
 
         self.set_coping_strategies_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["Stress decreasing strategies"], command=self.parent.show_strategies_frame)
         self.set_coping_strategies_button.pack(padx=5, pady=5, fill="both")
@@ -43,6 +48,13 @@ class SettingsFrame(ctk.CTkFrame):
         self.parent.translator.set_lang(lang)
         self.go_back_to_settings()
         self.parent.set_language(lang)
+
+
+    def choose_theme(self):
+        self.clear_layout()
+        for i in self.theme_options:
+            option = ctk.CTkButton(self, text=i, command=lambda theme=i: self.parent.theme.set_theme(theme))
+            option.pack(padx=5, pady=5, fill="both")
 
 
     def clear_layout(self):

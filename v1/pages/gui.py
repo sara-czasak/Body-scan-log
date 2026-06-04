@@ -6,6 +6,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from translator import Translator
+from themes import Themes
 from strategy_page import StrategiesFrame
 from add_strategy_page import AddStrategyFrame
 from edit_strategy_page import EditStrategyFrame
@@ -29,9 +30,13 @@ class App(ctk.CTk):
             pass
 
         self.translator = Translator()
-        # self.translator.set_lang("English")
         self.language_selected = None
         self.set_language(self.language_selected)
+
+        self.theme = Themes()
+        self.theme_selected = None
+        self.selected_theme(self.theme_selected)
+
         self.title(self.translator.dictionary["app_title"])
         self.menu_frame = MenuFrame(self)
         self.show_menu()
@@ -53,11 +58,18 @@ class App(ctk.CTk):
         else:
             self.translator.set_lang(lang)
             self.language_selected = lang
-            self.refresh_text()
+            self.refresh_screen()
             self.show_settings()
 
 
-    def refresh_text(self):
+    def selected_theme(self, theme):
+        if theme is None:
+            pass
+        else:
+            self.theme.set_theme(theme)
+
+
+    def refresh_screen(self):
         self.menu_frame.destroy()
         self.menu_frame = MenuFrame(self)
 

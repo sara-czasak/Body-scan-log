@@ -55,6 +55,7 @@ langs = [{"English": {
     "get_strategy_button": "GET A STRESS MANAGEMENT TECHNIQUE",
     "show_graph_button": "SHOW GRAPH",
     "graph_label": "GRAPH",
+    "select_theme": "SELECT THEME",
 }},
     {"Polski": {
         'app_title': "PL",
@@ -113,6 +114,7 @@ langs = [{"English": {
         "get_strategy_button": "PL",
         "show_graph_button": "PL",
         "graph_label": "PL",
+        "select_theme": "PL"
     }},
 ]
 

@@ -53,7 +53,7 @@ class SettingsFrame(ctk.CTkFrame):
     def choose_theme(self):
         self.clear_layout()
         for i in self.theme_options:
-            option = ctk.CTkButton(self, text=i, command=lambda theme=i: self.parent.theme.set_theme(theme))
+            option = ctk.CTkButton(self, text=i, command=lambda theme=i: self.parent.apply_theme_to_frames(theme))
             option.pack(padx=5, pady=5, fill="both")
 
 

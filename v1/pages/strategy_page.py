@@ -10,6 +10,7 @@ class StrategiesFrame(ctk.CTkFrame):
     def __init__(self, parent):
         super().__init__(parent)
         self.parent = parent
+        self.listbox_theme = self.parent.theme
         self.back_to_menu_button = None
         self.mild_stress_button = None
         self.mid_stress_button = None
@@ -61,9 +62,9 @@ class StrategiesFrame(ctk.CTkFrame):
 
         self.strategy_list = CTkListbox(self)
 
-        # HARDCODED STYLE FOR NOW
-        style = self.parent.get_listbox_style("Light")
-        self.strategy_list.configure(**style)
+        if self.listbox_theme is not None:
+            style = self.parent.get_listbox_style(self.listbox_theme)
+            self.strategy_list.configure(**style)
 
         self.select_strategy_option_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["option_choice"])
 

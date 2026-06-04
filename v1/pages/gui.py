@@ -21,7 +21,7 @@ class App(ctk.CTk):
     def __init__(self):
         super().__init__()
         # FOR TESTING
-        ctk.set_default_color_theme("./styles/light_mode.json")
+        # ctk.set_default_color_theme("./styles/light_mode.json")
 
         self.geometry("400x470")
 
@@ -68,6 +68,8 @@ class App(ctk.CTk):
         self.theme = theme
         if theme == "Light":
             ctk.set_default_color_theme("./styles/light_mode.json")
+        elif theme == "Default" or theme is None:
+            ctk.set_default_color_theme("blue")
         self.refresh_screen()
         self.get_listbox_style(self.theme)
         self.show_settings()
@@ -209,11 +211,13 @@ class App(ctk.CTk):
 
 
     # Light style as default for testing
-    def get_listbox_style(self, theme="Light"):
+    def get_listbox_style(self, theme=None):
+        if theme is None:
+            return
         try:
             with open("./styles/ctklistbox_styles.json", 'r') as f:
                 styles = json.load(f)
-            return styles.get(theme, styles["Light"])
+            return styles.get(theme, styles[theme])
         except FileNotFoundError:
             return {}
 

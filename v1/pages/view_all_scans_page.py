@@ -10,6 +10,7 @@ class ViewAllScansFrame(ctk.CTkFrame):
     def __init__(self, parent):
         super().__init__(parent)
         self.parent = parent
+        self.listbox_theme = self.parent.theme
 
         self.back_to_menu_button = None
         self.master_scroll_frame = None
@@ -66,9 +67,9 @@ class ViewAllScansFrame(ctk.CTkFrame):
 
             self.all_scans_list = CTkListbox(self.master_scroll_frame, height=200)
 
-            # HARDCODED FOR TESTING
-            style = self.parent.get_listbox_style("Light")
-            self.all_scans_list.configure(**style)
+            if self.listbox_theme is not None:
+                style = self.parent.get_listbox_style(self.listbox_theme)
+                self.all_scans_list.configure(**style)
 
             self.all_scans_list.pack(padx=5, pady=5, fill="both", expand=True)
 
@@ -113,9 +114,9 @@ class ViewAllScansFrame(ctk.CTkFrame):
 
             self.all_entries_list = CTkListbox(self.master_scroll_frame)
 
-            #HARDCODED FOR TESTING
-            style = self.parent.get_listbox_style("Light")
-            self.all_entries_list.configure(**style)
+            if self.listbox_theme is not None:
+                style = self.parent.get_listbox_style(self.listbox_theme)
+                self.all_entries_list.configure(**style)
 
             self.all_entries_list.pack(padx=5, pady=5, fill="both", expand=True)
 

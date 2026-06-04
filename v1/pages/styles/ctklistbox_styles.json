@@ -6,5 +6,13 @@
     "highlight_color": "gray74",
     "border_color": "gray14",
     "border_width": 1
+  },
+  "Default": {
+    "fg_color": "gray92",
+    "text_color": "black",
+    "hover_color": "#E0E0E0",
+    "highlight_color": "#3B8ED0",
+    "border_color": "#CCCCCC",
+    "border_width": 1
   }
 }

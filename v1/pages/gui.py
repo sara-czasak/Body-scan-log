@@ -22,6 +22,8 @@ class App(ctk.CTk):
     def __init__(self):
         super().__init__()
 
+        self.label_font = ("Helvetica", 20)
+
         # TESTING
         self.theme = None
         self.language_selected = None
@@ -157,8 +159,8 @@ class App(ctk.CTk):
         self.hide_add_strategy_frame()
         self.hide_edit_strategies_frame()
         self.hide_view_strategy_frame()
+        self.strategies_frame.reset_frame("to main strategy screen")
         self.strategies_frame.pack(padx=15, pady=15, fill="both", expand=True)
-        self.strategies_frame.show_strategy_screen(self.strategies_frame.current_stress_level)
 
 
     def hide_strategies_frame(self):

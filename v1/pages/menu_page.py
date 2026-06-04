@@ -9,7 +9,7 @@ class MenuFrame(ctk.CTkFrame):
 
 
     def layout(self):
-        menu_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["menu_title"])
+        menu_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["menu_title"], font=self.parent.label_font)
         menu_label.pack(padx=5, pady=5, fill="both", expand=True)
 
         add_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["add_menu_opt"], command=self.parent.show_add_entry)

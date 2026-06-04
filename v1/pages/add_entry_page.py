@@ -48,14 +48,14 @@ class AddEntryFrame(ctk.CTkFrame):
         self.back_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"], command=self.go_back)
         self.back_button.pack(padx=5, pady=5, fill="both")
 
-        self.form_title_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["new_entry_title"])
+        self.form_title_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["new_entry_title"], font=self.parent.label_font)
         self.form_title_label.pack(padx=5, pady=5, fill="both")
 
         self.scroll_frame = ctk.CTkScrollableFrame(self)
         self.scroll_frame.pack(padx=5, pady=5, fill="both", expand=True)
 
         # FIELDS:
-        self.date_label = ctk.CTkLabel(self.scroll_frame, text=self.parent.translator.dictionary["date_label"])
+        self.date_label = ctk.CTkLabel(self.scroll_frame, text=self.parent.translator.dictionary["date_label"], font=self.parent.label_font)
         self.date_label.pack(padx=5, pady=5, fill="both", expand=True)
         self.date_entry = ctk.CTkEntry(self.scroll_frame)
 
@@ -67,14 +67,14 @@ class AddEntryFrame(ctk.CTkFrame):
         values = [str(i) for i in range(0, 11)]
         # Body part fields
         for i in self.body_part_list:
-            body_part_label = ctk.CTkLabel(self.scroll_frame, text=i)
+            body_part_label = ctk.CTkLabel(self.scroll_frame, text=i, font=self.parent.label_font)
             body_part_label.pack(padx=5, pady=5, fill="both", expand=True)
             body_part_entry = ctk.CTkOptionMenu(self.scroll_frame, values=values)
             body_part_entry.pack(padx=5, pady=5, fill="both", expand=True)
 
             self.body_part_scans[i] = body_part_entry
 
-        self.notes_label = ctk.CTkLabel(self.scroll_frame, text=self.parent.translator.dictionary["notes_label"])
+        self.notes_label = ctk.CTkLabel(self.scroll_frame, text=self.parent.translator.dictionary["notes_label"], font=self.parent.label_font)
         self.notes_label.pack(padx=5, pady=5, fill="both", expand=True)
         self.notes_entry = ctk.CTkTextbox(self.scroll_frame, height=90, activate_scrollbars=True, wrap="word")
         self.notes_entry.pack(padx=5, pady=5, fill="both", expand=True)

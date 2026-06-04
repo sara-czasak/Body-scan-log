@@ -59,7 +59,7 @@ class AnalysisFrame(ctk.CTkFrame):
                                                  command=self.back)
         self.back_to_menu_button.pack(padx=5, pady=5, fill="both")
 
-        self.last_week_average = ctk.CTkLabel(self, text=f"{self.parent.translator.dictionary["last_week_average"]}: {self.average}/10",)
+        self.last_week_average = ctk.CTkLabel(self, text=f"{self.parent.translator.dictionary["last_week_average"]}: {self.average}/10", font=self.parent.label_font)
         self.last_week_average.pack(padx=5, pady=5, fill="both")
 
         self.get_strategy_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["get_strategy_button"], command=self.get_random_strategy)
@@ -68,8 +68,8 @@ class AnalysisFrame(ctk.CTkFrame):
         self.show_graph_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["show_graph_button"], command=self.graph_layout)
         self.show_graph_button.pack(padx=5, pady=5, fill="both")
 
-        self.strategy_name_label = ctk.CTkLabel(self)
-        self.strategy_description_label = ctk.CTkLabel(self)
+        self.strategy_name_label = ctk.CTkLabel(self, font=self.parent.label_font)
+        self.strategy_description_label = ctk.CTkLabel(self, font=self.parent.label_font)
 
 
     def get_random_strategy(self):

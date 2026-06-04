@@ -23,7 +23,7 @@ class SettingsFrame(ctk.CTkFrame):
 
 
     def layout(self):
-        self.settings_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["settings"])
+        self.settings_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["settings"], font=self.parent.label_font)
         self.settings_label.pack(padx=5, pady=5, fill="both", expand=True)
 
         self.back_to_menu_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"], command=self.go_back_to_menu)

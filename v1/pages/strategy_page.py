@@ -58,7 +58,7 @@ class StrategiesFrame(ctk.CTkFrame):
         self.strategies_option_menu = ctk.CTkOptionMenu(self, values=values)
         self.strategies_option_menu.set(self.parent.translator.dictionary["SELECT AN OPTION"])
 
-        self.strategy_label = ctk.CTkLabel(self)
+        self.strategy_label = ctk.CTkLabel(self, font=self.parent.label_font)
 
         self.strategy_list = CTkListbox(self)
 
@@ -68,7 +68,7 @@ class StrategiesFrame(ctk.CTkFrame):
 
         self.select_strategy_option_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["option_choice"])
 
-        self.strategy_select_title = ctk.CTkLabel(self, text=self.parent.translator.dictionary["COPING STRATEGIES"])
+        self.strategy_select_title = ctk.CTkLabel(self, text=self.parent.translator.dictionary["COPING STRATEGIES"], font=self.parent.label_font)
         self.strategy_select_title.pack(padx=5, pady=5, fill="both", expand=True)
 
         self.back_to_menu_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"],

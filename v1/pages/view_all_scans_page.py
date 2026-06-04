@@ -62,7 +62,7 @@ class ViewAllScansFrame(ctk.CTkFrame):
             self.master_scroll_frame = ctk.CTkScrollableFrame(self)
             self.master_scroll_frame.pack(padx=5, pady=5, fill="both", expand=True)
 
-            self.all_title = ctk.CTkLabel(self.master_scroll_frame, text=self.parent.translator.dictionary["ALL ENTRIES"])
+            self.all_title = ctk.CTkLabel(self.master_scroll_frame, text=self.parent.translator.dictionary["ALL ENTRIES"], font=self.parent.label_font)
             self.all_title.pack(padx=5, pady=5)
 
             self.all_scans_list = CTkListbox(self.master_scroll_frame, height=200)
@@ -109,7 +109,7 @@ class ViewAllScansFrame(ctk.CTkFrame):
         if self.body_data is not None:
             self.master_scroll_frame.pack(padx=5, pady=5, fill="both", expand=True)
 
-            self.for_day_title = ctk.CTkLabel(self.master_scroll_frame, text=f"{self.date} | {self.rating}")
+            self.for_day_title = ctk.CTkLabel(self.master_scroll_frame, text=f"{self.date} | {self.rating}", font=self.parent.label_font)
             self.for_day_title.pack(padx=5, pady=5)
 
             self.all_entries_list = CTkListbox(self.master_scroll_frame)

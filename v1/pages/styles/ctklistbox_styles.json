@@ -14,5 +14,13 @@
     "highlight_color": "#3B8ED0",
     "border_color": "#CCCCCC",
     "border_width": 1
+  },
+  "Dark": {
+    "fg_color": "black",
+    "text_color": "white",
+    "hover_color": "gray14",
+    "highlight_color": "gray50",
+    "border_color": "gray72",
+    "border_width": 1
   }
 }

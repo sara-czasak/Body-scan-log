@@ -20,8 +20,12 @@ from PIL import ImageTk
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
+
+        # TESTING
+        self.theme = "Dark"
+
         # FOR TESTING
-        # ctk.set_default_color_theme("./styles/light_mode.json")
+        ctk.set_default_color_theme("./styles/dark_mode.json")
 
         self.geometry("400x470")
 
@@ -38,8 +42,6 @@ class App(ctk.CTk):
 
         self.title(self.translator.dictionary["app_title"])
         self.menu_frame = MenuFrame(self)
-
-        self.theme = None
 
         self.show_menu()
         self.add_entry_frame = AddEntryFrame(self)
@@ -70,6 +72,8 @@ class App(ctk.CTk):
             ctk.set_default_color_theme("./styles/light_mode.json")
         elif theme == "Default" or theme is None:
             ctk.set_default_color_theme("blue")
+        elif theme == "Dark":
+            ctk.set_default_color_theme("./styles/dark_mode.json")
         self.refresh_screen()
         self.get_listbox_style(self.theme)
         self.show_settings()

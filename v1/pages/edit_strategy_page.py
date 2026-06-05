@@ -3,6 +3,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from database import BodyScanDB, DuplicateError
+from CTkMessagebox import CTkMessagebox
 
 
 class EditStrategyFrame(ctk.CTkFrame):
@@ -94,7 +95,7 @@ class EditStrategyFrame(ctk.CTkFrame):
             self.strategy_name_entry.delete(0, "end")
             self.parent.show_strategies_frame()
         except DuplicateError:
-            print("This strategy already exists!")
+            CTkMessagebox(self, title=self.parent.translator.dictionary["name_error_title"], message=self.parent.translator.dictionary["name_error_message"])
         except Exception as e:
             print("Error: ", e)
 

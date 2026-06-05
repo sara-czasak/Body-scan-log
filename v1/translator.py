@@ -46,7 +46,7 @@ langs = [{"English": {
     "Strategy Name": "Strategy Name",
     "Strategy Description": "Strategy Description",
     "submit_strategy": "SUBMIT STRATEGY",
-    "View Strategy": "View Strategy",
+    "View Strategy": "VIEW STRATEGY",
     "SELECT AN OPTION": "SELECT AN OPTION",
     "about": "ABOUT",
     "ALL ENTRIES": "ALL ENTRIES",
@@ -60,6 +60,8 @@ langs = [{"English": {
     "Dark": "Dark",
     "Light": "Light",
     "Dyslexia": "Dyslexia",
+    "name_error_title": "This strategy name already exists",
+    "name_error_message": "Please change the strategy name and try again",
 }},
     {"Polski": {
         'app_title': "PL",
@@ -123,6 +125,8 @@ langs = [{"English": {
         "Dark": "PL",
         "Light": "PL",
         "Dyslexia": "PL",
+        "name_error_title": "Ta nazwa strategi jest zajęta.",
+        "name_error_message": "Wprowadz inną nazwe i sprubuj ponownie"
     }},
 ]
 

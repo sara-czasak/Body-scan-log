@@ -3,7 +3,8 @@ from CTkListbox import *
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from database import BodyScanDB
+from database import BodyScanDB, DatabaseError
+from CTkMessagebox import CTkMessagebox
 
 
 class StrategiesFrame(ctk.CTkFrame):
@@ -153,33 +154,44 @@ class StrategiesFrame(ctk.CTkFrame):
 
             self.strategy_list.pack(padx=5, pady=5, fill="both", expand=True)
             data = self.get_strategies_name_list(stress_level)
-            for i in data:
-                self.mild_strategies_dict[i[2]] = i[0]
-                self.strategy_list.insert(i[0], i[2])
+            if data:
+                for i in data:
+                    self.mild_strategies_dict[i[2]] = i[0]
+                    self.strategy_list.insert(i[0], i[2])
         elif stress_level == 2:
             self.strategy_label.configure(text = self.parent.translator.dictionary["Strategies for mid stress:"])
             self.strategy_label.pack(padx=5, pady=5, fill="both", expand=True)
             self.strategy_list.pack(padx=5, pady=5, fill="both", expand=True)
             data = self.get_strategies_name_list(stress_level)
-            for i in data:
-                self.mid_strategies_dict[i[2]] = i[0]
-                self.strategy_list.insert(i[0], i[2])
+            if data:
+                for i in data:
+                    self.mid_strategies_dict[i[2]] = i[0]
+                    self.strategy_list.insert(i[0], i[2])
         elif stress_level == 3:
             self.strategy_label.configure(text = self.parent.translator.dictionary["Strategies for high stress:"])
             self.strategy_label.pack(padx=5, pady=5, fill="both", expand=True)
             self.strategy_list.pack(padx=5, pady=5, fill="both", expand=True)
             data = self.get_strategies_name_list(stress_level)
-            for i in data:
-                self.high_strategies_dict[i[2]] = i[0]
-                self.strategy_list.insert(i[0], i[2])
+            if data:
+                for i in data:
+                    self.high_strategies_dict[i[2]] = i[0]
+                    self.strategy_list.insert(i[0], i[2])
         else:
             pass
 
 
     def get_strategies_name_list(self, stress_level):
         db = BodyScanDB()
-        data = db.get_strategies_by_stress_level(stress_level)
-        return data
+        try:
+            data = db.get_strategies_by_stress_level(stress_level)
+            return data
+        except DatabaseError:
+            CTkMessagebox(self, title=self.parent.translator.dictionary["get_strategy_error_title"], message=self.parent.translator.dictionary["get_strategy_error_message"])
+            return []
+        except Exception as e:
+            print("Error: ", e)
+            return []
+
 
 
     def add_strategies(self, stress_level):
@@ -201,16 +213,19 @@ class StrategiesFrame(ctk.CTkFrame):
 
                 record_id = self.high_strategies_dict[self.strategy_list.get()]
                 self.parent.show_edit_strategies_frame(stress_level, record_id)
-
             else:
                 pass
+
         except (KeyError, IndexError):
             pass
+        except DatabaseError:
+            CTkMessagebox(self, title=self.parent.translator.dictionary["edit_error_title"], message=self.parent.translator.dictionary["edit_error_message"])
+        except Exception as e:
+            print("Error: ", e)
         try:
             self.strategy_list.deactivate(self.strategy_list.curselection())
         except (IndexError, TypeError):
             pass
-
 
 
     def delete_strategies(self, stress_level):
@@ -236,6 +251,10 @@ class StrategiesFrame(ctk.CTkFrame):
 
         except (KeyError, TypeError):
             pass
+        except DatabaseError:
+            CTkMessagebox(self, title=self.parent.translator.dictionary["delete_error_title"], message=self.parent.translator.dictionary["delete_error_message"])
+        except Exception as e:
+            print("Error: ", e)
         try:
             self.strategy_list.deactivate(self.strategy_list.curselection())
         except (IndexError, TypeError):

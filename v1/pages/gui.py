@@ -94,6 +94,13 @@ class App(ctk.CTk):
 
     def get_preferences(self):
         db = BodyScanDB()
+        self.font_dict = {
+            "Default": ("Helvetica", 15),
+            "Light": ("Helvetica", 15),
+            "Dark": ("Helvetica", 15),
+            "Dyslexia": ("OpenDyslexic3", 15),
+        }
+
         try:
             data = db.get_user_preferences()
             if data and len(data) > 0:
@@ -109,7 +116,6 @@ class App(ctk.CTk):
         except Exception as e:
             self.language_selected = "English"
             self.theme = "Default"
-        self.selected_font = self.font_dict.get(self.theme, ("Helvetica", 15))
 
 
     def apply_theme_to_frames(self, theme):

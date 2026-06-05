@@ -3,7 +3,8 @@ from CTkListbox import *
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from database import BodyScanDB
+from database import BodyScanDB, DatabaseError
+from CTkMessagebox import CTkMessagebox
 
 
 class ViewAllScansFrame(ctk.CTkFrame):
@@ -136,19 +137,29 @@ class ViewAllScansFrame(ctk.CTkFrame):
 
     def get_all_days_from_db(self):
         db = BodyScanDB()
-        data = db.get_scan_records_with_dates_ordered()
-        for record in data:
-            self.scan_records[record[1]] = record
-            self.record_notes[record[1]] = record[3]
+        try:
+            data = db.get_scan_records_with_dates_ordered()
+            for record in data:
+                self.scan_records[record[1]] = record
+                self.record_notes[record[1]] = record[3]
+        except DatabaseError:
+            CTkMessagebox(self, title=self.parent.translator.dictionary["db_error_ordered_rec_title"], message=self.parent.translator.dictionary["db_error_ordered_rec_message"])
+        except Exception as e:
+            print("Error: ", e)
         self.switch_view("main")
 
 
     def see_records_in_day(self):
         if self.all_scans_list.get():
             db = BodyScanDB()
-            self.date = self.all_scans_list.get().split("|")[0].strip()
-            self.rating = f"{self.scan_records[self.date][2]}/10"
-            key = self.scan_records[self.date][0]
-            self.body_data = db.get_body_part_readings_by_scans_id(key)
-            self.switch_view('body_data')
+            try:
+                self.date = self.all_scans_list.get().split("|")[0].strip()
+                self.rating = f"{self.scan_records[self.date][2]}/10"
+                key = self.scan_records[self.date][0]
+                self.body_data = db.get_body_part_readings_by_scans_id(key)
+                self.switch_view('body_data')
+            except DatabaseError:
+                CTkMessagebox(self, title=self.parent.translator.dictionary["db_error_ordered_rec_title"], message=self.parent.translator.dictionary["db_error_rec_message"])
+            except Exception as e:
+                print("Error: ", e)
 

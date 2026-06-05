@@ -2,7 +2,8 @@ import customtkinter as ctk
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from database import BodyScanDB
+from database import BodyScanDB, DatabaseError
+from CTkMessagebox import CTkMessagebox
 
 
 class ViewStrategyFrame(ctk.CTkFrame):
@@ -57,9 +58,14 @@ class ViewStrategyFrame(ctk.CTkFrame):
 
     def get_entry_data(self):
         db = BodyScanDB()
-        self.data = db.fetch_strategy_by_id(self.record_id)
-        self.clear_layout()
-        self.create_layout()
+        try:
+            self.data = db.fetch_strategy_by_id(self.record_id)
+            self.clear_layout()
+            self.create_layout()
+        except DatabaseError:
+            CTkMessagebox(self, title=self.parent.translator.dictionary["db_error_ordered_rec_title"], message=self.parent.translator.dictionary["db_error_rec_message"])
+        except Exception as e:
+            print("Error: ", e)
 
 
 

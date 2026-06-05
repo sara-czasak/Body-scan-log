@@ -3,13 +3,12 @@ from CTkListbox import *
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from database import BodyScanDB
+from database import BodyScanDB, DatabaseError
 import random
 import datetime
-from tkinter import *
-from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
+from CTkMessagebox import CTkMessagebox
 
 
 class AnalysisFrame(ctk.CTkFrame):
@@ -89,26 +88,40 @@ class AnalysisFrame(ctk.CTkFrame):
                 stress_level = 1
 
             db = BodyScanDB()
-            data = db.get_strategies_by_stress_level(stress_level)
-            if len(data) > 0:
-                strategy = random.choice(data)
-                self.strategy_description_scroll_screen.pack(fill="both")
-                self.strategy_name_label.configure(text=strategy[2])
-                self.strategy_description_label.configure(text=strategy[3], wraplength=250)
-                self.strategy_name_label.pack(padx=5, pady=5, fill="both")
-                self.strategy_description_label.pack(padx=5, pady=5, fill="both")
-            else:
-                pass
+            try:
+                data = db.get_strategies_by_stress_level(stress_level)
+                if len(data) > 0:
+                    strategy = random.choice(data)
+                    self.strategy_description_scroll_screen.pack(fill="both")
+                    self.strategy_name_label.configure(text=strategy[2])
+                    self.strategy_description_label.configure(text=strategy[3], wraplength=250)
+                    self.strategy_name_label.pack(padx=5, pady=5, fill="both")
+                    self.strategy_description_label.pack(padx=5, pady=5, fill="both")
+                else:
+                    pass
+            except DatabaseError:
+                CTkMessagebox(self, title=self.parent.translator.dictionary["get_strategy_error_title"], message=self.parent.translator.dictionary["get_strategy_error_message"])
+            except Exception as e:
+                print("Error: ", e)
 
 
     def get_scan_data(self):
         today = datetime.date.today().strftime("%Y-%m-%d")
         ten_days_ago = datetime.date.today() - datetime.timedelta(days=10)
-        db = BodyScanDB()
-        self.data = db.get_scan_records_last_10_days_with_dates_ordered(ten_days_ago, today)
+
         total = 0
-        for i in self.data:
-            total += i[2]
+        self.data = []
+
+        db = BodyScanDB()
+        try:
+            self.data = db.get_scan_records_last_10_days_with_dates_ordered(ten_days_ago, today)
+            total = 0
+            for i in self.data:
+                total += i[2]
+        except DatabaseError:
+            CTkMessagebox(self, title=self.parent.translator.dictionary["get_last_week_error_title"], message=self.parent.translator.dictionary["get_last_week_error_message"])
+        except Exception as e:
+            print("Error: ", e)
         try:
             self.average = round(total / len(self.data))
             self.layout()

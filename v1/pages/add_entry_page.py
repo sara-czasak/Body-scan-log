@@ -3,7 +3,8 @@ import datetime
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from database import BodyScanDB
+from database import BodyScanDB, DuplicateError, DatabaseError
+from CTkMessagebox import CTkMessagebox
 
 
 class AddEntryFrame(ctk.CTkFrame):
@@ -113,16 +114,26 @@ class AddEntryFrame(ctk.CTkFrame):
 
     def save_to_db(self):
         db = BodyScanDB()
-        scan_id = db.insert_scan(
-            self.scan_db_data["date"],
-            self.scan_db_data["total_score"],
-            self.scan_db_data["notes"],
-            )
+        try:
+            scan_id = db.insert_scan(
+                self.scan_db_data["date"],
+                self.scan_db_data["total_score"],
+                self.scan_db_data["notes"],
+                )
 
-        for k, v in self.body_part_scans_db.items():
-            db.insert_body_part_reading(scan_id, k, v)
+            for k, v in self.body_part_scans_db.items():
+                db.insert_body_part_reading(scan_id, k, v)
 
-        self.go_back()
+            self.go_back()
+        except DuplicateError:
+            CTkMessagebox(self, title=self.parent.translator.dictionary["entry_duplicate_entry_title"],
+                          message=self.parent.translator.dictionary["entry_duplicate_entry_message"])
+        except DatabaseError:
+            CTkMessagebox(self, title=self.parent.translator.dictionary["entry_db_error_title"],
+                          message=self.parent.translator.dictionary["entry_db_error_message"])
+        except Exception as e:
+            print(f"Unexpected error: {e}")
+
 
 
     def reset_form(self):

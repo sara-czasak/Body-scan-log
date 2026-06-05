@@ -1,8 +1,5 @@
 import customtkinter as ctk
 from CTkListbox import *
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from database import BodyScanDB, DatabaseError
 from CTkMessagebox import CTkMessagebox
 
@@ -122,6 +119,8 @@ class ViewAllScansFrame(ctk.CTkFrame):
                 CTkMessagebox(self, title=self.parent.translator.dictionary["success_title"], message=self.parent.translator.dictionary["success_message"])
             except DatabaseError:
                 CTkMessagebox(self, title=self.parent.translator.dictionary["Error_title"], message=self.parent.translator.dictionary["Error_message"])
+
+        self.parent.menu_frame.update_button_states()
 
 
     def edit_record(self):

@@ -1,8 +1,4 @@
 import customtkinter as ctk
-import datetime
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from database import BodyScanDB, DuplicateError, DatabaseError
 from CTkMessagebox import CTkMessagebox
 
@@ -187,6 +183,8 @@ class EditEntryFrame(ctk.CTkFrame):
 
             for k, v in self.body_part_scans_db.items():
                 db.insert_body_part_reading(self.scan_id, k, v)
+
+            self.parent.menu_frame.update_button_states()
 
             self.go_back()
         except DuplicateError:

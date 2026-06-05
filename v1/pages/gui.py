@@ -3,9 +3,8 @@ import json
 from menu_page import MenuFrame
 from add_entry_page import AddEntryFrame
 from setting_page import SettingsFrame
-import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import sys
 from translator import Translator
 from database import BodyScanDB, DatabaseError
 from strategy_page import StrategiesFrame
@@ -17,8 +16,15 @@ from view_all_scans_page import ViewAllScansFrame
 from analysis_page import AnalysisFrame
 from edit_entry_page import EditEntryFrame
 from PIL import ImageTk
-from tkextrafont import Font
 from CTkMessagebox import CTkMessagebox
+
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except AttributeError:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 
 
 class App(ctk.CTk):
@@ -35,15 +41,17 @@ class App(ctk.CTk):
         self.geometry("400x470")
 
         try:
-            img = ImageTk.PhotoImage(file="./img/logo2.png")
+            logo_path = resource_path(os.path.join("img", "logo2.png"))
+            img = ImageTk.PhotoImage(file=logo_path)
             self.wm_iconbitmap()
             self.iconphoto(True, img)
         except FileNotFoundError:
             pass
 
-        fonts_dir = os.path.join(os.path.dirname(__file__), "..", "fonts")
-        self.regular_font = Font(file=os.path.join(fonts_dir, "OpenDyslexic3-Regular.ttf"), family="OpenDyslexic3")
-        self.bold_font = Font(file=os.path.join(fonts_dir, "OpenDyslexic3-Bold.ttf"), family="OpenDyslexic3")
+        reg_font_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fonts", "OpenDyslexic3-Regular.ttf")
+        self.regular_font = ctk.FontManager.load_font(reg_font_path)
+        bold_font_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fonts", "OpenDyslexic3-Bold.ttf")
+        self.bold_font = ctk.FontManager.load_font(bold_font_path)
 
         self.font_dict = {
             "Default": ("Helvetica", 15),
@@ -59,6 +67,7 @@ class App(ctk.CTk):
         self.title(self.translator.dictionary["app_title"])
         self.menu_frame = MenuFrame(self)
 
+        self.menu_frame.update_button_states()
 
         self.show_menu()
         self.add_entry_frame = AddEntryFrame(self)
@@ -133,13 +142,16 @@ class App(ctk.CTk):
 
         self.selected_font = self.font_dict[theme]
         if theme == "Light":
-            ctk.set_default_color_theme("./styles/light_mode.json")
+            theme_path = resource_path(os.path.join("styles", "light_mode.json"))
+            ctk.set_default_color_theme(theme_path)
         elif theme == "Default" or theme is None:
             ctk.set_default_color_theme("blue")
         elif theme == "Dark":
-            ctk.set_default_color_theme("./styles/dark_mode.json")
-        elif theme == "Dyslexia":
-            ctk.set_default_color_theme("./styles/dyslexia_mode.json")
+            theme_path = resource_path(os.path.join("styles", "dark_mode.json"))
+            ctk.set_default_color_theme(theme_path)
+        elif theme == "Dyslexia" or theme == "Dysleksja":
+            theme_path = resource_path(os.path.join("styles", "dyslexia_mode.json"))
+            ctk.set_default_color_theme(theme_path)
         self.refresh_screen()
         self.get_listbox_style(self.theme)
         self.show_settings()
@@ -304,13 +316,20 @@ class App(ctk.CTk):
     # Light style as default for testing
     def get_listbox_style(self, theme=None):
         if theme is None:
-            return
+            return {}
         try:
-            with open("./styles/ctklistbox_styles.json", 'r') as f:
+            style_path = resource_path(os.path.join("styles", "ctklistbox_styles.json"))
+            with open(style_path, 'r') as f:
                 styles = json.load(f)
-            return styles.get(theme, styles[theme])
+            return styles.get(theme, {})
         except FileNotFoundError:
             return {}
+
+
+    def has_scan_data(self):
+        db = BodyScanDB()
+        data = db.get_all_scans()
+        return data and len(data) > 0
 
 
 app = App()

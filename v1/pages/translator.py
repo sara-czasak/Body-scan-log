@@ -52,7 +52,7 @@ langs = [{"English": {
     "ALL ENTRIES": "ALL ENTRIES",
     "see_more_button": "SEE DETAILS",
     "last_week_average": "LAST WEEK AVERAGE",
-    "get_strategy_button": "GET A STRESS MANAGEMENT TECHNIQUE",
+    "get_strategy_button": "GET A STRESS\nMANAGEMENT TECHNIQUE",
     "show_graph_button": "SHOW GRAPH",
     "graph_label": "GRAPH",
     "select_theme": "SELECT THEME",

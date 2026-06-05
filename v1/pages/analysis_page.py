@@ -119,6 +119,7 @@ class AnalysisFrame(ctk.CTkFrame):
     def graph_layout(self):
         self.strategy_name_label.pack_forget()
         self.strategy_description_label.pack_forget()
+        self.strategy_description_scroll_screen.pack_forget()
 
         if self.data is not None:
             dates = [i[1] for i in self.data]

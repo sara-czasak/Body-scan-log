@@ -234,3 +234,26 @@ class BodyScanDB:
         finally:
             conn.close()
 
+
+    def delete_body_part_readings_by_scans_id(self, scan_id):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("DELETE FROM body_part_reading WHERE scan_id = ?", (scan_id,))
+            conn.commit()
+        except OperationalError:
+            raise DatabaseError()
+        finally:
+            conn.close()
+
+
+    def delete_scan_by_id(self, scan_id):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("DELETE FROM scans WHERE id = ?", (scan_id,))
+            conn.commit()
+        except OperationalError:
+            raise DatabaseError()
+        finally:
+            conn.close()

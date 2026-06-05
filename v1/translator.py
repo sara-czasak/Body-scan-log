@@ -101,6 +101,10 @@ langs = [{"English": {
     "Edit Entry": "EDIT ENTRY",
     "Delete Entry": "DELETE ENTRY",
     "View Entry": "VIEW ENTRY",
+    "Error_message": "Could not delete entry. Please try again.",
+    "Error_title": "Error",
+    "success_title": "Success",
+    "success_message": "Entry has been successfully deleted",
 }},
     {"Polski": {
         'app_title': "Dziennik Skanowania Ciała",
@@ -205,6 +209,10 @@ langs = [{"English": {
         "Edit Entry": "PL",
         "Delete Entry": "PL",
         "View Entry": "PL",
+        "Error_message": "Nie udało się usunąć wpisu.",
+        "Error_title": "Coś poszło nie tak",
+        "success_title": "Wszystko się udało!",
+        "success_message": "Wpis został usunięty",
     }},
 ]
 

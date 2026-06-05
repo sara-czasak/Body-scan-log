@@ -67,7 +67,7 @@ class ViewAllScansFrame(ctk.CTkFrame):
             self.scans_option_menu.set(self.parent.translator.dictionary["SELECT AN OPTION"])
             self.scans_option_menu.pack(padx=5, pady=5, fill="both")
 
-            self.select_scan_option_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["SELECT AN OPTION"], font=self.parent.selected_font, command=self.get_choice)
+            self.select_scan_option_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["option_choice"], font=self.parent.selected_font, command=self.get_choice)
             self.select_scan_option_button.pack(padx=5, pady=5, fill="both")
 
             # self.see_more_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["see_more_button"], command=self.see_records_in_day, font=self.parent.selected_font)
@@ -95,8 +95,35 @@ class ViewAllScansFrame(ctk.CTkFrame):
         choice = self.scans_option_menu.get()
         if choice == self.parent.translator.dictionary["View Entry"]:
             self.see_records_in_day()
-        else:
-            pass
+        elif choice == self.parent.translator.dictionary["Delete Entry"]:
+            self.delete_record()
+
+
+    def delete_record(self):
+        selected = self.all_scans_list.get()
+        if selected:
+            date = selected.split("|")[0].strip()
+            scan_id = self.scan_records[date][0]
+
+            db = BodyScanDB()
+            try:
+                db.delete_body_part_readings_by_scans_id(scan_id)
+                db.delete_scan_by_id(scan_id)
+
+                del self.scan_records[date]
+                del self.record_notes[date]
+
+                self.all_scans_list.delete("all")
+                for k, v in reversed(self.scan_records.items()):
+                    self.all_scans_list.insert("end", f"{k} | {self.scan_records[k][2]}/10")
+
+                CTkMessagebox(self, title=self.parent.translator.dictionary["success_title"], message=self.parent.translator.dictionary["success_message"])
+            except DatabaseError:
+                CTkMessagebox(self, title=self.parent.translator.dictionary["Error_title"], message=self.parent.translator.dictionary["Error_message"])
+
+
+    def edit_record(self):
+        pass
 
 
     def clean_up(self):
@@ -108,8 +135,6 @@ class ViewAllScansFrame(ctk.CTkFrame):
             self.all_title.pack_forget()
         if self.for_day_title is not None:
             self.for_day_title.pack_forget()
-        # if self.see_more_button is not None:
-        #     self.see_more_button.pack_forget()
         if self.back_to_menu_button is not None:
             self.back_to_menu_button.pack_forget()
         if  self.master_scroll_frame is not None:

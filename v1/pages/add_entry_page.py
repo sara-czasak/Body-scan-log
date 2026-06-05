@@ -21,22 +21,22 @@ class AddEntryFrame(ctk.CTkFrame):
         self.submit_button = None
         self.back_button = None
         self.body_part_list = [
-            self.parent.translator.dictionary["jaw"],
-            self.parent.translator.dictionary["face"],
-            self.parent.translator.dictionary["neck"],
-            self.parent.translator.dictionary["upper back"],
-            self.parent.translator.dictionary["mid back"],
-            self.parent.translator.dictionary["lower back"],
-            self.parent.translator.dictionary["left shoulder"],
-            self.parent.translator.dictionary["right shoulder"],
-            self.parent.translator.dictionary["left arm"],
-            self.parent.translator.dictionary["right arm"],
-            self.parent.translator.dictionary["chest"],
-            self.parent.translator.dictionary["stomach"],
-            self.parent.translator.dictionary["left leg"],
-            self.parent.translator.dictionary["right leg"],
-            self.parent.translator.dictionary["left foot"],
-            self.parent.translator.dictionary["right foot"],
+            "jaw",
+            "face",
+            "neck",
+            "upper back",
+            "mid back",
+            "lower back",
+            "left shoulder",
+            "right shoulder",
+            "left arm",
+            "right arm",
+            "chest",
+            "stomach",
+            "left leg",
+            "right leg",
+            "left foot",
+            "right foot",
         ]
         self.body_part_scans = {}
         self.body_part_scores = {}
@@ -68,7 +68,7 @@ class AddEntryFrame(ctk.CTkFrame):
         values = [str(i) for i in range(0, 11)]
         # Body part fields
         for i in self.body_part_list:
-            body_part_label = ctk.CTkLabel(self.scroll_frame, text=i, font=self.parent.selected_font)
+            body_part_label = ctk.CTkLabel(self.scroll_frame, text=self.parent.translator.dictionary[i], font=self.parent.selected_font)
             body_part_label.pack(padx=5, pady=5, fill="both", expand=True)
             body_part_entry = ctk.CTkOptionMenu(self.scroll_frame, values=values)
             body_part_entry.pack(padx=5, pady=5, fill="both", expand=True)

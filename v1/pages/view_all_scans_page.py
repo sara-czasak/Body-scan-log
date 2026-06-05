@@ -97,6 +97,8 @@ class ViewAllScansFrame(ctk.CTkFrame):
             self.see_records_in_day()
         elif choice == self.parent.translator.dictionary["Delete Entry"]:
             self.delete_record()
+        elif choice == self.parent.translator.dictionary["Edit Entry"]:
+            self.edit_record()
 
 
     def delete_record(self):
@@ -123,7 +125,11 @@ class ViewAllScansFrame(ctk.CTkFrame):
 
 
     def edit_record(self):
-        pass
+        selected = self.all_scans_list.get()
+        if selected:
+            date = selected.split("|")[0].strip()
+            scan_id = self.scan_records[date][0]
+            self.parent.show_edit_entry_frame(scan_id)
 
 
     def clean_up(self):

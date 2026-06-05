@@ -105,6 +105,7 @@ langs = [{"English": {
     "Error_title": "Error",
     "success_title": "Success",
     "success_message": "Entry has been successfully deleted",
+    "edit_entry_title": "EDIT ENTRY",
 }},
     {"Polski": {
         'app_title': "Dziennik Skanowania Ciała",
@@ -206,13 +207,14 @@ langs = [{"English": {
         """,
         "credit_header": "AUTORSTWO",
         "credit_content": "Opracowane przez Sara Czasak. Zbudowane przy użyciu Pythona, CustomTkinter i SQLite.",
-        "Edit Entry": "PL",
-        "Delete Entry": "PL",
-        "View Entry": "PL",
+        "Edit Entry": "EDYTUJ WPIS",
+        "Delete Entry": "USUŃ WPIS",
+        "View Entry": "ZOBACZ WPIS",
         "Error_message": "Nie udało się usunąć wpisu.",
         "Error_title": "Coś poszło nie tak",
         "success_title": "Wszystko się udało!",
         "success_message": "Wpis został usunięty",
+        "edit_entry_title": "EDYTUJ WPIS",
     }},
 ]
 

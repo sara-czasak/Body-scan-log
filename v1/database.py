@@ -257,3 +257,42 @@ class BodyScanDB:
             raise DatabaseError()
         finally:
             conn.close()
+
+
+    def get_scan_by_id(self, scan_id):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("SELECT * FROM scans WHERE id = ?", (scan_id,))
+            data = cursor.fetchall()
+            return data
+        except OperationalError:
+            raise DatabaseError()
+        finally:
+            conn.close()
+
+
+    def update_scan(self, scan_id, date, overall_score, notes):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("UPDATE scans SET overall_score = ?, date = ?, notes = ? WHERE id = ?", (overall_score, date, notes, scan_id))
+            conn.commit()
+        except IntegrityError:
+            raise DuplicateError()
+        except OperationalError:
+            raise DatabaseError()
+        finally:
+            conn.close()
+
+
+    def delete_body_part_readings_by_scan_id(self, scan_id):
+        conn = self.get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute("DELETE FROM body_part_reading WHERE scan_id = ?", (scan_id,))
+            conn.commit()
+        except OperationalError:
+            raise DatabaseError()
+        finally:
+            conn.close()

@@ -15,6 +15,7 @@ from view_strategy_page import ViewStrategyFrame
 from about_page import AboutFrame
 from view_all_scans_page import ViewAllScansFrame
 from analysis_page import AnalysisFrame
+from edit_entry_page import EditEntryFrame
 from PIL import ImageTk
 from tkextrafont import Font
 from CTkMessagebox import CTkMessagebox
@@ -69,6 +70,7 @@ class App(ctk.CTk):
         self.view_strategy_frame = ViewStrategyFrame(self)
         self.view_all_scans_frame = ViewAllScansFrame(self)
         self.analysis_frame = AnalysisFrame(self)
+        self.edit_entry_frame = EditEntryFrame(self)
 
 
     def set_language(self, lang, initial_load=False):
@@ -285,6 +287,18 @@ class App(ctk.CTk):
 
     def hide_analysis_frame(self):
         self.analysis_frame.pack_forget()
+
+
+    def show_edit_entry_frame(self, scan_id):
+        self.hide_view_all_scans_frame()
+        self.edit_entry_frame.scan_id = scan_id
+        self.edit_entry_frame.get_entry_data()
+        self.edit_entry_frame.pack(padx=15, pady=15, fill="both", expand=True)
+
+
+    def hide_edit_entry_frame(self):
+        self.edit_entry_frame.pack_forget()
+        self.show_view_all_scans_frame()
 
 
     # Light style as default for testing

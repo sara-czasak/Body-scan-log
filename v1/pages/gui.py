@@ -44,10 +44,10 @@ class App(ctk.CTk):
         self.bold_font = Font(file=os.path.join(fonts_dir, "OpenDyslexic3-Bold.ttf"), family="OpenDyslexic3")
 
         self.font_dict = {
-            "Default": ("Helvetica", 20),
-            "Light": ("Helvetica", 20),
-            "Dark": ("Helvetica", 20),
-            "Dyslexia": ("OpenDyslexic3", 20),
+            "Default": ("Helvetica", 15),
+            "Light": ("Helvetica", 15),
+            "Dark": ("Helvetica", 15),
+            "Dyslexia": ("OpenDyslexic3", 15),
         }
         self.selected_font = self.font_dict.get(self.theme, ("Helvetica", 20))
 

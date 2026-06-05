@@ -44,7 +44,7 @@ class SettingsFrame(ctk.CTkFrame):
     def set_lang(self):
         self.clear_layout()
         for i in self.language_options:
-            option = ctk.CTkButton(self, text=i, command=lambda lang=i: self.get_lang_and_back_to_settings(lang))
+            option = ctk.CTkButton(self, text=i, command=lambda lang=i: self.get_lang_and_back_to_settings(lang), font=self.parent.selected_font)
             option.pack(padx=5, pady=5, fill="both")
             self.lang_buttons[i] = option
 

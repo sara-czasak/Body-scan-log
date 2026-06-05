@@ -2,7 +2,7 @@ import customtkinter as ctk
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from database import BodyScanDB
+from database import BodyScanDB, DuplicateError
 
 
 class AddStrategyFrame(ctk.CTkFrame):
@@ -26,7 +26,7 @@ class AddStrategyFrame(ctk.CTkFrame):
     def go_back(self):
         self.strategy_description_entry.delete("1.0", "end")
         self.strategy_name_entry.delete(0, "end")
-        self.parent.show_strategies_frame()
+        self.parent.view_strategy_level_selected(self.stress_level)
 
 
     def create_layout(self):
@@ -61,15 +61,19 @@ class AddStrategyFrame(ctk.CTkFrame):
 
         if name != "" and description != "":
             db = BodyScanDB()
-            db.insert_stress_decrease_strategy(
-                self.stress_level,
-                name,
-                description,
-            )
-            self.strategy_description_entry.delete("1.0", "end")
-            self.strategy_name_entry.delete(0, "end")
-            self.parent.show_strategies_frame()
-        else:
-            pass
+            try:
+                db.insert_stress_decrease_strategy(
+                    self.stress_level,
+                    name,
+                    description,
+                )
+                self.strategy_description_entry.delete("1.0", "end")
+                self.strategy_name_entry.delete(0, "end")
+                self.parent.show_strategies_frame()
+            except DuplicateError:
+                print("This strategy already exists!")
+            except Exception as e:
+                print("Error: ", e)
+
 
 

@@ -35,6 +35,11 @@ class StrategiesFrame(ctk.CTkFrame):
             self.mild_stress_button.pack_forget()
             self.mid_stress_button.pack_forget()
             self.high_stress_button.pack_forget()
+            self.back_to_strategies_menu_button.pack_forget()
+            self.strategies_option_menu.pack_forget()
+            self.select_strategy_option_button.pack_forget()
+            self.strategy_label.pack_forget()
+            self.strategy_list.pack_forget()
         elif page == "to main strategy screen":
             if self.back_to_strategies_menu_button is not None:
                 self.back_to_strategies_menu_button.pack_forget()
@@ -86,7 +91,7 @@ class StrategiesFrame(ctk.CTkFrame):
         self.back_to_menu_button.pack(padx=5, pady=5, fill="both")
 
         self.back_to_strategies_menu_button = ctk.CTkButton(self,
-                                                            text=self.parent.translator.dictionary["back_button"], command=self.view_strategies_menu, font=self.parent.selected_font)
+                                                            text=self.parent.translator.dictionary["back_button"], command=lambda: self.reset_frame("to main strategy screen"), font=self.parent.selected_font)
 
         self.mild_stress_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["Mild stress strategies"], command = lambda: self.view_strategy_level_selected(1), font=self.parent.selected_font)
         self.mild_stress_button.pack(padx=5, pady=5, fill="both")

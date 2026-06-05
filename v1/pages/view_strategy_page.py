@@ -27,7 +27,7 @@ class ViewStrategyFrame(ctk.CTkFrame):
         self.description.configure(text="")
         self.description.pack_forget()
         self.back_to_strategy_page_button.pack_forget()
-        self.parent.show_strategies_frame()
+        self.parent.view_strategy_level_selected(self.stress_level)
 
 
     def clear_layout(self):

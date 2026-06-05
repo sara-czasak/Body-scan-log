@@ -180,6 +180,15 @@ class App(ctk.CTk):
         self.strategies_frame.pack(padx=15, pady=15, fill="both", expand=True)
 
 
+    def view_strategy_level_selected(self, stress_level):
+        self.hide_settings()
+        self.hide_add_strategy_frame()
+        self.hide_edit_strategies_frame()
+        self.hide_view_strategy_frame()
+        self.strategies_frame.view_strategy_level_selected(stress_level)
+        self.strategies_frame.pack(padx=15, pady=15, fill="both", expand=True)
+
+
     def hide_strategies_frame(self):
         self.strategies_frame.pack_forget()
 

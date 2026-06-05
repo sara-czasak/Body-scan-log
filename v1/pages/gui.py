@@ -7,7 +7,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from translator import Translator
-from database import BodyScanDB
+from database import BodyScanDB, DatabaseError
 from strategy_page import StrategiesFrame
 from add_strategy_page import AddStrategyFrame
 from edit_strategy_page import EditStrategyFrame
@@ -17,6 +17,7 @@ from view_all_scans_page import ViewAllScansFrame
 from analysis_page import AnalysisFrame
 from PIL import ImageTk
 from tkextrafont import Font
+from CTkMessagebox import CTkMessagebox
 
 
 class App(ctk.CTk):
@@ -79,7 +80,13 @@ class App(ctk.CTk):
             self.language_selected = lang
 
             db = BodyScanDB()
-            db.change_lang_pref(lang)
+            try:
+                db.change_lang_pref(lang)
+            except DatabaseError:
+                CTkMessagebox(self, title=self.translator.dictionary["pref_db_error_title"],
+                              message=self.translator.dictionary["pref_db_error_message"])
+            except Exception as e:
+                print("Error: ", e)
 
             if not initial_load:
                 self.refresh_screen()
@@ -87,16 +94,34 @@ class App(ctk.CTk):
 
     def get_preferences(self):
         db = BodyScanDB()
-        data = db.get_user_preferences()
-        self.language_selected = data[0][1]
-        self.theme = data[0][2]
-        self.selected_font = data[0][2]
+        try:
+            data = db.get_user_preferences()
+            if data and len(data) > 0:
+                self.language_selected = data[0][1]
+                self.theme = data[0][2]
+                self.selected_font = data[0][2]
+            else:
+                self.language_selected = "English"
+                self.theme = "Default"
+        except DatabaseError:
+            self.language_selected = "English"
+            self.theme = "Default"
+        except Exception as e:
+            self.language_selected = "English"
+            self.theme = "Default"
+        self.selected_font = self.font_dict.get(self.theme, ("Helvetica", 15))
 
 
     def apply_theme_to_frames(self, theme):
         self.theme = theme
-        db = BodyScanDB()
-        db.change_theme_pref(theme)
+        try:
+            db = BodyScanDB()
+            db.change_theme_pref(theme)
+        except DatabaseError:
+            CTkMessagebox(self, title=self.translator.dictionary["pref_db_error_title"],
+                      message=self.translator.dictionary["pref_db_error_message"])
+        except Exception as e:
+            print("Error: ", e)
 
         self.selected_font = self.font_dict[theme]
         if theme == "Light":

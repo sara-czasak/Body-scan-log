@@ -62,6 +62,8 @@ langs = [{"English": {
     "Dyslexia": "Dyslexia",
     "name_error_title": "This strategy name already exists",
     "name_error_message": "Please change the strategy name and try again",
+    "pref_db_error_title": "Save Failed",
+    "pref_db_error_message": "Something went wrong while saving your preference. Please try again.",
 }},
     {"Polski": {
         'app_title': "PL",
@@ -126,7 +128,9 @@ langs = [{"English": {
         "Light": "PL",
         "Dyslexia": "PL",
         "name_error_title": "Ta nazwa strategi jest zajęta.",
-        "name_error_message": "Wprowadz inną nazwe i sprubuj ponownie"
+        "name_error_message": "Wprowadz inną nazwe i sprubuj ponownie",
+        "pref_db_error_title": "Nie udało się zapisać zmian",
+        "pref_db_error_message": "Coś poszło nie tak podczas zapisywania zmian. Sprubuj ponownie.",
     }},
 ]
 

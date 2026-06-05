@@ -8,6 +8,11 @@ class DuplicateError(Exception):
     pass
 
 
+class DatabaseError(Exception):
+    """Raised when a database operation fails"""
+    pass
+
+
 class BodyScanDB:
     def __init__(self):
         self.create_database()
@@ -33,7 +38,7 @@ class BodyScanDB:
             """)
             conn.commit()
         except OperationalError:
-            print("Something went wrong")
+            raise DatabaseError()
         finally:
             conn.close()
 
@@ -48,7 +53,7 @@ class BodyScanDB:
         except IntegrityError:
             raise DuplicateError()
         except OperationalError:
-            print("something went wrong")
+            raise DatabaseError()
         finally:
             conn.close()
 
@@ -63,7 +68,7 @@ class BodyScanDB:
         except IntegrityError:
             raise DuplicateError()
         except OperationalError:
-            print("something went wrong")
+            raise DatabaseError()
         finally:
             conn.close()
 
@@ -76,7 +81,7 @@ class BodyScanDB:
             data = cursor.fetchall()
             return data
         except OperationalError:
-            print("Something went wrong")
+            raise DatabaseError()
         finally:
             conn.close()
 
@@ -92,7 +97,7 @@ class BodyScanDB:
         except IntegrityError:
             raise DuplicateError()
         except OperationalError:
-            print("Something went wrong")
+            raise DatabaseError()
         finally:
             conn.close()
 
@@ -106,7 +111,7 @@ class BodyScanDB:
         except IntegrityError:
             raise DuplicateError()
         except OperationalError:
-            print("Something went wrong")
+            raise DatabaseError()
         finally:
             conn.close()
 
@@ -120,7 +125,7 @@ class BodyScanDB:
         except IntegrityError:
             raise DuplicateError()
         except OperationalError:
-            print("something went wrong")
+            raise DatabaseError()
         finally:
             conn.close()
 
@@ -133,7 +138,7 @@ class BodyScanDB:
             data = cursor.fetchall()
             return data
         except OperationalError:
-            print("Something went wrong")
+            raise DatabaseError()
         finally:
             conn.close()
 
@@ -143,10 +148,10 @@ class BodyScanDB:
         cursor = conn.cursor()
         try:
             cursor.execute("DELETE FROM stress_manager WHERE id = ?", (strategy_id,))
-        except OperationalError:
-            print("something went wrong")
-        finally:
             conn.commit()
+        except OperationalError:
+            raise DatabaseError()
+        finally:
             conn.close()
 
 
@@ -158,7 +163,7 @@ class BodyScanDB:
             data = cursor.fetchall()
             return data
         except OperationalError:
-            print("Something went wrong")
+            raise DatabaseError()
         finally:
             conn.close()
 
@@ -172,7 +177,7 @@ class BodyScanDB:
         except IntegrityError:
             raise DuplicateError()
         except OperationalError:
-            print("something went wrong")
+            raise DatabaseError()
         finally:
             conn.close()
 
@@ -185,7 +190,7 @@ class BodyScanDB:
             data = cursor.fetchall()
             return data
         except OperationalError:
-            print("Something went wrong")
+            raise DatabaseError()
         finally:
             conn.close()
 
@@ -199,7 +204,7 @@ class BodyScanDB:
             data = cursor.fetchall()
             return data
         except OperationalError:
-            print("Something went wrong")
+            raise DatabaseError()
         finally:
             conn.close()
 
@@ -212,7 +217,7 @@ class BodyScanDB:
             data = cursor.fetchall()
             return data
         except OperationalError:
-            print("Something went wrong")
+            raise DatabaseError()
         finally:
             conn.close()
 
@@ -225,7 +230,7 @@ class BodyScanDB:
             data = cursor.fetchall()
             return data
         except OperationalError:
-            print("Something went wrong")
+            raise DatabaseError()
         finally:
             conn.close()
 

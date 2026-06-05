@@ -8,8 +8,16 @@ class AboutFrame(ctk.CTkFrame):
         self.back_to_menu_button = None
         self.scroll_frame = None
 
-        self.placeholder_header = None
-        self.placeholder_text_body = None
+        self.header_what_is_body_scan = None
+        self.body_what_is_body_scan = None
+        self.header_how_to_scan = None
+        self.body_how_to_scan = None
+        self.header_how_it_works = None
+        self.body_how_it_works = None
+        self.header_features = None
+        self.body_features = None
+        self.header_credit = None
+        self.body_credit = None
 
         self.layout()
 
@@ -27,8 +35,44 @@ class AboutFrame(ctk.CTkFrame):
         self.scroll_frame = ctk.CTkScrollableFrame(self)
         self.scroll_frame.pack(padx=5, pady=5, fill="both", expand=True)
 
-        self.placeholder_header = ctk.CTkLabel(self.scroll_frame, text="SECTION ONE", font=self.parent.selected_font)
-        self.placeholder_header.pack(padx=5, pady=5, fill="both", expand=True)
+        self.header_what_is_body_scan = ctk.CTkLabel(self.scroll_frame, text=self.parent.translator.dictionary["about_what_is_body_scan_header"], font=self.parent.selected_font)
+        self.header_what_is_body_scan.pack(padx=5, pady=5, fill="both", expand=True)
 
-        self.placeholder_text_body = ctk.CTkLabel(self.scroll_frame, text="---Placeholder section body text--- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ultrices est vel lorem convallis, auctor varius turpis tincidunt. Cras in mi ac metus interdum lobortis nec porttitor lectus. Donec eu faucibus ex. Vivamus nec sodales odio. Nulla accumsan lacus id egestas rhoncus. Donec id dolor sit amet nulla sagittis hendrerit sed mattis est. Nunc imperdiet nunc eu accumsan aliquam. Quisque vel leo id enim iaculis imperdiet. Etiam tempus neque enim.Quisque eget lorem nec justo lacinia accumsan. Cras pellentesque erat sit amet ipsum rhoncus viverra. Nulla ullamcorper felis nec mollis placerat. Aliquam in posuere diam, quis porta turpis. Mauris sit amet turpis vel dui luctus efficitur sit amet congue velit. Mauris maximus ullamcorper felis, non ullamcorper est porta pharetra. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec accumsan erat dapibus hendrerit dignissim.Donec aliquam efficitur ante, sed laoreet nulla fermentum feugiat. Ut maximus et ligula at interdum. Proin et quam maximus, vehicula nunc at, pellentesque dui. Nam fermentum enim metus. Fusce tincidunt dolor elit, sit amet auctor augue dictum non. Vestibulum gravida sed felis quis pretium. Suspendisse et interdum magna. Donec ac leo nec arcu tincidunt vestibulum ut vitae ligula. Ut sed sapien posuere mauris dictum fringilla sit amet a tortor. Cras id faucibus arcu, a lobortis elit. ", wraplength=300, font=self.parent.selected_font)
-        self.placeholder_text_body.pack(padx=5, pady=5, fill="both", expand=True)
+        self.body_what_is_body_scan = ctk.CTkLabel(self.scroll_frame, text=self.parent.translator.dictionary["about_what_is_body_scan_content"], wraplength=300, font=self.parent.selected_font)
+        self.body_what_is_body_scan.pack(padx=5, pady=5, fill="both", expand=True)
+
+        self.header_how_to_scan = ctk.CTkLabel(self.scroll_frame, text=self.parent.translator.dictionary["how_to_body_scan_header"], font=self.parent.selected_font)
+        self.header_how_to_scan.pack(padx=5, pady=5, fill="both", expand=True)
+
+        self.body_how_to_scan = ctk.CTkLabel(self.scroll_frame, text=self.parent.translator.dictionary["how_to_body_scan_content"], wraplength=300, font=self.parent.selected_font)
+        self.body_how_to_scan.pack(padx=5, pady=5, fill="both", expand=True)
+
+        self.header_how_it_works = ctk.CTkLabel(self.scroll_frame,
+                                               text=self.parent.translator.dictionary["how_it_works_header"],
+                                               font=self.parent.selected_font)
+        self.header_how_it_works.pack(padx=5, pady=5, fill="both", expand=True)
+
+        self.body_how_it_works = ctk.CTkLabel(self.scroll_frame,
+                                             text=self.parent.translator.dictionary["how_it_works_content"],
+                                             wraplength=300, font=self.parent.selected_font)
+        self.body_how_it_works.pack(padx=5, pady=5, fill="both", expand=True)
+
+        self.header_features = ctk.CTkLabel(self.scroll_frame,
+                                                text=self.parent.translator.dictionary["features_header"],
+                                                font=self.parent.selected_font)
+        self.header_features.pack(padx=5, pady=5, fill="both", expand=True)
+
+        self.body_features = ctk.CTkLabel(self.scroll_frame,
+                                              text=self.parent.translator.dictionary["features_content"],
+                                              wraplength=300, font=self.parent.selected_font)
+        self.body_features.pack(padx=5, pady=5, fill="both", expand=True)
+
+        self.header_credit = ctk.CTkLabel(self.scroll_frame,
+                                            text=self.parent.translator.dictionary["credit_header"],
+                                            font=self.parent.selected_font)
+        self.header_credit.pack(padx=5, pady=5, fill="both", expand=True)
+
+        self.body_credit = ctk.CTkLabel(self.scroll_frame,
+                                          text=self.parent.translator.dictionary["credit_content"],
+                                          wraplength=300, font=self.parent.selected_font)
+        self.body_credit.pack(padx=5, pady=5, fill="both", expand=True)

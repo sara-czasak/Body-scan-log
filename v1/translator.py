@@ -79,6 +79,25 @@ langs = [{"English": {
     "db_error_ordered_rec_title": "Something went wrong.",
     "db_error_ordered_rec_message": "Couldn't get entries, please try again.",
     "db_error_rec_message": "Couldn't find entry. Please try again.",
+    "about_what_is_body_scan_header": "WHAT IS A BODY SCAN?",
+    "about_what_is_body_scan_content": "A body scan is a mindfulness practice where you slowly move your attention through different parts of your body, noticing sensations like tension, pain, tightness, or discomfort. It is a simple but powerful way to check in with yourself and become more aware of how stress and emotions show up physically.",
+    "how_to_body_scan_header": "HOW TO DO A BODY SCAN",
+    "how_to_body_scan_content": "Find a quiet place and sit or lie down comfortably. Starting from your head and working down, bring your attention to each body part one at a time. For each area, notice any tension, pain, tightness, or discomfort, and give it a score from 0 to 10. Zero means no tension at all. Ten means severe discomfort. Try not to judge what you find — just notice and record it",
+    "how_it_works_header": "HOW IT WORKS",
+    "how_it_works_content": "Open the app and select Add New Entry. Enter today's date and score each of the 16 body parts. Body parts you leave at 0 are excluded from your session average. You can add optional notes at the end. Your entries are saved and can be reviewed at any time. The Analysis screen shows your 10-day average score, a graph of your recent scores, and can suggest a coping strategy matched to your current stress level.",
+    "features_header": "FEATURES",
+    "features_content": """
+- Logging across 16 body parts with 0–10 scoring
+- Automatic session average (zero scores excluded)
+- Optional notes per entry
+- Full entry history with per-day detail view
+- 10-day score graph and average
+- Coping strategies organised by stress level (mild, moderate, high)
+- Random strategy suggestion based on your current average
+- English and Polish language support
+- Four themes including a dyslexia-friendly option""",
+    "credit_header": "CREDITS",
+    "credit_content": "Developed by Sara Czasak. Built with Python, CustomTkinter, and SQLite.",
 }},
     {"Polski": {
         'app_title': "Dziennik Skanowania Ciała",
@@ -160,6 +179,26 @@ langs = [{"English": {
         "edit_error_message": "Nie udało się zapisać zmian",
         "db_error_ordered_rec_title": "Coś poszło nie tak",
         "db_error_ordered_rec_message": "Nie udało się znaleść wpisów. Sprubuj ponownie.",
+        "about_what_is_body_scan_header": "CO TO JEST\nSKANOWANIE CIAŁA?",
+        "about_what_is_body_scan_content": "Skanowanie ciała to praktyka uważności, podczas której powoli przenosisz swoją uwagę przez różne części ciała, zauważając odczucia takie jak napięcie, ból, sztywność lub dyskomfort. To prosty, ale skuteczny sposób na sprawdzenie swojego stanu i zwiększenie świadomości, jak stres i emocje objawiają się fizycznie.",
+        "how_to_body_scan_header": "JAK WYKONAĆ\nSKANOWANIE CIAŁA",
+        "how_to_body_scan_content": "Znajdź ciche miejsce i usiądź lub połóż się wygodnie. Zaczynając od głowy i przesuwając się w dół, skup swoją uwagę na każdej części ciała po kolei. Dla każdego obszaru zauważ wszelkie napięcie, ból, sztywność lub dyskomfort i oceń go w skali od 0 do 10. Zero oznacza brak napięcia. Dziesięć oznacza bardzo silny dyskomfort. Staraj się nie oceniać tego, co czujesz — po prostu zauważ i zapisz.",
+        "how_it_works_header": "JAK TO DZIAŁA",
+        "how_it_works_content": 'Otwórz aplikację i wybierz "Dodaj nowy wpis". Wprowadź dzisiejszą datę i oceń każdą z 16 części ciała. Części ciała, które pozostawisz na 0, są wykluczone ze średniej sesji. Na końcu możesz dodać opcjonalne notatki. Twoje wpisy są zapisywane i można je przeglądać w dowolnym momencie. Ekran "Analiza" pokazuje Twoją średnią z ostatnich 10 dni, wykres Twoich ostatnich wyników i może zasugerować strategię radzenia sobie dopasowaną do Twojego aktualnego poziomu stresu.',
+        "features_header": "FUNKCJE",
+        "features_content": """
+- Ocena 16 części ciała w skali 0–10
+- Automatyczna średnia sesji (wyniki zerowe są wykluczone)
+- Opcjonalne notatki do każdego wpisu
+- Pełna historia wpisów z widokiem szczegółów na dany dzień
+- Wykres i średnia wyników z ostatnich 10 dni
+- Strategie radzenia sobie podzielone na poziomy stresu (lekki, umiarkowany, silny)
+- Losowa sugestia strategii na podstawie Twojej średniej
+- Obsługa języków: angielski i polski
+- Cztery motywy, w tym opcja przyjazna dla osób z dysleksją
+        """,
+        "credit_header": "AUTORSTWO",
+        "credit_content": "Opracowane przez Sara Czasak. Zbudowane przy użyciu Pythona, CustomTkinter i SQLite.",
     }},
 ]
 

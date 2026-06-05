@@ -16,17 +16,17 @@ from about_page import AboutFrame
 from view_all_scans_page import ViewAllScansFrame
 from analysis_page import AnalysisFrame
 from PIL import ImageTk
+from tkextrafont import Font
 
 
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        self.label_font = ("Helvetica", 20)
-
         # TESTING
         self.theme = None
         self.language_selected = None
+        self.selected_font = None
 
         self.get_preferences()
 
@@ -38,6 +38,18 @@ class App(ctk.CTk):
             self.iconphoto(True, img)
         except FileNotFoundError:
             pass
+
+        fonts_dir = os.path.join(os.path.dirname(__file__), "..", "fonts")
+        self.regular_font = Font(file=os.path.join(fonts_dir, "OpenDyslexic3-Regular.ttf"), family="OpenDyslexic3")
+        self.bold_font = Font(file=os.path.join(fonts_dir, "OpenDyslexic3-Bold.ttf"), family="OpenDyslexic3")
+
+        self.font_dict = {
+            "Default": ("Helvetica", 20),
+            "Light": ("Helvetica", 20),
+            "Dark": ("Helvetica", 20),
+            "Dyslexia": ("OpenDyslexic3", 20),
+        }
+        self.selected_font = self.font_dict.get(self.theme, ("Helvetica", 20))
 
         self.translator = Translator()
         self.set_language(self.language_selected, initial_load=True)
@@ -78,18 +90,23 @@ class App(ctk.CTk):
         data = db.get_user_preferences()
         self.language_selected = data[0][1]
         self.theme = data[0][2]
+        self.selected_font = data[0][2]
 
 
     def apply_theme_to_frames(self, theme):
         self.theme = theme
         db = BodyScanDB()
         db.change_theme_pref(theme)
+
+        self.selected_font = self.font_dict[theme]
         if theme == "Light":
             ctk.set_default_color_theme("./styles/light_mode.json")
         elif theme == "Default" or theme is None:
             ctk.set_default_color_theme("blue")
         elif theme == "Dark":
             ctk.set_default_color_theme("./styles/dark_mode.json")
+        elif theme == "Dyslexia":
+            ctk.set_default_color_theme("./styles/dyslexia_mode.json")
         self.refresh_screen()
         self.get_listbox_style(self.theme)
         self.show_settings()

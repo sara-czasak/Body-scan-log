@@ -51,18 +51,18 @@ class ViewAllScansFrame(ctk.CTkFrame):
     def scan_layout(self):
         self.clean_up()
         self.back_to_menu_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"],
-                                                 command=self.back)
+                                                 command=self.back, font=self.parent.selected_font)
         self.back_to_menu_button.pack(padx=15, pady=15, fill="both")
 
         if len(self.scan_records) > 0:
 
-            self.see_more_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["see_more_button"], command=self.see_records_in_day)
+            self.see_more_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["see_more_button"], command=self.see_records_in_day, font=self.parent.selected_font)
             self.see_more_button.pack(padx=15, pady=15, fill="both")
 
             self.master_scroll_frame = ctk.CTkScrollableFrame(self)
             self.master_scroll_frame.pack(padx=5, pady=5, fill="both", expand=True)
 
-            self.all_title = ctk.CTkLabel(self.master_scroll_frame, text=self.parent.translator.dictionary["ALL ENTRIES"], font=self.parent.label_font)
+            self.all_title = ctk.CTkLabel(self.master_scroll_frame, text=self.parent.translator.dictionary["ALL ENTRIES"], font=self.parent.selected_font)
             self.all_title.pack(padx=5, pady=5)
 
             self.all_scans_list = CTkListbox(self.master_scroll_frame, height=200)
@@ -103,13 +103,13 @@ class ViewAllScansFrame(ctk.CTkFrame):
     def body_layout(self):
         self.clean_up()
 
-        self.back_to_all_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"], command=lambda: self.switch_view('main'))
+        self.back_to_all_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"], command=lambda: self.switch_view('main'), font=self.parent.selected_font)
         self.back_to_all_button.pack(padx=15, pady=15, fill="both")
 
         if self.body_data is not None:
             self.master_scroll_frame.pack(padx=5, pady=5, fill="both", expand=True)
 
-            self.for_day_title = ctk.CTkLabel(self.master_scroll_frame, text=f"{self.date} | {self.rating}", font=self.parent.label_font)
+            self.for_day_title = ctk.CTkLabel(self.master_scroll_frame, text=f"{self.date} | {self.rating}", font=self.parent.selected_font)
             self.for_day_title.pack(padx=5, pady=5)
 
             self.all_entries_list = CTkListbox(self.master_scroll_frame)
@@ -120,13 +120,13 @@ class ViewAllScansFrame(ctk.CTkFrame):
 
             self.all_entries_list.pack(padx=5, pady=5, fill="both", expand=True)
 
-            self.notes_label = ctk.CTkLabel(self.master_scroll_frame, text=self.parent.translator.dictionary["notes_label"])
+            self.notes_label = ctk.CTkLabel(self.master_scroll_frame, text=self.parent.translator.dictionary["notes_label"], font=self.parent.selected_font)
             self.notes_label.pack(padx=5, pady=5)
 
             for i in self.body_data:
                 self.all_entries_list.insert("end", f"{i[2]} | {i[3]}/10")
         if self.record_notes != "":
-            self.notes_display = ctk.CTkLabel(self.master_scroll_frame, wraplength=250)
+            self.notes_display = ctk.CTkLabel(self.master_scroll_frame, wraplength=250, font=self.parent.selected_font)
             self.notes_display.configure(text=self.record_notes[self.date])
             self.notes_display.pack(padx=15, pady=15)
             self.all_entries_list.configure(height=180)

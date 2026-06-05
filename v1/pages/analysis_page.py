@@ -24,6 +24,7 @@ class AnalysisFrame(ctk.CTkFrame):
 
         self.strategy_name_label = None
         self.strategy_description_label = None
+        self.strategy_description_scroll_screen = None
         self.data = None
 
         self.average = None
@@ -50,26 +51,30 @@ class AnalysisFrame(ctk.CTkFrame):
             self.show_graph_button.pack_forget()
         if self.graph is not None:
             self.graph.get_tk_widget().pack_forget()
+        if self.strategy_description_scroll_screen is not None:
+            self.strategy_description_scroll_screen.pack_forget()
 
 
     def layout(self):
         self.clean_up()
 
         self.back_to_menu_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"],
-                                                 command=self.back)
+                                                 command=self.back, font=self.parent.selected_font)
         self.back_to_menu_button.pack(padx=5, pady=5, fill="both")
 
-        self.last_week_average = ctk.CTkLabel(self, text=f"{self.parent.translator.dictionary["last_week_average"]}: {self.average}/10", font=self.parent.label_font)
+        self.last_week_average = ctk.CTkLabel(self, text=f"{self.parent.translator.dictionary["last_week_average"]}: {self.average}/10", font=self.parent.selected_font)
         self.last_week_average.pack(padx=5, pady=5, fill="both")
 
-        self.get_strategy_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["get_strategy_button"], command=self.get_random_strategy)
+        self.get_strategy_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["get_strategy_button"], command=self.get_random_strategy, font=self.parent.selected_font)
         self.get_strategy_button.pack(padx=5, pady=5, fill="both")
 
-        self.show_graph_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["show_graph_button"], command=self.graph_layout)
+        self.show_graph_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["show_graph_button"], command=self.graph_layout, font=self.parent.selected_font)
         self.show_graph_button.pack(padx=5, pady=5, fill="both")
 
-        self.strategy_name_label = ctk.CTkLabel(self, font=self.parent.label_font)
-        self.strategy_description_label = ctk.CTkLabel(self, font=self.parent.label_font)
+        self.strategy_description_scroll_screen = ctk.CTkScrollableFrame(self)
+
+        self.strategy_name_label = ctk.CTkLabel(self.strategy_description_scroll_screen, font=self.parent.selected_font)
+        self.strategy_description_label = ctk.CTkLabel(self.strategy_description_scroll_screen, font=self.parent.selected_font)
 
 
     def get_random_strategy(self):
@@ -87,6 +92,7 @@ class AnalysisFrame(ctk.CTkFrame):
             data = db.get_strategies_by_stress_level(stress_level)
             if len(data) > 0:
                 strategy = random.choice(data)
+                self.strategy_description_scroll_screen.pack(fill="both")
                 self.strategy_name_label.configure(text=strategy[2])
                 self.strategy_description_label.configure(text=strategy[3], wraplength=250)
                 self.strategy_name_label.pack(padx=5, pady=5, fill="both")

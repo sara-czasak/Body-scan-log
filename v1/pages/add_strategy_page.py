@@ -30,20 +30,20 @@ class AddStrategyFrame(ctk.CTkFrame):
 
 
     def create_layout(self):
-        self.title = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Add new strategy"], font=self.parent.label_font)
+        self.title = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Add new strategy"], font=self.parent.selected_font)
         self.title.pack(padx=5, pady=5, fill="both", expand=True)
 
         self.back_to_strategy_page_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"],
-                                                 command=self.go_back)
+                                                 command=self.go_back, font=self.parent.selected_font)
         self.back_to_strategy_page_button.pack(padx=5, pady=5, fill="both")
 
-        self.strategy_name_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Strategy Name"], font=self.parent.label_font)
+        self.strategy_name_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Strategy Name"], font=self.parent.selected_font)
         self.strategy_name_label.pack(padx=5, pady=5, fill="both", expand=True)
 
         self.strategy_name_entry = ctk.CTkEntry(self)
         self.strategy_name_entry.pack(padx=5, pady=5, fill="both", expand=True)
 
-        self.strategy_description_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Strategy Description"], font=self.parent.label_font)
+        self.strategy_description_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["Strategy Description"], font=self.parent.selected_font)
         self.strategy_description_label.pack(padx=5, pady=5, fill="both", expand=True)
 
         self.strategy_description_entry = ctk.CTkTextbox(self, height=160, activate_scrollbars=True, wrap="word")
@@ -51,7 +51,7 @@ class AddStrategyFrame(ctk.CTkFrame):
 
         self.add_strategy_button = ctk.CTkButton(
             self,
-            text=self.parent.translator.dictionary["submit_strategy"], command=self.gather_data_to_submit)
+            text=self.parent.translator.dictionary["submit_strategy"], command=self.gather_data_to_submit, font=self.parent.selected_font)
         self.add_strategy_button.pack(padx=5, pady=5, fill="both")
 
 

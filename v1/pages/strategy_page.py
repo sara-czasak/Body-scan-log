@@ -46,6 +46,16 @@ class StrategiesFrame(ctk.CTkFrame):
                 self.strategy_list.pack_forget()
             if self.strategy_label is not None:
                 self.strategy_label.pack_forget()
+            if self.strategy_select_title is not None:
+                self.strategy_select_title.pack(padx=5, pady=5, fill="both", expand=True)
+            if self.back_to_menu_button is not None:
+                self.back_to_menu_button.pack(padx=5, pady=5, fill="both")
+            if self.mild_stress_button is not None:
+                self.mild_stress_button.pack(padx=5, pady=5, fill="both")
+            if self.mid_stress_button is not None:
+                self.mid_stress_button.pack(padx=5, pady=5, fill="both")
+            if self.high_stress_button is not None:
+                self.high_stress_button.pack(padx=5, pady=5, fill="both")
 
 
     def view_strategies_menu(self):
@@ -58,7 +68,7 @@ class StrategiesFrame(ctk.CTkFrame):
         self.strategies_option_menu = ctk.CTkOptionMenu(self, values=values)
         self.strategies_option_menu.set(self.parent.translator.dictionary["SELECT AN OPTION"])
 
-        self.strategy_label = ctk.CTkLabel(self, font=self.parent.label_font)
+        self.strategy_label = ctk.CTkLabel(self)
 
         self.strategy_list = CTkListbox(self)
 
@@ -66,25 +76,25 @@ class StrategiesFrame(ctk.CTkFrame):
             style = self.parent.get_listbox_style(self.listbox_theme)
             self.strategy_list.configure(**style)
 
-        self.select_strategy_option_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["option_choice"])
+        self.select_strategy_option_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["option_choice"], font=self.parent.selected_font)
 
-        self.strategy_select_title = ctk.CTkLabel(self, text=self.parent.translator.dictionary["COPING STRATEGIES"], font=self.parent.label_font)
+        self.strategy_select_title = ctk.CTkLabel(self, text=self.parent.translator.dictionary["COPING STRATEGIES"], font=self.parent.selected_font)
         self.strategy_select_title.pack(padx=5, pady=5, fill="both", expand=True)
 
         self.back_to_menu_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"],
-                                                 command=self.parent.show_settings)
+                                                 command=self.parent.show_settings, font=self.parent.selected_font)
         self.back_to_menu_button.pack(padx=5, pady=5, fill="both")
 
         self.back_to_strategies_menu_button = ctk.CTkButton(self,
-                                                            text=self.parent.translator.dictionary["back_button"], command=self.view_strategies_menu)
+                                                            text=self.parent.translator.dictionary["back_button"], command=self.view_strategies_menu, font=self.parent.selected_font)
 
-        self.mild_stress_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["Mild stress strategies"], command = lambda: self.view_strategy_level_selected(1))
+        self.mild_stress_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["Mild stress strategies"], command = lambda: self.view_strategy_level_selected(1), font=self.parent.selected_font)
         self.mild_stress_button.pack(padx=5, pady=5, fill="both")
 
-        self.mid_stress_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["Mid stress strategies"], command = lambda: self.view_strategy_level_selected(2))
+        self.mid_stress_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["Mid stress strategies"], command = lambda: self.view_strategy_level_selected(2), font=self.parent.selected_font)
         self.mid_stress_button.pack(padx=5, pady=5, fill="both")
 
-        self.high_stress_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["High stress strategies"], command = lambda: self.view_strategy_level_selected(3))
+        self.high_stress_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["High stress strategies"], command = lambda: self.view_strategy_level_selected(3), font=self.parent.selected_font)
         self.high_stress_button.pack(padx=5, pady=5, fill="both")
 
 

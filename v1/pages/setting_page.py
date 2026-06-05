@@ -23,22 +23,22 @@ class SettingsFrame(ctk.CTkFrame):
 
 
     def layout(self):
-        self.settings_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["settings"], font=self.parent.label_font)
+        self.settings_label = ctk.CTkLabel(self, text=self.parent.translator.dictionary["settings"], font=self.parent.selected_font)
         self.settings_label.pack(padx=5, pady=5, fill="both", expand=True)
 
-        self.back_to_menu_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"], command=self.go_back_to_menu)
+        self.back_to_menu_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"], command=self.go_back_to_menu, font=self.parent.selected_font)
         self.back_to_menu_button.pack(padx=5, pady=5, fill="both")
 
-        self.language_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["lang_option"], command=self.set_lang)
+        self.language_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["lang_option"], command=self.set_lang, font=self.parent.selected_font)
         self.language_button.pack(padx=5, pady=5, fill="both")
 
-        self.select_theme_pref_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["select_theme"], command=self.choose_theme)
+        self.select_theme_pref_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["select_theme"], command=self.choose_theme, font=self.parent.selected_font)
         self.select_theme_pref_button.pack(padx=5, pady=5, fill="both")
 
-        self.set_coping_strategies_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["Stress decreasing strategies"], command=self.parent.show_strategies_frame)
+        self.set_coping_strategies_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["Stress decreasing strategies"], command=self.parent.show_strategies_frame, font=self.parent.selected_font)
         self.set_coping_strategies_button.pack(padx=5, pady=5, fill="both")
 
-        self.back_to_settings_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"], command=self.go_back_to_settings)
+        self.back_to_settings_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"], command=self.go_back_to_settings, font=self.parent.selected_font)
 
 
     def set_lang(self):
@@ -58,7 +58,7 @@ class SettingsFrame(ctk.CTkFrame):
     def choose_theme(self):
         self.clear_layout()
         for i in self.theme_options:
-            option = ctk.CTkButton(self, text=i, command=lambda theme=i: self.parent.apply_theme_to_frames(theme))
+            option = ctk.CTkButton(self, text=i, command=lambda theme=i: self.parent.apply_theme_to_frames(theme), font=self.parent.selected_font)
             option.pack(padx=5, pady=5, fill="both")
 
 

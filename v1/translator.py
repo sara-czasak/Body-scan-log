@@ -98,6 +98,9 @@ langs = [{"English": {
 - Four themes including a dyslexia-friendly option""",
     "credit_header": "CREDITS",
     "credit_content": "Developed by Sara Czasak. Built with Python, CustomTkinter, and SQLite.",
+    "Edit Entry": "EDIT ENTRY",
+    "Delete Entry": "DELETE ENTRY",
+    "View Entry": "VIEW ENTRY",
 }},
     {"Polski": {
         'app_title': "Dziennik Skanowania Ciała",
@@ -199,6 +202,9 @@ langs = [{"English": {
         """,
         "credit_header": "AUTORSTWO",
         "credit_content": "Opracowane przez Sara Czasak. Zbudowane przy użyciu Pythona, CustomTkinter i SQLite.",
+        "Edit Entry": "PL",
+        "Delete Entry": "PL",
+        "View Entry": "PL",
     }},
 ]
 

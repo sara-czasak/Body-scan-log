@@ -19,10 +19,13 @@ class ViewAllScansFrame(ctk.CTkFrame):
         self.all_entries_list = None
         self.all_title = None
         self.for_day_title = None
-        self.see_more_button = None
+        # self.see_more_button = None
         self.back_to_all_button = None
         self.notes_display = None
         self.notes_label = None
+
+        self.scans_option_menu = None
+        self.select_scan_option_button = None
 
         self.date = None
         self.rating = None
@@ -53,12 +56,22 @@ class ViewAllScansFrame(ctk.CTkFrame):
         self.clean_up()
         self.back_to_menu_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"],
                                                  command=self.back, font=self.parent.selected_font)
-        self.back_to_menu_button.pack(padx=15, pady=15, fill="both")
+        self.back_to_menu_button.pack(padx=5, pady=5, fill="both")
 
         if len(self.scan_records) > 0:
 
-            self.see_more_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["see_more_button"], command=self.see_records_in_day, font=self.parent.selected_font)
-            self.see_more_button.pack(padx=15, pady=15, fill="both")
+            values = [self.parent.translator.dictionary["Edit Entry"],
+                      self.parent.translator.dictionary["Delete Entry"],
+                      self.parent.translator.dictionary["View Entry"],]
+            self.scans_option_menu = ctk.CTkOptionMenu(self, values=values, font=self.parent.selected_font)
+            self.scans_option_menu.set(self.parent.translator.dictionary["SELECT AN OPTION"])
+            self.scans_option_menu.pack(padx=5, pady=5, fill="both")
+
+            self.select_scan_option_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["SELECT AN OPTION"], font=self.parent.selected_font, command=self.get_choice)
+            self.select_scan_option_button.pack(padx=5, pady=5, fill="both")
+
+            # self.see_more_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["see_more_button"], command=self.see_records_in_day, font=self.parent.selected_font)
+            # self.see_more_button.pack(padx=15, pady=15, fill="both")
 
             self.master_scroll_frame = ctk.CTkScrollableFrame(self)
             self.master_scroll_frame.pack(padx=5, pady=5, fill="both", expand=True)
@@ -78,6 +91,14 @@ class ViewAllScansFrame(ctk.CTkFrame):
                 self.all_scans_list.insert("end", f"{k} | {self.scan_records[k][2]}/10")
 
 
+    def get_choice(self):
+        choice = self.scans_option_menu.get()
+        if choice == self.parent.translator.dictionary["View Entry"]:
+            self.see_records_in_day()
+        else:
+            pass
+
+
     def clean_up(self):
         if self.all_scans_list is not None:
             self.all_scans_list.pack_forget()
@@ -87,8 +108,8 @@ class ViewAllScansFrame(ctk.CTkFrame):
             self.all_title.pack_forget()
         if self.for_day_title is not None:
             self.for_day_title.pack_forget()
-        if self.see_more_button is not None:
-            self.see_more_button.pack_forget()
+        # if self.see_more_button is not None:
+        #     self.see_more_button.pack_forget()
         if self.back_to_menu_button is not None:
             self.back_to_menu_button.pack_forget()
         if  self.master_scroll_frame is not None:
@@ -99,6 +120,10 @@ class ViewAllScansFrame(ctk.CTkFrame):
             self.notes_display.pack_forget()
         if self.notes_label is not None:
             self.notes_label.pack_forget()
+        if self.scans_option_menu is not None:
+            self.scans_option_menu.pack_forget()
+        if self.select_scan_option_button is not None:
+            self.select_scan_option_button.pack_forget()
 
 
     def body_layout(self):

@@ -5,6 +5,7 @@ import datetime
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
 from CTkMessagebox import CTkMessagebox
+from tkinter.filedialog import asksaveasfilename
 
 
 class AnalysisFrame(ctk.CTkFrame):
@@ -13,6 +14,7 @@ class AnalysisFrame(ctk.CTkFrame):
         self.parent = parent
 
         self.back_to_menu_button = None
+        self.save_data_button = None
         self.last_week_average = None
         self.get_strategy_button = None
         self.show_graph_button = None
@@ -48,6 +50,8 @@ class AnalysisFrame(ctk.CTkFrame):
             self.graph.get_tk_widget().pack_forget()
         if self.strategy_description_scroll_screen is not None:
             self.strategy_description_scroll_screen.pack_forget()
+        if self.save_data_button is not None:
+            self.save_data_button.pack_foget()
 
 
     def layout(self):
@@ -56,6 +60,9 @@ class AnalysisFrame(ctk.CTkFrame):
         self.back_to_menu_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["back_button"],
                                                  command=self.back, font=self.parent.selected_font)
         self.back_to_menu_button.pack(padx=5, pady=5, fill="both")
+
+        self.save_data_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["save_data_button"], font=self.parent.selected_font, command=self.save_analysis_data)
+        self.save_data_button.pack(padx=5, pady=5, fill="both")
 
         self.last_week_average = ctk.CTkLabel(self, text=f"{self.parent.translator.dictionary["last_week_average"]}: {self.average}/10", font=self.parent.selected_font)
         self.last_week_average.pack(padx=5, pady=5, fill="both")
@@ -149,3 +156,27 @@ class AnalysisFrame(ctk.CTkFrame):
             self.graph.draw()
             self.graph.get_tk_widget().pack(fill="both")
 
+    def save_analysis_data(self):
+        file_path = asksaveasfilename(defaultextension=".txt", filetypes=[("Text files", "*.txt")])
+        if file_path:
+            db = BodyScanDB()
+            try:
+                with open(file_path, "w", encoding="utf-8") as f:
+                    for scan in self.data:
+                        f.write(f"Date: {scan[1]}\n")
+                        f.write(f"Overall Score: {scan[2]}/10\n")
+                        body_part_data = db.get_body_part_readings_by_scans_id(scan[0])
+                        for body in body_part_data:
+                            f.write(f"{body[2]} | {body[3]}/10\n")
+                        if scan[3] is not None and scan[3].strip() != "":
+                            f.write(f"Notes:\n{scan[3]}\n\n")
+                        else:
+                            f.write("\n\n")
+                CTkMessagebox(self, title=self.parent.translator.dictionary["download"], message=self.parent.translator.dictionary["download_message"])
+            except DatabaseError:
+                CTkMessagebox(self, title=self.parent.translator.dictionary["db_error_ordered_rec_title"], message=self.parent.translator.dictionary["db_error_rec_message"])
+            except Exception as e:
+                print("Error: ", e)
+        else:
+            CTkMessagebox(self, title=self.parent.translator.dictionary["pref_db_error_title"],
+                          message=self.parent.translator.dictionary["download_error_message"])

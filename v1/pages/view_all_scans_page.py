@@ -67,8 +67,6 @@ class ViewAllScansFrame(ctk.CTkFrame):
             self.select_scan_option_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["option_choice"], font=self.parent.selected_font, command=self.get_choice)
             self.select_scan_option_button.pack(padx=5, pady=5, fill="both")
 
-            # self.see_more_button = ctk.CTkButton(self, text=self.parent.translator.dictionary["see_more_button"], command=self.see_records_in_day, font=self.parent.selected_font)
-            # self.see_more_button.pack(padx=15, pady=15, fill="both")
 
             self.master_scroll_frame = ctk.CTkScrollableFrame(self)
             self.master_scroll_frame.pack(padx=5, pady=5, fill="both", expand=True)

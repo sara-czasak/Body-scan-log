@@ -94,6 +94,7 @@ langs = [{"English": {
 - 10-day score graph and average
 - Coping strategies organised by stress level (mild, moderate, high)
 - Random strategy suggestion based on your current average
+- Save data from last 10 days to file
 - English and Polish language support
 - Four themes including a dyslexia-friendly option""",
     "credit_header": "CREDITS",
@@ -106,6 +107,10 @@ langs = [{"English": {
     "success_title": "Success",
     "success_message": "Entry has been successfully deleted",
     "edit_entry_title": "EDIT ENTRY",
+    "save_data_button": "SAVE DATA",
+    "download": "Success!",
+    "download_message": "Your data has been saved.",
+    "download_error_message": "Data not saved. Please try again",
 }},
     {"Polski": {
         'app_title': "Dziennik Skanowania Ciała",
@@ -202,6 +207,7 @@ langs = [{"English": {
 - Wykres i średnia wyników z ostatnich 10 dni
 - Strategie radzenia sobie podzielone na poziomy stresu (lekki, umiarkowany, silny)
 - Losowa sugestia strategii na podstawie Twojej średniej
+- Możliwość zapisania danych z ostatnich 10 dni
 - Obsługa języków: angielski i polski
 - Cztery motywy, w tym opcja przyjazna dla osób z dysleksją
         """,
@@ -215,6 +221,10 @@ langs = [{"English": {
         "success_title": "Wszystko się udało!",
         "success_message": "Wpis został usunięty",
         "edit_entry_title": "EDYTUJ WPIS",
+        "save_data_button": "POBIERZ DANE",
+        "download": "Wszystko poszło dobrze!",
+        "download_message": "Dane zostały zapisane!",
+        "download_error_message": "Coś poszło nie tak. Spróbuj ponownie.",
     }},
 ]
 

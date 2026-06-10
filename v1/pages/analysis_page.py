@@ -51,7 +51,7 @@ class AnalysisFrame(ctk.CTkFrame):
         if self.strategy_description_scroll_screen is not None:
             self.strategy_description_scroll_screen.pack_forget()
         if self.save_data_button is not None:
-            self.save_data_button.pack_foget()
+            self.save_data_button.pack_forget()
 
 
     def layout(self):
